@@ -27,6 +27,8 @@ summ = 0
 
 # ADD YOUR CODE HERE.
 
+for i in data[N:M]:
+    summ += i
 
 # DON'T MODIFY THESE LINES.
 expected = 0

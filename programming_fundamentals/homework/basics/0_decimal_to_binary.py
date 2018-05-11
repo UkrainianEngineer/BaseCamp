@@ -15,3 +15,8 @@ assert "{0:b}".format(birthdate) == str(binary_date), "Invalid answer. Please ch
 print("=" * 60)
 print("Congratulations! You've done it!")
 print("=" * 60)
+
+"""
+Input: 1996
+Result: 11111001100
+"""
