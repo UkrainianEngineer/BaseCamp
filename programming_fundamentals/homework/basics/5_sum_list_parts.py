@@ -27,12 +27,8 @@ summ = 0
 
 # ADD YOUR CODE HERE.
 
-for i in data[N:M]:
-    summ += i
+summ = sum(data[N:M])
 
 # DON'T MODIFY THESE LINES.
-expected = 0
-for i in range(N, M):
-    expected += i
 assert summ == expected, message
 print("Congratulations! You've done this task!")
