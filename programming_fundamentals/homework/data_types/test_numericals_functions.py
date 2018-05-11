@@ -17,7 +17,6 @@ __author__ = "Pavlo Ivanchyshyn"
 __maintainer__ = "Pavlo Ivanchyshyn"
 __email__ = "p.ivanchyshyn@gmail.com"
 
-
 class TestNumericalFunctions(unittest.TestCase):
 
     def verify_result_type(self, fn, value, expected):
@@ -75,9 +74,9 @@ class TestNumericalFunctions(unittest.TestCase):
 
     def test_handle_exceptions_type(self):
         self.verify_result_type(handle_exceptions, 16, str)
-        self.verify_result_type(storage, 100, str)
-        self.verify_result_type(storage, '4', str)
-        self.verify_result_type(storage, 'test', str)
+        self.verify_result_type(handle_exceptions,, 100, str)
+        self.verify_result_type(handle_exceptions,, '4', str)
+        self.verify_result_type(handle_exceptions,, 'test', str)
 
     def test_handle_exceptions_values(self):
         message = "Expected message for `{}` value is `{}`, but `{}` found."
