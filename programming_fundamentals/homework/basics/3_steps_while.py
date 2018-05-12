@@ -16,6 +16,9 @@ step_count = 0
 # `step_count` should contains number of iterations.
 # ADD YOUR CODE HERE.
 
+while step_count < NUMBER_OF_STEPS:
+    step_count = step_count + 1
+    print(step_count)
 
 # DON'T MODIFY THESE LINES.
 print("Iterated {} times.".format(step_count))
