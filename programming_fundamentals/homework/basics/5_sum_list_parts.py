@@ -27,6 +27,7 @@ summ = 0
 
 # ADD YOUR CODE HERE.
 
+summ = sum(data[N:M])
 
 # DON'T MODIFY THESE LINES.
 expected = 0
