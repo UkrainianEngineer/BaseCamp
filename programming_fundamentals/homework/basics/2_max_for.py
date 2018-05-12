@@ -16,7 +16,10 @@ maximum = 0
 # Find the maximum value from `data` list using `for` loop.
 # Save maximum value from `data` list into `maximum` variable.
 # ADD YOUR CODE HERE.
-
+maximum = data[0] #If all numbers are negative
+for i in range(len(data)):
+	if data[i] > maximum:
+		maximum = data[i]
 
 # DON'T MODIFY THESE LINES.
 assert maximum == max(data), message
