@@ -15,6 +15,7 @@ step_count = 0
 # Increase `step_count` variable by 1 in each loop.
 # `step_count` should contains number of iterations.
 # ADD YOUR CODE HERE.
+
 while step_count < NUMBER_OF_STEPS:
 	step_count += 1
 

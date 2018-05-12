@@ -16,6 +16,7 @@ maximum = 0
 # Find the maximum value from `data` list using `for` loop.
 # Save maximum value from `data` list into `maximum` variable.
 # ADD YOUR CODE HERE.
+
 for num in data:
 	if num > maximum:
 		maximum = num
