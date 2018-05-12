@@ -15,9 +15,9 @@ step_count = 0
 # Increase `step_count` variable by 1 in each loop.
 # `step_count` should contains number of iterations.
 # ADD YOUR CODE HERE.
-step_count = 0
-while step_count != NUMBER_OF_STEPS:
-    step_count += 1
+
+while step_count < NUMBER_OF_STEPS:
+	step_count += 1
 
 # DON'T MODIFY THESE LINES.
 print("Iterated {} times.".format(step_count))
