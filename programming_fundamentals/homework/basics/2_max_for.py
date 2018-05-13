@@ -15,8 +15,14 @@ print("Your list is: {}".format(data))
 maximum = 0
 # Find the maximum value from `data` list using `for` loop.
 # Save maximum value from `data` list into `maximum` variable.
-# ADD YOUR CODE HERE.
 
+maximum = None
+
+for i in data:
+    if maximum is None or i > maximum:
+        maximum = i
+    else:
+        pass
 
 # DON'T MODIFY THESE LINES.
 assert maximum == max(data), message
