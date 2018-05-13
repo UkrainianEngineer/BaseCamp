@@ -26,8 +26,7 @@ summ = 0
 # summ = 3 + 4 + 5 = 12
 
 # ADD YOUR CODE HERE.
-summ = sum(data[2:3])
-print(summ)
+
 
 # DON'T MODIFY THESE LINES.
 expected = 0

@@ -18,7 +18,7 @@ maximum = 0
 # ADD YOUR CODE HERE.
 for number in data:
    if maximum < number:
-      maximum = number
+   maximum = number
 
 # DON'T MODIFY THESE LINES.
 assert maximum == max(data), message
