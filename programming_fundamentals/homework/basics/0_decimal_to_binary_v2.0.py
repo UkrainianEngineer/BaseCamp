@@ -4,13 +4,14 @@ __email__ = "pavlo.zablotskyy@gmail.com"
 
 # enter decimal birthday representation
 int_birthdate = int(input("Please enter a decimal year of your birth: "))
-# init empty string
-bin_birthdate = ''
 
-while (int_birthdate > 0):
-	# save reminder
-	bin_birthdate = bin_birthdate + str(int_birthdate % 2)	
-	int_birthdate = int(int_birthdate / 2)
+def int_to_dec(dec_year):
+	bin_birthdate = ''
+	while (dec_year > 0):
+		# save reminder
+		bin_birthdate = bin_birthdate + str(dec_year % 2)	
+		dec_year = int(dec_year / 2)
+		# return reminders in reverse (correct) order
+	return bin_birthdate[::-1]
 
-# print reminders in reverse (correct) order
-print (bin_birthdate[::-1])
+print (int_to_dec(int_birthdate))
