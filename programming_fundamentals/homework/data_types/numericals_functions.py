@@ -24,7 +24,7 @@ def decimal_to_binary(n):
     """
 
 
-    return bin(n)[2:]
+    return int(bin(n)[2:])
   
 #for checking user_input = int(input())
 #print(decimal_to_binary(user_input))
@@ -42,13 +42,13 @@ def binary_to_decimal(n):
         int - decimal representation of a proper number.
     """
  
-    n = input()
-    decimal = int(n,2)
+    #n = input()
+    decimal = int(str(n), 2)
     return decimal
   
 
 
-def storage(data_storage):
+def storage(data_storage = None):
     # Your function should return list with added `data` value
     # into passed list into function or just `data` value in empty list.
     # Example:
@@ -58,6 +58,8 @@ def storage(data_storage):
 
     # Change parameters in function for needed.
     # Also you is able to add some additional code here if needed.
+    if (data_storage is None):
+        data_storage = []
 
     # DON'T MODIFY THESE LINES.
     data_storage.append("data")
@@ -65,17 +67,18 @@ def storage(data_storage):
 # for checking :
 # print(storage(["hey"]))
 
+
 def handle_exceptions(user_number):
     # Write a function which uses `user_number` as a value entered by user.
     # If their number is higher than `TEST_NUMBER`, return `Yey! My number is higher!`,
  
  try:
-   if user_number > TEST_NUMBER:
+   if int(user_number) > TEST_NUMBER:
       return 'Yey! My number is higher!'
    else: 
-      return 'Wow! My number is lower'
+      return 'Wow! My number is lower.'
  except:
-   print("not a number")
+   return 'not a number'
  # return `Wow! My number is lower.` otherwise.
     # Handle possible exceptions.
 
