@@ -5,7 +5,7 @@ __email__ = "pavlo.zablotskyy@gmail.com"
 # enter decimal birthday representation
 int_birthdate = int(input("Please enter a decimal year of your birth: "))
 
-def int_to_dec(dec_year):
+def dec_to_bin(dec_year):
 	bin_birthdate = ''
 	while (dec_year > 0):
 		# save reminder
@@ -14,4 +14,4 @@ def int_to_dec(dec_year):
 		# return reminders in reverse (correct) order
 	return bin_birthdate[::-1]
 
-print (int_to_dec(int_birthdate))
+print (dec_to_bin(int_birthdate))
