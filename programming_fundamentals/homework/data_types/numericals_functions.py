@@ -22,7 +22,20 @@ def decimal_to_binary(n):
     Returns:
         int - integer number of binary representation for enterd n.
     """
-    pass
+    a = []
+    k = n
+    while k > 0:
+        if (k % 2) == 1:
+            a.append(1)
+            k = k // 2
+        else:
+            a.append(0)
+            k = k/2
+    a.reverse()
+    a = int("".join(str(x) for x in a))
+    print(str(n)+" in binary representation is "+str(a))
+
+decimal_to_binary(TEST_NUMBER)
 
 
 def binary_to_decimal(n):
@@ -36,7 +49,13 @@ def binary_to_decimal(n):
     Returns:
         int - decimal representation of a proper number.
     """
-    pass
+    D = 0
+    k = str(n)
+    for index, x in enumerate(k):
+        D = D + int(x)* 2**(len(k)- index - 1)
+    print(str(n) + " in decimal is equal to " + str(D))
+     
+binary_to_decimal(101010)
 
 
 def storage(something_should_be_here):
@@ -49,10 +68,13 @@ def storage(something_should_be_here):
 
     # Change parameters in function for needed.
     # Also you is able to add some additional code here if needed.
+    data_storage = something_should_be_here
 
     # DON'T MODIFY THESE LINES.
     data_storage.append("data")
     return data_storage
+
+print(storage(['test']))
 
 
 def handle_exceptions(user_number):
@@ -62,4 +84,17 @@ def handle_exceptions(user_number):
     # Handle possible exceptions.
 
     # ADD YOUR CODE HERE.
-    pass
+    try:
+        number = int(user_number)
+    except ValueError:
+        return "Function argument should be a number!"
+    else:
+        if number > TEST_NUMBER:
+            return 'Yey! My number is higher!'
+        elif number < TEST_NUMBER:
+            return 'Wow! My number is lower.'
+        else:
+            return 'It is a correct answer. '
+
+m = handle_exceptions(42)
+print(m)
