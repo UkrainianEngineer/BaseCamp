@@ -6,7 +6,7 @@ This is a helpful tool for mentors to verify the results of the students' home t
 """
 import unittest
 
-from numericals_functions import (
+from .numericals_functions import (
     binary_to_decimal,
     decimal_to_binary,
     handle_exceptions,
@@ -74,9 +74,9 @@ class TestNumericalFunctions(unittest.TestCase):
 
     def test_handle_exceptions_type(self):
         self.verify_result_type(handle_exceptions, 16, str)
-        self.verify_result_type(handle_exceptions,, 100, str)
-        self.verify_result_type(handle_exceptions,, '4', str)
-        self.verify_result_type(handle_exceptions,, 'test', str)
+        self.verify_result_type(handle_exceptions, 100, str)
+        self.verify_result_type(handle_exceptions, '4', str)
+        self.verify_result_type(handle_exceptions, 'test', str)
 
     def test_handle_exceptions_values(self):
         message = "Expected message for `{}` value is `{}`, but `{}` found."
@@ -88,5 +88,6 @@ class TestNumericalFunctions(unittest.TestCase):
         self.verify_results(handle_exceptions, 43, "Yey! My number is higher!", message)
         self.verify_results(handle_exceptions, 1000, "Yey! My number is higher!", message)
 
-if __name__ =='__main__':
+
+if __name__ == '__main__':
     unittest.main()
