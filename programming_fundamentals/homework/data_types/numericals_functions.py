@@ -67,4 +67,10 @@ def handle_exceptions(user_number):
     # Handle possible exceptions.
 
     # ADD YOUR CODE HERE.
-    pass
+    try:
+        if int(user_number) > TEST_NUMBER:
+            return "Yey! My number is higher!"
+        return "Wow! My number is lower."
+    except (TypeError, ValueError):
+        return "Please, re-enter your value"
+        pass
