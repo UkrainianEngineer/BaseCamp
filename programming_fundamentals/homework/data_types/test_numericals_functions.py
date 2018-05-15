@@ -5,9 +5,7 @@ This is needed for results verification only.
 This is a helpful tool for mentors to verify the results of the students' home tasks.
 """
 import unittest
-
-from numericals_functions import (
-    binary_to_decimal,
+from data_types.numericals_functions import (binary_to_decimal,
     decimal_to_binary,
     handle_exceptions,
     storage
