@@ -17,6 +17,7 @@ __author__ = "Pavlo Ivanchyshyn"
 __maintainer__ = "Pavlo Ivanchyshyn"
 __email__ = "p.ivanchyshyn@gmail.com"
 
+
 class TestNumericalFunctions(unittest.TestCase):
 
     def verify_result_type(self, fn, value, expected):
@@ -88,5 +89,6 @@ class TestNumericalFunctions(unittest.TestCase):
         self.verify_results(handle_exceptions, 43, "Yey! My number is higher!", message)
         self.verify_results(handle_exceptions, 1000, "Yey! My number is higher!", message)
 
-if __name__ =='__main__':
+
+if __name__ == '__main__':
     unittest.main()
