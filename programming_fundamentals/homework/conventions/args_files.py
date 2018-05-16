@@ -61,7 +61,6 @@ def find_sum(*args):
         return "Error, when the value is wrong"
 
 
-
 def write_to_file(filename, data):
     """
     Implement this function!
@@ -72,7 +71,10 @@ def write_to_file(filename, data):
         data (list, tuple) - lines of text which should be added into file.
     """
     # ADD YOUR CODE HERE.
-    pass
+    with open(filename, 'w') as file:
+        for d in data:
+            file.write(d + '\n')
+    return
 
 
 def read_file(filename):
@@ -87,7 +89,15 @@ def read_file(filename):
         list - list of lines from the file.
     """
     # ADD YOUR CODE HERE.
-    pass
+    with open(filename, 'r') as file:
+        list_of_lines = file.readlines()
+        return list_of_lines
+
+
+data = ['Yura', 'Kekc']
+data1 = ('Yura', 'Kekc')
+write_to_file(FILENAME, data)
+read_file(FILENAME)
 
 
 def append_to_file(filename, data):
