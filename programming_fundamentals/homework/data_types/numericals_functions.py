@@ -55,6 +55,7 @@ def storage(arg=None):
     # DON'T MODIFY THESE LINES.
 
     data_storage = []
+
     if type(arg) is list:
         arg.append("data")
         data_storage = copy.copy(arg)
@@ -74,4 +75,3 @@ def handle_exceptions(user_number):
             return "Wow! My number is lower."
     except (TypeError, ValueError):
         return "Wow! My number is lower."
-
