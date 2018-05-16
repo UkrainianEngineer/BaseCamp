@@ -1,0 +1,10 @@
+[
+  "data_types/test_numericals_functions.py::TestNumericalFunctions::test_binary_to_decimal_result_type",
+  "data_types/test_numericals_functions.py::TestNumericalFunctions::test_binary_to_decimal_values",
+  "data_types/test_numericals_functions.py::TestNumericalFunctions::test_decimal_to_binary_result_type",
+  "data_types/test_numericals_functions.py::TestNumericalFunctions::test_decimal_to_binary_values",
+  "data_types/test_numericals_functions.py::TestNumericalFunctions::test_handle_exceptions_type",
+  "data_types/test_numericals_functions.py::TestNumericalFunctions::test_handle_exceptions_values",
+  "data_types/test_numericals_functions.py::TestNumericalFunctions::test_storage_result_type",
+  "data_types/test_numericals_functions.py::TestNumericalFunctions::test_storage_values"
+]
