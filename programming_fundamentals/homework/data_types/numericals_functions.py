@@ -71,6 +71,6 @@ def handle_exceptions(user_number):
         if int(user_number) > TEST_NUMBER:
             return "Yey! My number is higher!"
         else:
-            raise Exception("Handled exception where user_number is 0")
+            return "Wow! My number is lower."
     except (TypeError, ValueError):
         return "Handled exception"
