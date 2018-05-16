@@ -28,7 +28,6 @@ USER_INFO = {
     "city": "Lviv"
 }
 
-
 def find_sum(something_should_be_there):
     """
     Implement this function!
@@ -50,7 +49,6 @@ def find_sum(something_should_be_there):
     # ADD YOUR CODE HERE.
     pass
 
-
 def write_to_file(filename, data):
     """
     Implement this function!
@@ -62,7 +60,6 @@ def write_to_file(filename, data):
     """
     # ADD YOUR CODE HERE.
     pass
-
 
 def read_file(filename):
     """
@@ -78,7 +75,6 @@ def read_file(filename):
     # ADD YOUR CODE HERE.
     pass
 
-
 def append_to_file(filename, data):
     """
     Implement this function!
@@ -91,10 +87,9 @@ def append_to_file(filename, data):
     # ADD YOUR CODE HERE.
     pass
 
-
 def write_user_info(filename, data):
     """
-    Using functions: `write_to_file`, `read_file`, `append_to_file` do the following:
+    Using function `write_to_file` do the following:
     - Create file with a `filename` name.
     - Write user's information from `data` into file with `filename` in the following format:
 
@@ -111,7 +106,6 @@ def write_user_info(filename, data):
     """
     # ADD YOUR CODE HERE.
     pass
-
 
 def get_user_info(filename):
     """
