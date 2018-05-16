@@ -22,9 +22,9 @@ lines = [
 ]
 
 USER_INFO = {
-    "name": "Pavlo",
-    "surname": "Ivanchyshyn",
-    "age": 28,
+    "name": "Yuriy",
+    "surname": "Zhuk",
+    "age": 25,
     "city": "Lviv"
 }
 
@@ -94,12 +94,6 @@ def read_file(filename):
         return list_of_lines
 
 
-data = ['Yura', 'Kekc']
-data1 = ('Yura', 'Kekc')
-write_to_file(FILENAME, data)
-read_file(FILENAME)
-
-
 def append_to_file(filename, data):
     """
     Implement this function!
@@ -110,10 +104,20 @@ def append_to_file(filename, data):
         data (list, tuple) - lines of text which should be added into file.
     """
     # ADD YOUR CODE HERE.
-    pass
+    with open(filename, 'a') as file:
+        for d in data:
+            file.write(d + '\n')
+    return
 
 
-def write_user_info(filename, data):
+# data = ['Yura', 'Kekc']
+# data1 = ('Swedish', 'House', 'Mafia')
+# write_to_file(FILENAME, data)
+# read_file(FILENAME)
+# append_to_file(FILENAME, data1)
+
+
+def write_user_info(filename, **kwargs):
     """
     Using functions: `write_to_file`, `read_file`, `append_to_file` do the following:
     - Create file with a `filename` name.
@@ -131,7 +135,24 @@ def write_user_info(filename, data):
         data (dict) - personal user's information.
     """
     # ADD YOUR CODE HERE.
-    pass
+    text = ["Hi there!", "My name is $name $surname", "I am $age years old", "I live in $town"]
+    write_to_file(filename, text)
+    list_of_lines = read_file(filename)
+    for line in list_of_lines:
+        if "'{}'" not in line:
+            continue
+        else:
+            for key in kwargs:
+                value = kwargs.get(key)
+                line.format(value)
+                # append_to_file(FILENAME, line_with_value)
+    return True
+
+#  use replace into lines
+#  first line {} replace with the first value
+
+
+b = write_user_info(FILENAME, **USER_INFO)
 
 
 def get_user_info(filename):
