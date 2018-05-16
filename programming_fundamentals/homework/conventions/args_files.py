@@ -50,11 +50,16 @@ def find_sum(*args):
     # ADD YOUR CODE HERE.
     try:
         summ = 0
-        for s in args:
-            summ += int(s)
+        for x in args:
+            if type(x) is list:
+                for y in x:
+                    summ += int(y)
+            else:
+                summ += int(x)
         return summ
     except (TypeError, ValueError):
         return "Error, when the value is wrong"
+
 
 
 def write_to_file(filename, data):
