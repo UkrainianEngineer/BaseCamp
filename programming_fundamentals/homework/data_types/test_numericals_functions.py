@@ -6,7 +6,7 @@ This is a helpful tool for mentors to verify the results of the students' home t
 """
 import unittest
 
-from numericals_functions import (
+from data_types.numericals_functions import (
     binary_to_decimal,
     decimal_to_binary,
     handle_exceptions,
