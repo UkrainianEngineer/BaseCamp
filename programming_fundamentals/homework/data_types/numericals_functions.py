@@ -41,7 +41,7 @@ def binary_to_decimal(n):
     return bin_to_dec
 
 
-def storage(list=[]):
+def storage(data=None):
     # Your function should return list with added `data` value
     # into passed list into function or just `data` value in empty list.
     # Example:
@@ -51,7 +51,10 @@ def storage(list=[]):
 
     # Change parameters in function for needed.
     # Also you is able to add some additional code here if needed.
-    data_storage = list
+    if data is None:
+        data_storage = []
+    else:
+        data_storage = data.copy()
     # DON'T MODIFY THESE LINES.
     data_storage.append("data")
     return data_storage
