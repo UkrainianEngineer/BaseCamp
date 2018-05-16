@@ -29,7 +29,7 @@ USER_INFO = {
 }
 
 
-def find_sum(something_should_be_there):
+def find_sum(*args):
     """
     Implement this function!
     This function should sum of numbers for different amount of parameters.
@@ -48,7 +48,13 @@ def find_sum(something_should_be_there):
         etc.
     """
     # ADD YOUR CODE HERE.
-    pass
+    try:
+        summ = 0
+        for s in args:
+            summ += int(s)
+        return summ
+    except (TypeError, ValueError):
+        return "Error, when the value is wrong"
 
 
 def write_to_file(filename, data):
