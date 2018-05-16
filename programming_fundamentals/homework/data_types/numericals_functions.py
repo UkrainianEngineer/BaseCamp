@@ -53,11 +53,13 @@ def storage(arg=None):
     # Also you is able to add some additional code here if needed.
 
     # DON'T MODIFY THESE LINES.
+
     data_storage = []
+
     if type(arg) == list:
         arg.append("data")
         data_storage = copy.copy(arg)
-    elif arg == None:
+    elif arg is None:
         data_storage.append("data")
     else:
         data_storage.append(arg)
@@ -68,10 +70,8 @@ def storage(arg=None):
 def handle_exceptions(user_number):
     try:
         if int(user_number) > TEST_NUMBER:
-            print("Yey! My number is higher!")
             return "Yey! My number is higher!"
-        print("Wow! My number is lower.")
+        else:
+            return "Wow! My number is lower."
+    except (TypeError, ValueError):
         return "Wow! My number is lower."
-    except (SyntaxError, TypeError, ValueError, NameError, AssertionError):
-        print("Invalid format of user_number!!!")
-        return "Invalid format of user_number!!!"
