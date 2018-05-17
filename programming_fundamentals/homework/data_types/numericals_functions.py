@@ -22,7 +22,14 @@ def decimal_to_binary(n):
     Returns:
         int - integer number of binary representation for enterd n.
     """
-    pass
+    bin_n = 0
+    i = 0
+    while n > 0:
+        bin_n += (n % 2) * pow(10, i)
+        n = n/2
+        i += 1
+    return bin_n
+
 
 
 def binary_to_decimal(n):
@@ -36,10 +43,18 @@ def binary_to_decimal(n):
     Returns:
         int - decimal representation of a proper number.
     """
-    pass
+    int_n = 0
+    i = 0
+    while n > 0:
+        int_n += (n % 10) * pow(2, i)
+        n = n / 10
+        i += 1
+    return int_n
 
 
-def storage(something_should_be_here):
+
+
+def storage(data_storage = []):
     # Your function should return list with added `data` value
     # into passed list into function or just `data` value in empty list.
     # Example:
@@ -51,15 +66,34 @@ def storage(something_should_be_here):
     # Also you is able to add some additional code here if needed.
 
     # DON'T MODIFY THESE LINES.
-    data_storage.append("data")
+    # data_storage.append("data")
+    # return data_storage
+    data_storage.append('data')
+
     return data_storage
 
 
-def handle_exceptions(user_number):
+def handle_exceptions():
     # Write a function which uses `user_number` as a value entered by user.
     # If their number is higher than `TEST_NUMBER`, return `Yey! My number is higher!`,
     # return `Wow! My number is lower.` otherwise.
     # Handle possible exceptions.
 
     # ADD YOUR CODE HERE.
-    pass
+    while True:
+        try:
+            user_number = int(input("Please enter your nubmer: "))
+            if user_number > TEST_NUMBER:
+                print 'Yey! My number is higher!'
+            elif user_number < TEST_NUMBER:
+                print 'Wow! My number is lower!'
+            break
+        except ValueError:
+            print "You didn't entered the number"
+
+
+
+
+
+
+
