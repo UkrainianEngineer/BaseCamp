@@ -21,8 +21,6 @@ maximum = None
 for i in data:
     if maximum is None or i > maximum:
         maximum = i
-    else:
-        pass
 
 # DON'T MODIFY THESE LINES.
 assert maximum == max(data), message
