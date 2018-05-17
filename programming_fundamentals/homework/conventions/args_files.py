@@ -110,13 +110,6 @@ def append_to_file(filename, data):
     return
 
 
-# data = ['Yura', 'Kekc']
-# data1 = ('Swedish', 'House', 'Mafia')
-# write_to_file(FILENAME, data)
-# read_file(FILENAME)
-# append_to_file(FILENAME, data1)
-
-
 def write_user_info(filename, **kwargs):
     """
     Using functions: `write_to_file`, `read_file`, `append_to_file` do the following:
@@ -135,24 +128,18 @@ def write_user_info(filename, **kwargs):
         data (dict) - personal user's information.
     """
     # ADD YOUR CODE HERE.
-    text = ["Hi there!", "My name is $name $surname", "I am $age years old", "I live in $town"]
-    write_to_file(filename, text)
-    list_of_lines = read_file(filename)
-    for line in list_of_lines:
-        if "'{}'" not in line:
-            continue
-        else:
-            for key in kwargs:
-                value = kwargs.get(key)
-                line.format(value)
-                # append_to_file(FILENAME, line_with_value)
-    return True
 
-#  use replace into lines
-#  first line {} replace with the first value
+    kwargs = [
+        "Hi there!",
+        "My name is {} {}.".format(kwargs['name'], kwargs['surname']),
+        "I am {} years old.".format(kwargs['age']),
+        "I live in {}.".format(kwargs['city'])
+    ]
+    write_to_file(filename, kwargs)
+    return
 
 
-b = write_user_info(FILENAME, **USER_INFO)
+write_user_info(FILENAME, **USER_INFO)
 
 
 def get_user_info(filename):
