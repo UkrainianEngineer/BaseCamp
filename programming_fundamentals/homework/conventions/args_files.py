@@ -4,6 +4,9 @@ This module contains tasks related to arguments & parameters, files in Python.
 Please read docstrings and complete the functions.
 All functions should returns results of described type.
 """
+import re
+
+
 __author__ = "Pavlo Ivanchyshyn"
 __maintainer__ = "Pavlo Ivanchyshyn"
 __email__ = "p.ivanchyshyn@gmail.com"
@@ -128,7 +131,32 @@ def write_user_info(filename, **kwargs):
         data (dict) - personal user's information.
     """
     # ADD YOUR CODE HERE.
-
+    # Example 0:
+    # text = ["Hi there!",
+    #         "My name is {} {}",
+    #         "I am {} years old",
+    #         "I live in {}"]
+    # patern = '{}'
+    # for key in kwargs:
+    #     for t in text:
+    #         value = kwargs.get(key)
+    #         re.sub(patern, value, t)
+    # =====================================================
+    # Example(this example doesn't work:
+    # write_to_file(filename, text)
+    # list_of_lines = read_file(filename)
+    # for line in list_of_lines:
+    #     if "{}" not in line:
+    #         append_to_file(FILENAME, line)
+    #         continue
+    #     else:
+    #         for key in kwargs:
+    #             value = kwargs.get(key)
+    #             line_with_value = line.format(value)
+    #             append_to_file(FILENAME, line_with_value)
+    # return
+    # =======================================================
+    # Example 2(work):
     kwargs = [
         "Hi there!",
         "My name is {} {}.".format(kwargs['name'], kwargs['surname']),
@@ -139,7 +167,7 @@ def write_user_info(filename, **kwargs):
     return
 
 
-write_user_info(FILENAME, **USER_INFO)
+# write_user_info(FILENAME, **USER_INFO)
 
 
 def get_user_info(filename):
@@ -163,4 +191,38 @@ def get_user_info(filename):
         get_user_info(FILENAME)  # Returns {"name": "Pavlo", "surname": "Ivanchyshyn", "age": 28, "city": "Lviv"}
     """
     # ADD YOUR CODE HERE.
-    pass
+    user_info = {
+        "name": "",
+        "surname": "",
+        "age": "",
+        "city": ""
+    }
+    pattern_one = r'\s(\w+\s\w+)\.'
+    pattern_two = r'\d+'
+    pattern_three = r'\s(\b\w+)\.'
+    list_of_lines = read_file(filename)
+    for index, line in enumerate(list_of_lines):
+        if index == 0:
+            continue
+        elif index == 1:
+            values = re.findall(pattern_one, line)
+            fullname = values[0]
+            fullname = fullname.split(' ')
+            user_info['name'] = fullname[0]
+            user_info['surname'] = fullname[1]
+            continue
+        elif index == 2:
+            values = re.findall(pattern_two, line)
+            age = values[0]
+            user_info['age'] = int(age)
+            continue
+        else:
+            values = re.findall(pattern_three, line)
+            city = values[0]
+            user_info['city'] = str(city)
+            break
+
+    return user_info
+
+
+# get_user_info(FILENAME)
