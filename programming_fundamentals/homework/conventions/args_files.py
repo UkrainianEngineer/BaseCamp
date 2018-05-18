@@ -53,12 +53,12 @@ def find_sum(*args):
     # ADD YOUR CODE HERE.
     try:
         summ = 0
-        for x in args:
-            if type(x) is list:
-                for y in x:
-                    summ += int(y)
+        for value in args:
+            if type(value) is list:
+                for val in value:
+                    summ += int(val)
             else:
-                summ += int(x)
+                summ += int(value)
         return summ
     except (TypeError, ValueError):
         return "Error, when the value is wrong"
