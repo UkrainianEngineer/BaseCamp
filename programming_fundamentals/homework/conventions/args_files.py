@@ -4,6 +4,8 @@ This module contains tasks related to arguments & parameters, files in Python.
 Please read docstrings and complete the functions.
 All functions should returns results of described type.
 """
+import re
+
 __author__ = "Pavlo Ivanchyshyn"
 __maintainer__ = "Pavlo Ivanchyshyn"
 __email__ = "p.ivanchyshyn@gmail.com"
@@ -28,7 +30,8 @@ USER_INFO = {
     "city": "Lviv"
 }
 
-def find_sum(something_should_be_there):
+
+def find_sum(*args):
     """
     Implement this function!
     This function should sum of numbers for different amount of parameters.
@@ -47,7 +50,16 @@ def find_sum(something_should_be_there):
         etc.
     """
     # ADD YOUR CODE HERE.
-    pass
+    arg_sum = 0
+    for arg in args:
+        if isinstance(arg, list):
+            for i in arg:
+                arg_sum += i
+        else:
+            arg_sum += arg
+
+    return arg_sum
+
 
 def write_to_file(filename, data):
     """
@@ -59,7 +71,10 @@ def write_to_file(filename, data):
         data (list, tuple) - lines of text which should be added into file.
     """
     # ADD YOUR CODE HERE.
-    pass
+    with open(filename, 'w') as file:
+        for line in data:
+            file.write(line + '\n')
+
 
 def read_file(filename):
     """
@@ -73,7 +88,11 @@ def read_file(filename):
         list - list of lines from the file.
     """
     # ADD YOUR CODE HERE.
-    pass
+    with open(filename, 'r') as file:
+        lines_ = file.readlines()
+
+    return lines_
+
 
 def append_to_file(filename, data):
     """
@@ -85,7 +104,10 @@ def append_to_file(filename, data):
         data (list, tuple) - lines of text which should be added into file.
     """
     # ADD YOUR CODE HERE.
-    pass
+    with open(filename, 'a') as file:
+        for line in data:
+            file.write(line + '\n')
+
 
 def write_user_info(filename, data):
     """
@@ -105,7 +127,18 @@ def write_user_info(filename, data):
         data (dict) - personal user's information.
     """
     # ADD YOUR CODE HERE.
-    pass
+    name = data['name']
+    surname = data['surname']
+    age = data['age']
+    city = data['city']
+
+    info = [
+        'Hi there!', 'My name is {} {}.'.format(name, surname),
+        'I am {} years old.'.format(age), 'I live in {}.'.format(city)
+    ]
+
+    write_to_file(filename, info)
+
 
 def get_user_info(filename):
     """
@@ -128,4 +161,17 @@ def get_user_info(filename):
         get_user_info(FILENAME)  # Returns {"name": "Pavlo", "surname": "Ivanchyshyn", "age": 28, "city": "Lviv"}
     """
     # ADD YOUR CODE HERE.
-    pass
+    file = read_file(filename)[1:]
+
+    name, surname = re.findall(r'[A-Z]\w+', file[0])[1:]
+    age = re.findall(r'\d+', file[1])[0]
+    city = re.findall(r'[A-Z]\w+', file[2])[0]
+
+    user_information = {
+        'name': name,
+        'surname': surname,
+        'age': age,
+        'city': city
+    }
+
+    return user_information
