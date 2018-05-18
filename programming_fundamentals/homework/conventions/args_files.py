@@ -7,7 +7,7 @@ All functions should returns results of described type.
 __author__ = "Pavlo Ivanchyshyn"
 __maintainer__ = "Pavlo Ivanchyshyn"
 __email__ = "p.ivanchyshyn@gmail.com"
-
+import re
 FILENAME = 'awesome_data.txt'
 lines = [
     "Two assure edward whence the was.",
@@ -73,9 +73,6 @@ def write_to_file(filename, data):
         for element in data:
             file.write(element + '\n')
     return
-# When you will call this function, you should surround 'filename' by quotations mark
-# look at example bellow:
-# write_to_file(FILENAME, lines)
 
 
 def read_file(filename):
@@ -92,10 +89,8 @@ def read_file(filename):
     # ADD YOUR CODE HERE.
 
     with open(filename, 'r') as file:
-        print(file.readlines())
-        return file.readlines()
-
-# read_file(FILENAME)
+        text = file.readlines()
+        return text
 
 
 def append_to_file(filename, data):
@@ -112,9 +107,6 @@ def append_to_file(filename, data):
         for line in data:
             file.write(line + "\n")
     return
-# 
-# append_to_file(FILENAME, lines)
-# read_file(FILENAME)
 
 
 def write_user_info(filename, data):
@@ -144,27 +136,51 @@ def write_user_info(filename, data):
     return
 
 
-# write_user_info(FILENAME, USER_INFO)
-
 def get_user_info(filename):
     """
-    Using file created by `write_user_info` create a reader. It should be able to read the following format:
+        Using file created by `write_user_info` create a reader. It should be able to read the following format:
 
-    Hi there!
-    My name is <name> <surname>.
-    I am <age> years old.
-    I live in <city>.
+        Hi there!
+        My name is <name> <surname>.
+        I am <age> years old.
+        I live in <city>.
 
-    Where values in `<>` mean the keys from `data` object.
+        Where values in `<>` mean the keys from `data` object.
 
-    Args:
-        filename (str) - name of file for writing.
+        Args:
+            filename (str) - name of file for writing.
 
-    Returns
-        dict - personal user's information.
+        Returns
+            dict - personal user's information.
 
-    Example:
-        get_user_info(FILENAME)  # Returns {"name": "Pavlo", "surname": "Ivanchyshyn", "age": 28, "city": "Lviv"}
+        Example:
+            get_user_info(FILENAME)  # Returns {"name": "Pavlo", "surname": "Ivanchyshyn", "age": 28, "city": "Lviv"}
     """
-    # ADD YOUR CODE HERE.
-    pass
+
+    data = read_file(filename)
+
+    def search_value(patterns_start, pattern_end, data):
+        match = re.search(patterns_start, data)
+        if match:
+            pos_start_value = match.end()
+            match2 = re.search(pattern_end, data)
+            if match2:
+                pos_end_value = match2.start()
+                value = data[pos_start_value:pos_end_value]
+                return value
+
+    name = search_value(r"(\s[a-z][a-z]\s)", r"(\s[A-Z]([a-z]+)\.)", data[1])
+    surname = search_value(r"(\s[A-Z]([a-z]+)\s)", r"\.\n", data[1])
+    age = search_value(r"(\s[a-z][a-z]\s)", r" years", data[2])
+    city = search_value(r"(\s[a-z][a-z]\s)", r"\.", data[3])
+    dict = {}
+    dict['name'] = name
+    dict['surname'] = surname
+    dict['age'] = age
+    dict['city'] = city
+    print(dict)
+    return dict
+
+
+# get_user_info(FILENAME)
+
