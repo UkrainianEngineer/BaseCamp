@@ -160,5 +160,26 @@ def get_user_info(filename):
     Example:
         get_user_info(FILENAME)  # Returns {"name": "Pavlo", "surname": "Ivanchyshyn", "age": 28, "city": "Lviv"}
     """
+    user_info = {}
     # ADD YOUR CODE HERE.
-    pass
+    with open(filename, 'r') as f:
+        for line in f:
+            # if line contains 'My name is ' text then we store name and surname
+            splitted_line = line.split("My name is ")
+            if len(splitted_line) > 1:
+                name_surname = splitted_line[1].split(" ")
+                user_info['name'] = name_surname[0]
+                user_info['surname'] = name_surname[1].split(".\n")[0]
+
+            # if line contains 'I am' text then we store age
+            splitted_line = line.split("I am ")
+            if len(splitted_line) > 1:
+                user_info['age'] = splitted_line[1].split(" ")[0]
+
+            # if line contains 'I live in ' text then we store city
+            splitted_line = line.split("I live in ")
+            if len(splitted_line) > 1:
+                user_info['city'] = splitted_line[1].split(".")[0]
+
+    return user_info
+print (get_user_info(FILENAME))
