@@ -6,7 +6,6 @@ It might be useful for both students and mentors.
 __author__ = "Pavlo Ivanchyshyn"
 __maintainer__ = "Pavlo Ivanchyshyn"
 __email__ = "p.ivanchyshyn@gmail.com"
-
 # This task is just for manual training.
 # You should solve this task manually and verify the results using this script.
 birthdate = int(input("Please enter a decimal year of your birth: "))

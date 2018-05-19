@@ -7,6 +7,7 @@ __author__ = "Pavlo Ivanchyshyn"
 __maintainer__ = "Pavlo Ivanchyshyn"
 __email__ = "p.ivanchyshyn@gmail.com"
 # This list contains your input data.
+
 data = [1, -3, 4, 6, 11, 2, 0, -13, 9]
 message = "Invalid maximum value has been found. Please check your `for` loop."
 
