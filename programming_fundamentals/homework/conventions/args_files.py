@@ -69,7 +69,11 @@ def write_to_file(filename, data):
         data (list, tuple) - lines of text which should be added into file.
     """
     # ADD YOUR CODE HERE.
-    pass
+    # open filename and clean it
+    with open(filename, 'w') as f:
+        # iterate over all elements in a list or tuple andwrite it to filename with EOL symbol
+        for line in data:
+            f.write(line + "\n")
 
 def read_file(filename):
     """
