@@ -26,7 +26,6 @@ summ = 0
 # summ = 3 + 4 + 5 = 12
 
 # ADD YOUR CODE HERE.
-
 summ = sum(data[N:M])
 
 # DON'T MODIFY THESE LINES.

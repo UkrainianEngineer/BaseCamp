@@ -21,6 +21,7 @@ for element in data:
     if element > maximum:
         maximum = element
 
+
 # DON'T MODIFY THESE LINES.
 assert maximum == max(data), message
 print("Maximum value has been found! Congratulations!")
