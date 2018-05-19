@@ -11,7 +11,7 @@ NUMBER_OF_STEPS = 10
 message = "There were not enough of iteration. Please check your `while` loop."
 
 step_count = 0
-while step_count < 10:
+while step_count < NUMBER_OF_STEPS:
     step_count += 1
     print(step_count)
 # Iterate `NUMBER_OF_STEPS` times using `while` loop.
