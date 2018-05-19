@@ -135,7 +135,10 @@ def write_user_info(filename, data):
         data (dict) - personal user's information.
     """
     # ADD YOUR CODE HERE.
-    pass
+    with open(filename, 'w') as f:
+        f.write("Hi there!\nMy name is {} {}.\nI am {} years old.\nI live in {}.".format(data['name'], data['surname'],
+                                                                                  data['age'], data['city']))
+write_user_info(FILENAME, USER_INFO)
 
 def get_user_info(filename):
     """
