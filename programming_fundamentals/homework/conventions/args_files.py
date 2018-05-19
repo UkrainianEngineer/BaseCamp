@@ -71,9 +71,13 @@ def write_to_file(filename, data):
     # ADD YOUR CODE HERE.
     # open filename and clean it
     with open(filename, 'w') as f:
-        # iterate over all elements in a list or tuple andwrite it to filename with EOL symbol
+        # iterate over all elements in a list or tuple and write it to filename with EOL symbol
+        # if it is the last element then do not add EOL symbol
         for line in data:
-            f.write(line + "\n")
+            if data.index(line) != len(data) - 1:
+                f.write(line + "\n")
+            else:
+                f.write(line)
 
 def read_file(filename):
     """
