@@ -47,11 +47,11 @@ def find_sum(*args):
         etc.
     """
     # ADD YOUR CODE HERE.
-    # initialize sum as 0
+    # Initialize sum as 0
     sum = 0
 
     for arg in args:
-        #if element is list, then iterate over it's elements. But this will not work if a list is an element of another list
+        # If element is list, then iterate over it's elements. But this will not work if a list is an element of another list
         if (type(arg) == type([])):
             for element in arg:
                sum = sum + element
@@ -69,10 +69,10 @@ def write_to_file(filename, data):
         data (list, tuple) - lines of text which should be added into file.
     """
     # ADD YOUR CODE HERE.
-    # open filename and clean it
+    # Open filename and clean it
     with open(filename, 'w') as f:
-        # iterate over all elements in a list or tuple and write it to FILENAME with EOL symbol
-        # if it is the last element then do not add EOL symbol
+        # Iterate over all elements in a list or tuple and write it to FILENAME with EOL symbol
+        # If it is the last element then do not add EOL symbol
         count = 0
         for line in data:
             if count != len(data) - 1:
@@ -110,9 +110,9 @@ def append_to_file(filename, data):
         data (list, tuple) - lines of text which should be added into file.
     """
     # ADD YOUR CODE HERE.
-    # open filename for append
+    # Open filename for append
     with open(filename, 'a') as f:
-        # iterate over all elements in a list or tuple and write it to FILENAME
+        # Iterate over all elements in a list or tuple and write it to FILENAME
         for line in data:
             f.write("\n" + line)
 append_to_file(FILENAME, lines)
@@ -164,19 +164,19 @@ def get_user_info(filename):
     # ADD YOUR CODE HERE.
     with open(filename, 'r') as f:
         for line in f:
-            # if line contains 'My name is ' text then we store name and surname
+            # If line contains 'My name is ' text then we store name and surname
             splitted_line = line.split("My name is ")
             if len(splitted_line) > 1:
                 name_surname = splitted_line[1].split(" ")
                 user_info['name'] = name_surname[0]
                 user_info['surname'] = name_surname[1].split(".\n")[0]
 
-            # if line contains 'I am' text then we store age
+            # If line contains 'I am' text then we store age
             splitted_line = line.split("I am ")
             if len(splitted_line) > 1:
                 user_info['age'] = splitted_line[1].split(" ")[0]
 
-            # if line contains 'I live in ' text then we store city
+            # If line contains 'I live in ' text then we store city
             splitted_line = line.split("I live in ")
             if len(splitted_line) > 1:
                 user_info['city'] = splitted_line[1].split(".")[0]
