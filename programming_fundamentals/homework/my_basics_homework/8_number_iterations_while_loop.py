@@ -19,7 +19,6 @@ while step_count < NUMBER_OF_STEPS:
 # `step_count` should contains number of iterations.
 # ADD YOUR CODE HERE.
 
-
 # DON'T MODIFY THESE LINES.
 print("Iterated {} times.".format(step_count))
 assert step_count == NUMBER_OF_STEPS, message
