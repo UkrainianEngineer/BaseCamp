@@ -16,14 +16,12 @@ maximum = 0
 # Find the maximum value from `data` list using `for` loop.
 # Save maximum value from `data` list into `maximum` variable.
 # ADD YOUR CODE HERE.
-for el in data:
-    i = data.index(el)
-    if data[i] > data[i+1]:
-        data[i],data[i+1] = data[i+1],data[i]
-        maximum = data[-1]
-        print("maximum = ", str(maximum))
-        if maximum == max(data):
-            break
+
+for d in range(0, len(data), 1):
+    if maximum < data[d]:
+        maximum = data[d]
+    print(maximum)
+
 # DON'T MODIFY THESE LINES.
 assert maximum == max(data), message
 print("Maximum value has been found! Congratulations!")
