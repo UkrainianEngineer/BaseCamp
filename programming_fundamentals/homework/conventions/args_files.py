@@ -71,13 +71,16 @@ def write_to_file(filename, data):
     # ADD YOUR CODE HERE.
     # open filename and clean it
     with open(filename, 'w') as f:
-        # iterate over all elements in a list or tuple and write it to filename with EOL symbol
+        # iterate over all elements in a list or tuple and write it to FILENAME with EOL symbol
         # if it is the last element then do not add EOL symbol
+        count = 0
         for line in data:
-            if data.index(line) != len(data) - 1:
+            if count != len(data) - 1:
                 f.write(line + "\n")
+                count = count +1
             else:
                 f.write(line)
+write_to_file(FILENAME, lines)
 
 def read_file(filename):
     """
@@ -91,7 +94,11 @@ def read_file(filename):
         list - list of lines from the file.
     """
     # ADD YOUR CODE HERE.
-    pass
+    with open(filename, 'r') as f:
+        list = []
+        for data in f:
+            list.append(data)
+    return list
 
 def append_to_file(filename, data):
     """
@@ -103,7 +110,12 @@ def append_to_file(filename, data):
         data (list, tuple) - lines of text which should be added into file.
     """
     # ADD YOUR CODE HERE.
-    pass
+    # open filename for append
+    with open(filename, 'a') as f:
+        # iterate over all elements in a list or tuple and write it to FILENAME
+        for line in data:
+            f.write("\n" + line)
+append_to_file(FILENAME, lines)
 
 def write_user_info(filename, data):
     """
