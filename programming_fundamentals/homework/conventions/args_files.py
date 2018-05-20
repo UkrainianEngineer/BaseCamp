@@ -28,7 +28,7 @@ USER_INFO = {
     "city": "Lviv"
 }
 
-def find_sum(something_should_be_there):
+def find_sum(*args):
     """
     Implement this function!
     This function should sum of numbers for different amount of parameters.
@@ -47,6 +47,14 @@ def find_sum(something_should_be_there):
         etc.
     """
     # ADD YOUR CODE HERE.
+    sum = 0
+    for number in args:
+	if isinstance(number, list):
+	    for item in number:
+		sum += item
+	else:
+	    sum += number
+    return sum
     pass
 
 def write_to_file(filename, data):
@@ -59,6 +67,9 @@ def write_to_file(filename, data):
         data (list, tuple) - lines of text which should be added into file.
     """
     # ADD YOUR CODE HERE.
+
+    with open(filename, "w") as file_:
+	file_.writelines(data)
     pass
 
 def read_file(filename):
@@ -73,6 +84,10 @@ def read_file(filename):
         list - list of lines from the file.
     """
     # ADD YOUR CODE HERE.
+
+    with open(filename, "r") as file_:
+	list_of_lines = file_.readlines()
+    return list_of_lines
     pass
 
 def append_to_file(filename, data):
@@ -85,9 +100,12 @@ def append_to_file(filename, data):
         data (list, tuple) - lines of text which should be added into file.
     """
     # ADD YOUR CODE HERE.
+    
+    with open(filename, "a") as file_:
+	file_.writelines(data)
     pass
 
-def write_user_info(filename, data):
+def write_user_info(filename, user_info):
     """
     Using function `write_to_file` do the following:
     - Create file with a `filename` name.
@@ -105,6 +123,9 @@ def write_user_info(filename, data):
         data (dict) - personal user's information.
     """
     # ADD YOUR CODE HERE.
+
+    user_data = "Hi there!\nMy name is {0[name]} {0[surname]}.\nI am {0[age]} years old.\nI live in {0[city]}.".format(user_info)
+    write_to_file(filename, user_data)
     pass
 
 def get_user_info(filename):
@@ -128,4 +149,15 @@ def get_user_info(filename):
         get_user_info(FILENAME)  # Returns {"name": "Pavlo", "surname": "Ivanchyshyn", "age": 28, "city": "Lviv"}
     """
     # ADD YOUR CODE HERE.
+
+    import re
+
+    schema = """Hi there!
+    My name is (?P<name>[\w]+) (?P<surname>[\w]+).
+    I am (?P<age>[\d]+) years old.
+    I live in (?P<city>[\w]+)."""
+    info_lines = read_file(filename)
+    found_data = re.match(schema, ''.join(info_lines))
+    grouped_data = found_data.groupdict()
+    return grouped_data
     pass
