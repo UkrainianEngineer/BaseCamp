@@ -28,7 +28,8 @@ USER_INFO = {
     "city": "Lviv"
 }
 
-def find_sum(something_should_be_there):
+
+def find_sum(*args):
     """
     Implement this function!
     This function should sum of numbers for different amount of parameters.
@@ -47,7 +48,14 @@ def find_sum(something_should_be_there):
         etc.
     """
     # ADD YOUR CODE HERE.
-    pass
+    args_sum = 0
+    for arg in args:
+        if isinstance(arg, list) or isinstance(arg, tuple):
+            args_sum += find_sum(*arg)
+        else:
+            args_sum += arg
+    return args_sum
+
 
 def write_to_file(filename, data):
     """
@@ -59,7 +67,10 @@ def write_to_file(filename, data):
         data (list, tuple) - lines of text which should be added into file.
     """
     # ADD YOUR CODE HERE.
-    pass
+    with open(filename, 'w') as file:
+        for line in data:
+            file.write(line + '\n')
+
 
 def read_file(filename):
     """
@@ -72,8 +83,9 @@ def read_file(filename):
     Returns:
         list - list of lines from the file.
     """
-    # ADD YOUR CODE HERE.
-    pass
+    with open(filename, 'r') as file:
+        return [x.rstrip() for x in file.readlines()]
+
 
 def append_to_file(filename, data):
     """
@@ -85,7 +97,9 @@ def append_to_file(filename, data):
         data (list, tuple) - lines of text which should be added into file.
     """
     # ADD YOUR CODE HERE.
-    pass
+    with open(filename, 'a') as file:
+        file.write('\n'.join(data))
+
 
 def write_user_info(filename, data):
     """
@@ -105,7 +119,12 @@ def write_user_info(filename, data):
         data (dict) - personal user's information.
     """
     # ADD YOUR CODE HERE.
-    pass
+    user_info = ('Hi there!',
+                 'My name is {name} {surname}.'.format(**data),
+                 'I am {age} years old.'.format(**data),
+                 'I live in {city}.'.format(**data))
+    write_to_file(filename, user_info)
+
 
 def get_user_info(filename):
     """
@@ -119,7 +138,7 @@ def get_user_info(filename):
     Where values in `<>` mean the keys from `data` object.
 
     Args:
-        filename (str) - name of file for writing.
+        filename (str) - name of file for reading.
 
     Returns
         dict - personal user's information.
@@ -128,4 +147,18 @@ def get_user_info(filename):
         get_user_info(FILENAME)  # Returns {"name": "Pavlo", "surname": "Ivanchyshyn", "age": 28, "city": "Lviv"}
     """
     # ADD YOUR CODE HERE.
-    pass
+    file_content = read_file(filename)
+
+    if not file_content:
+        return {}
+
+    user_info = {}
+    for line in file_content:
+        if 'My name is' in line:
+            user_info['name'], user_info['surname'] = line.replace('.', '').split('My name is')[1].split()[:2]
+        elif ('I am' in line) and ('years old' in line):
+            user_info['age'] = int(line.split('I am')[1].split()[0])
+        elif 'I live in' in line:
+            user_info['city'] = line.replace('.', '').split('I live in')[1].split()[0]
+
+    return user_info
