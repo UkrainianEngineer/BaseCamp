@@ -27,7 +27,7 @@ summ = 0
 # summ = 3 + 4 + 5 = 12
 
 # ADD YOUR CODE HERE.
-summ = data[2]
+summ = data[N:M]
 summ_with_builtin = sum(data[N:M])
 print("Sum of the data[2:3] slice found with biultin function is: {}".format(summ_with_builtin))
 
