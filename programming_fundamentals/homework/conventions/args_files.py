@@ -28,7 +28,7 @@ USER_INFO = {
     "city": "Lviv"
 }
 
-def find_sum(something_should_be_there):
+def find_sum(*args):
     """
     Implement this function!
     This function should sum of numbers for different amount of parameters.
@@ -47,7 +47,15 @@ def find_sum(something_should_be_there):
         etc.
     """
     # ADD YOUR CODE HERE.
-    pass
+    result = 0
+    numberList = args[0]
+    if type(args[0]) == list:
+        for j in numberList:
+            result += j
+    else:
+        for i in args:
+            result += i
+    return result
 
 def write_to_file(filename, data):
     """
