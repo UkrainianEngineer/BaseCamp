@@ -28,7 +28,7 @@ USER_INFO = {
     "city": "Lviv"
 }
 
-def find_sum(something_should_be_there):
+def find_sum(*args):
     """
     Implement this function!
     This function should sum of numbers for different amount of parameters.
@@ -46,8 +46,14 @@ def find_sum(something_should_be_there):
         find_sum(1, 2, 3, 4, 5, 6)  # Returns 21.
         etc.
     """
-    # ADD YOUR CODE HERE.
-    pass
+    sum =0
+    for argument in args:
+        if (type(argument) == int or type(argument) == float):
+            sum += argument    
+        else:
+            for i in argument:
+                sum += i
+    return int(sum)
 
 def write_to_file(filename, data):
     """
@@ -58,8 +64,10 @@ def write_to_file(filename, data):
         filename (str) - name of file for writing.
         data (list, tuple) - lines of text which should be added into file.
     """
-    # ADD YOUR CODE HERE.
-    pass
+    with open(filename, 'w') as file:
+        for item in data:
+            file.write("%s\n" % item)
+        file.close
 
 def read_file(filename):
     """
@@ -72,8 +80,10 @@ def read_file(filename):
     Returns:
         list - list of lines from the file.
     """
-    # ADD YOUR CODE HERE.
-    pass
+    with open(filename) as file:
+        data = [line.rstrip('\n') for line in file] 
+        file.close
+    return data
 
 def append_to_file(filename, data):
     """
@@ -84,8 +94,10 @@ def append_to_file(filename, data):
         filename (str) - name of file for writing.
         data (list, tuple) - lines of text which should be added into file.
     """
-    # ADD YOUR CODE HERE.
-    pass
+    with open(filename, 'a') as file:
+        for item in data:
+            file.write("%s\n" % item)
+        file.close
 
 def write_user_info(filename, data):
     """
@@ -104,8 +116,13 @@ def write_user_info(filename, data):
         filename (str) - name of file for writing.
         data (dict) - personal user's information.
     """
-    # ADD YOUR CODE HERE.
-    pass
+    user_information = [
+        'Hi there!',
+        'My name is {} {}'.format(data['name'], data['surname']),
+        'I am {} years old.'.format(data['age']),
+        'I live in {}'.format(data['city'])
+    ]
+    write_to_file(filename, user_information)
 
 def get_user_info(filename):
     """
@@ -127,5 +144,13 @@ def get_user_info(filename):
     Example:
         get_user_info(FILENAME)  # Returns {"name": "Pavlo", "surname": "Ivanchyshyn", "age": 28, "city": "Lviv"}
     """
-    # ADD YOUR CODE HERE.
-    pass
+    data = read_file(filename)
+    name = data[1].split()
+    year = data[2].split()
+    city = data[3].split()
+    user = {}
+    user['name'] = name[3]
+    user['surname'] = name[4]
+    user['year'] = year[2]
+    user['city'] = city[3]
+    return user
