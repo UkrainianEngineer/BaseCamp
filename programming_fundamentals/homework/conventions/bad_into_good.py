@@ -28,14 +28,17 @@ t = "04/20/2011"
 
 # Your solution should be added here.
 # It should be applicable for all 3 examples.
-
+color = "green"
+active = False
+pythonYears = 20
+pythonFirstUsed = "04/20/2011"
 
 # Example 4.
 def do_something():pass
 
 try:
     do_something()
-except:
-    pass
+except Exception as exc:
+    print(exc)
 
 # Your solution should be added here.
