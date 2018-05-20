@@ -2,28 +2,10 @@
 # It might be checkio, codewars or similar.
 # Add an information about your solutions in this format:
 
-# <Name> <Surname>
-# <Url_For_The_First_Solution>
-# <Url_For_The_Second_Solution>
+# Sergii Menchuk
+# https://www.codewars.com/kata/array-dot-diff/train/python/5af94578de4c7fbef900009a
+# https://www.codewars.com/kata/disemvowel-trolls/train/python/5af93f42de4c7f9a71000038
 # <Url_For_The_Third_Solution>
 # ...
 
-# Each student should have their own block.
-# Please update this information if you completed some additional tasks.
 
-# Final file should looks like this:
-
-# Student 1 (Name, Surname)
-# Solution 1
-# Solution 2
-# ...
-# Solution N
-
-# Student 2(Name, Surname)
-# Solution 1
-# Solution 2
-# Solution 3
-# ...
-# Solution M
-
-...

@@ -9,6 +9,7 @@ __maintainer__ = "Pavlo Ivanchyshyn"
 __email__ = "p.ivanchyshyn@gmail.com"
 
 FILENAME = 'awesome_data.info'
+
 lines = [
     "Two assure edward whence the was.",
     "Who worthy yet ten boy denote wonder.",
@@ -29,7 +30,7 @@ USER_INFO = {
 }
 
 
-def find_sum(something_should_be_there):
+def find_sum(*args):
     """
     Implement this function!
     This function should sum of numbers for different amount of parameters.
@@ -48,7 +49,14 @@ def find_sum(something_should_be_there):
         etc.
     """
     # ADD YOUR CODE HERE.
-    pass
+    num_sum = 0
+    for item in args:
+        if type(item) == list:
+            for num in item:
+                num_sum += num
+        elif type(item) == int:
+            num_sum +=item
+    return num_sum
 
 
 def write_to_file(filename, data):
@@ -61,7 +69,11 @@ def write_to_file(filename, data):
         data (list, tuple) - lines of text which should be added into file.
     """
     # ADD YOUR CODE HERE.
-    pass
+    with open(filename, 'w') as file:
+        for line in data:
+            file.write(line)
+            file.write('\n')
+        file.close()
 
 
 def read_file(filename):
@@ -76,7 +88,12 @@ def read_file(filename):
         list - list of lines from the file.
     """
     # ADD YOUR CODE HERE.
-    pass
+    with open(filename, 'r') as data:
+        data_list = []
+        for line in data:
+            data_list.append(line)
+        data.close()
+    return data_list
 
 
 def append_to_file(filename, data):
@@ -89,7 +106,12 @@ def append_to_file(filename, data):
         data (list, tuple) - lines of text which should be added into file.
     """
     # ADD YOUR CODE HERE.
-    pass
+    with open(filename, 'a+') as file:
+        for line in data:
+            file.write('\n')
+            file.write(line)
+            file.write('\n')
+        file.close()
 
 
 def write_user_info(filename, data):
@@ -110,7 +132,8 @@ def write_user_info(filename, data):
         data (dict) - personal user's information.
     """
     # ADD YOUR CODE HERE.
-    pass
+    write_to_file(filename, '')
+    append_to_file(filename, ['Hi there!', 'I am {} years old'.format(data['age']), 'I live in {}'.format(data['city'])])
 
 
 def get_user_info(filename):
@@ -134,4 +157,19 @@ def get_user_info(filename):
         get_user_info(FILENAME)  # Returns {"name": "Pavlo", "surname": "Ivanchyshyn", "age": 28, "city": "Lviv"}
     """
     # ADD YOUR CODE HERE.
-    pass
+    dict = {}
+    lines = read_file(filename)
+
+    second_line = lines[1].split()
+    third_line = lines[2].split()
+    fourth_line = lines[3].split()
+
+    dict["name"] = second_line[3]
+    dict["surname"] = second_line[4][:-1]
+    dict["age"] = third_line[2]
+    dict["city"] = fourth_line[3][:-1]
+
+    return dict
+
+
+print(get_user_info('D:/events.txt'))
