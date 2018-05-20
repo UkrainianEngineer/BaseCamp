@@ -28,7 +28,7 @@ USER_INFO = {
     "city": "Lviv"
 }
 
-def find_sum(something_should_be_there):
+def find_sum(*nums):
     """
     Implement this function!
     This function should sum of numbers for different amount of parameters.
@@ -47,7 +47,15 @@ def find_sum(something_should_be_there):
         etc.
     """
     # ADD YOUR CODE HERE.
-    pass
+    sum = 0
+    for i in nums:
+        if isinstance(i, list):
+            for n in i:
+                sum += n
+        elif isinstance(i, int):
+            sum += i
+        return sum
+
 
 def write_to_file(filename, data):
     """
@@ -59,7 +67,11 @@ def write_to_file(filename, data):
         data (list, tuple) - lines of text which should be added into file.
     """
     # ADD YOUR CODE HERE.
-    pass
+    file = open(filename, "w")
+    for item in data:
+        file.write(' '.join(str(s) for s in item) + '\n')
+
+    file.close()
 
 def read_file(filename):
     """
@@ -73,7 +85,14 @@ def read_file(filename):
         list - list of lines from the file.
     """
     # ADD YOUR CODE HERE.
-    pass
+
+    file = open(filename, 'r')
+    data = file.read()
+    outputlist = []
+    for line in data.split('\n'):
+        outputlist.append(line)
+    file.close()
+    return outputlist
 
 def append_to_file(filename, data):
     """
@@ -85,7 +104,13 @@ def append_to_file(filename, data):
         data (list, tuple) - lines of text which should be added into file.
     """
     # ADD YOUR CODE HERE.
-    pass
+
+    file = open(filename, 'a+')
+    for item in data:
+        file.write(' '.join(str(s) for s in item) + '\n')
+
+    file.close()
+
 
 def write_user_info(filename, data):
     """
@@ -105,7 +130,9 @@ def write_user_info(filename, data):
         data (dict) - personal user's information.
     """
     # ADD YOUR CODE HERE.
-    pass
+    processdata = 'Hi there!\nMy name is {} {}.\nI am {} years old.\nI live in {}'.format(data['name'], data['surname'], data['age'], data['city'])
+    write_to_file(filename, processdata)
+
 
 def get_user_info(filename):
     """
@@ -128,4 +155,26 @@ def get_user_info(filename):
         get_user_info(FILENAME)  # Returns {"name": "Pavlo", "surname": "Ivanchyshyn", "age": 28, "city": "Lviv"}
     """
     # ADD YOUR CODE HERE.
-    pass
+    file = open(filename, 'r')
+    data = file.read()
+    for line in data.split('\n'):
+        if 'My name is' in line:
+            line = line.split(" ")
+            for i in range(len(line)):
+                if i == 3:
+                    name = line[i]
+                elif i == 4:
+                    surname = line[i]
+        elif 'years old' in line:
+            line = line.split(" ")
+            for i in range(len(line)):
+                if i == 2:
+                    age = line[i]
+        elif 'I live in' in line:
+            line = line.split(" ")
+            for i in range(len(line)):
+                if i == 3:
+                    city = line[i]
+
+    outputdict = {'name': name, 'surname': surname, 'age': age, 'city': city}
+    return outputdict
