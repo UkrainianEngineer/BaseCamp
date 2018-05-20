@@ -57,7 +57,12 @@ def find_sum(*args):
             result += i
     return result
 
-def write_to_file(filename, data):
+def write_to_file(filename, data = list):
+    return data
+output = write_to_file("sample.txt", "some")
+file = open("sample.txt", "w")
+file.write(str(output))
+file.close()
     """
     Implement this function!
     This function should write all the lines from `data` into file with `filename`.
@@ -66,7 +71,7 @@ def write_to_file(filename, data):
         filename (str) - name of file for writing.
         data (list, tuple) - lines of text which should be added into file.
     """
-    # ADD YOUR CODE HERE.
+   
     pass
 
 def read_file(filename):
@@ -80,7 +85,9 @@ def read_file(filename):
     Returns:
         list - list of lines from the file.
     """
-    # ADD YOUR CODE HERE.
+    file = open(filename, "r")
+    return list ((file.read()))
+print(read_file("sample.txt"))
     pass
 
 def append_to_file(filename, data):
@@ -92,10 +99,13 @@ def append_to_file(filename, data):
         filename (str) - name of file for writing.
         data (list, tuple) - lines of text which should be added into file.
     """
-    # ADD YOUR CODE HERE.
+     file = open(filename, "a")
+     return file.write((data))
+append_to_file("sample.txt", "some")
     pass
 
-def write_user_info(filename, data):
+data = {'name': 'Victoria', 'surname':'Stasiv', 'age':'18', 'city':'Lviv'}
+def write_user_info(filename,**data):
     """
     Using function `write_to_file` do the following:
     - Create file with a `filename` name.
@@ -112,8 +122,15 @@ def write_user_info(filename, data):
         filename (str) - name of file for writing.
         data (dict) - personal user's information.
     """
-    # ADD YOUR CODE HERE.
-    pass
+    my_name = data['name']
+    my_surname = data['surname']
+    my_age = data['age']
+    my_city = data['city']
+    data = "Hi there!\n My name is " + my_name + " " + my_surname + "\n I am " + my_age + "years old\n I live in " + my_city
+    file = open(filename, " w+")
+    file.write(data)
+write_user_info("some.txt", **data)
+    pass"
 
 def get_user_info(filename):
     """
@@ -135,5 +152,7 @@ def get_user_info(filename):
     Example:
         get_user_info(FILENAME)  # Returns {"name": "Pavlo", "surname": "Ivanchyshyn", "age": 28, "city": "Lviv"}
     """
-    # ADD YOUR CODE HERE.
+    file = open(filename, "r")
+    return file.read()
+print(get_user_info("some.txt"))
     pass
