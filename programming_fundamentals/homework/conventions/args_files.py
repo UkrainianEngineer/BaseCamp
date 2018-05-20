@@ -28,17 +28,14 @@ USER_INFO = {
     "city": "Lviv"
 }
 
-def find_sum(something_should_be_there):
-    """
-    Implement this function!
-    This function should sum of numbers for different amount of parameters.
 
-    It should be similar to built-in `sum` function.
+def find_sum(*args):
+    """
+    This function sums of numbers for different amount of parameters.
+    It is similar to built-in `sum` function.
     DON'T use `sum` function here.
 
-    Returns:
-        int - sum of numbers.
-
+    Returns: int - sum of numbers.
     Examples:
         find_sum(1, 2, 3)  # Returns 6.
         find_sum(1)  # Returns 1.
@@ -46,46 +43,57 @@ def find_sum(something_should_be_there):
         find_sum(1, 2, 3, 4, 5, 6)  # Returns 21.
         etc.
     """
-    # ADD YOUR CODE HERE.
-    pass
+    summ = 0
+
+    for arg in args:
+        if type(arg) == list:
+            for i in arg:
+                summ += i
+        else:
+            summ += arg
+
+    return summ
+
 
 def write_to_file(filename, data):
     """
-    Implement this function!
-    This function should write all the lines from `data` into file with `filename`.
-
-    Args:
-        filename (str) - name of file for writing.
-        data (list, tuple) - lines of text which should be added into file.
+    This function writes all the lines from `data` into file with `filename`.
+    Args: filename (str) - name of file for writing.
+          data (list, tuple) - lines of text which should be added into file.
     """
-    # ADD YOUR CODE HERE.
-    pass
+
+    with open(filename, 'w') as new_file:
+        for line in data:
+            new_file.write(line + '\n')
+
 
 def read_file(filename):
     """
-    Implement this function!
-    This function should read all the lines from the file with `filename`.
-
-    Args:
-        filename (str) - name of file for writing.
-
-    Returns:
-        list - list of lines from the file.
+    This function reads all the lines from the file with `filename`.
+    Args: filename (str) - name of file for writing.
+    Returns: list - list of lines from the file.
     """
-    # ADD YOUR CODE HERE.
-    pass
+
+    with open(filename, 'r') as file_to_read:
+        file_content = file_to_read.readlines()
+
+    return file_content
+
+
+add_data = ('some additional info', 'for this file')
+
 
 def append_to_file(filename, data):
     """
-    Implement this function!
-    This function should append lines from `data` into the file with `filename`.
-
-    Args:
-        filename (str) - name of file for writing.
-        data (list, tuple) - lines of text which should be added into file.
+    This function appends lines from `data` into the file with `filename`.
+    Args: filename (str) - name of file for writing.
+          data (list, tuple) - lines of text which should be added into file.
     """
-    # ADD YOUR CODE HERE.
-    pass
+
+    with open(filename, 'a') as file_to_change:
+        for line in data:
+            file_to_change.write(line + '\n')
+
 
 def write_user_info(filename, data):
     """
@@ -104,8 +112,16 @@ def write_user_info(filename, data):
         filename (str) - name of file for writing.
         data (dict) - personal user's information.
     """
-    # ADD YOUR CODE HERE.
-    pass
+
+    greeting = 'Hi there!'
+    name = 'My name is {} {}.'.format(data['name'], data['surname'])
+    age = 'I am {} years old.'.format(data['age'])
+    city = 'I live in {}.'.format(data['city'])
+
+    info_for_file = [greeting, name, age, city]
+
+    write_to_file(filename, info_for_file)
+
 
 def get_user_info(filename):
     """
@@ -127,5 +143,23 @@ def get_user_info(filename):
     Example:
         get_user_info(FILENAME)  # Returns {"name": "Pavlo", "surname": "Ivanchyshyn", "age": 28, "city": "Lviv"}
     """
-    # ADD YOUR CODE HERE.
-    pass
+
+    all_words = []
+
+    with open(filename, 'r') as file_to_read:
+        file_content = file_to_read.readlines()
+
+    for i in file_content:
+        for t in i.split():
+            all_words.append(t)
+
+    user_info = {
+        "name": all_words[5],
+        "surname": all_words[6][:-1],
+        "age": all_words[9],
+        "city": all_words[15][:-1]
+    }
+
+    return user_info
+
+

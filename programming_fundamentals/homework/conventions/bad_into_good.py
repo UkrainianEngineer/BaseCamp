@@ -29,6 +29,12 @@ t = "04/20/2011"
 # Your solution should be added here.
 # It should be applicable for all 3 examples.
 
+# Solution
+color = 'green'
+is_active = False
+python_years = 20
+python_first_used = '04/20/2011'
+
 
 # Example 4.
 def do_something():pass
@@ -39,3 +45,11 @@ except:
     pass
 
 # Your solution should be added here.
+
+# Solution
+
+def multiplication():
+    try:
+        multiplication
+    except:
+        pass
