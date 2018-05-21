@@ -28,7 +28,10 @@ t = "04/20/2011"
 
 # Your solution should be added here.
 # It should be applicable for all 3 examples.
-
+color = "green"
+is_active = False
+python_years = 20
+python_first_used = "04/20/2011"
 
 # Example 4.
 def do_something():pass
@@ -39,3 +42,22 @@ except:
     pass
 
 # Your solution should be added here.
+def greet_message(person):
+    """
+    Function creates a greeting message for the person passed.
+
+    Args:
+        person (dict) - person to be greeted.
+
+    Returns:
+        str - greeting message.
+    """
+    return "Hello, {name}.".format(**person)
+
+
+user = {'name': 'Bohdan', 'surname': 'Kaminskyi'}
+try:
+    message = greet_message(user)
+    print(message)
+except KeyError:
+    print("It looks like you did not provide a name.")
