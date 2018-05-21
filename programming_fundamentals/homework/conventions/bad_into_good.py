@@ -48,8 +48,8 @@ except:
 
 # Solution
 
-def multiplication():
+def division(numerator, denominator):
     try:
-        multiplication
-    except:
-        pass
+        return numerator / denominator
+    except ZeroDivisionError:
+        print("Oops! Denominator can't be a zero!")
