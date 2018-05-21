@@ -30,8 +30,10 @@ t = "04/20/2011"
 # It should be applicable for all 3 examples.
 color = "green"
 active = False
-pythonYears = 20
-pythonFirstUsed = "04/20/2011"
+python_years = 20
+python_first_used = "04/20/2011"
+
+
 
 # Example 4.
 def do_something():pass
