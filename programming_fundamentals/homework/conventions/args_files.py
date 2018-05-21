@@ -172,4 +172,4 @@ def get_user_info(filename):
     return dict
 
 
-print(get_user_info('D:/events.txt'))
+
