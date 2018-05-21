@@ -155,26 +155,19 @@ def get_user_info(filename):
         get_user_info(FILENAME)  # Returns {"name": "Pavlo", "surname": "Ivanchyshyn", "age": 28, "city": "Lviv"}
     """
     # ADD YOUR CODE HERE.
-    file = open(filename, 'r')
-    data = file.read()
-    for line in data.split('\n'):
-        if 'My name is' in line:
-            line = line.split(" ")
-            for i in range(len(line)):
-                if i == 3:
-                    name = line[i]
-                elif i == 4:
-                    surname = line[i]
-        elif 'years old' in line:
-            line = line.split(" ")
-            for i in range(len(line)):
-                if i == 2:
-                    age = line[i]
-        elif 'I live in' in line:
-            line = line.split(" ")
-            for i in range(len(line)):
-                if i == 3:
-                    city = line[i]
 
-    outputdict = {'name': name, 'surname': surname, 'age': age, 'city': city}
-    return outputdict
+    content = read_file(filename)
+
+    if not content:
+        return {}
+
+    user_info = {}
+    for element in content:
+        if 'My name is' in element:
+            user_info['name'], user_info['surname'] = element.replace('.', '').replace("My name is ", "").split()
+        elif ('I am' in element) and ('years old' in element):
+            user_info['age'] = int(element.split()[2])
+        elif 'I live in' in element:
+            user_info['city'] = element.replace(".", "").split()[3]
+
+    return user_info
