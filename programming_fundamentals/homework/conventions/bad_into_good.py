@@ -44,3 +44,15 @@ except:
     pass
 
 # Your solution should be added here.
+
+def divisible_by_2(value):
+    try:
+        float_value = float(value)
+        if float_value % 2 == 0 and float_value != 0:
+            return float_value
+        else:
+            raise None
+    except ValueError:
+        print "Number is not divisible by 2..."
+
+
