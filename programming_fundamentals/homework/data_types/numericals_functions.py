@@ -84,12 +84,12 @@ def handle_exceptions():
         try:
             user_number = int(input("Please enter your nubmer: "))
             if user_number > TEST_NUMBER:
-                print 'Yey! My number is higher!'
+                print('Yey! My number is higher!')
             elif user_number < TEST_NUMBER:
-                print 'Wow! My number is lower!'
+                print('Wow! My number is lower!')
             break
         except ValueError:
-            print "You didn't entered the number"
+            print("You didn't entered the number")
 
 
 
