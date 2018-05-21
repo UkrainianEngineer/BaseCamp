@@ -55,7 +55,7 @@ def find_sum(*args):
             for num in item:
                 num_sum += num
         elif type(item) == int:
-            num_sum +=item
+            num_sum += item
     return num_sum
 
 
@@ -157,19 +157,19 @@ def get_user_info(filename):
         get_user_info(FILENAME)  # Returns {"name": "Pavlo", "surname": "Ivanchyshyn", "age": 28, "city": "Lviv"}
     """
     # ADD YOUR CODE HERE.
-    dict = {}
-    lines = read_file(filename)
+    user_info = {}
+    lns = read_file(filename)
 
-    second_line = lines[1].split()
-    third_line = lines[2].split()
-    fourth_line = lines[3].split()
+    second_line = lns[1].split()
+    third_line = lns[2].split()
+    fourth_line = lns[3].split()
 
-    dict["name"] = second_line[3]
-    dict["surname"] = second_line[4][:-1]
-    dict["age"] = third_line[2]
-    dict["city"] = fourth_line[3][:-1]
+    user_info["name"] = second_line[3]
+    user_info["surname"] = second_line[4][:-1]
+    user_info["age"] = third_line[2]
+    user_info["city"] = fourth_line[3][:-1]
 
-    return dict
+    return user_info
 
 
 
