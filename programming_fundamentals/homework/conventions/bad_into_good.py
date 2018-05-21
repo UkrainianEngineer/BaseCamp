@@ -28,7 +28,10 @@ t = "04/20/2011"
 
 # Your solution should be added here.
 # It should be applicable for all 3 examples.
-
+color = 'green'
+is_active = False
+python_years = 20
+python_first_used = '04/20/2011'
 
 # Example 4.
 def do_something():pass
@@ -39,3 +42,21 @@ except:
     pass
 
 # Your solution should be added here.
+import math
+
+
+def angular_frequency(period):
+    """
+    Args:
+        period (float) - the period (measured in seconds)
+
+    Returns:
+        angular frequency (float) - (measured in radians per seconds)
+    """
+    return '{:.3f}'.format((2 * math.pi) / abs(period))
+
+
+try:
+    angular_frequency(0.125)
+except (TypeError, ZeroDivisionError):
+    print('Invalid input data!')
