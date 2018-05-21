@@ -28,14 +28,21 @@ t = "04/20/2011"
 
 # Your solution should be added here.
 # It should be applicable for all 3 examples.
+color_in_text = "green"
+is_active = False
+python_years_old = 20
+python_started_date = "04/20/2011"
 
 
 # Example 4.
-def do_something():pass
+def click_button(el):
+    return bool(el.click())
+
 
 try:
-    do_something()
-except:
-    pass
+    click_button(el)
+
+except NoSuchElementException:
+    print("This element not visible")
 
 # Your solution should be added here.
