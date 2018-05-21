@@ -28,6 +28,10 @@ t = "04/20/2011"
 
 # Your solution should be added here.
 # It should be applicable for all 3 examples.
+favorite_color = "green"
+condition = False
+python_year = 20
+python_first_used = "04/20/2011"
 
 
 # Example 4.
@@ -39,3 +43,12 @@ except:
     pass
 
 # Your solution should be added here.
+def do_something():
+
+try:
+    do_something()
+except ValueError:
+# there can be any other exception instead of ValueError. It depends on what exception  we are handling
+    print("you can enter only the numbers")
+
+
