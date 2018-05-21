@@ -28,7 +28,10 @@ t = "04/20/2011"
 
 # Your solution should be added here.
 # It should be applicable for all 3 examples.
-
+color = "green"
+is_active = False
+number_of_years = 20
+first_used_date = "04/20/2011"
 
 # Example 4.
 def do_something():pass
@@ -39,3 +42,8 @@ except:
     pass
 
 # Your solution should be added here.
+def name_input():
+    try:
+        age = int(raw_input("Enter your age, please: "))
+    except ValueError:
+        print "It's not valid input. Please, enter your age again."
