@@ -68,10 +68,10 @@ def write_to_file(filename, data):
         data (list, tuple) - lines of text which should be added into file.
     """
     # ADD YOUR CODE HERE.
-    with open(filename, "w") as file:
+    with open(filename, "w") as new_file:
         for x in data:
-            file.write(x + '\n')
-        return file
+            new_file.write(x + '\n')
+        return new_file
 
 def read_file(filename):
     """
@@ -85,8 +85,8 @@ def read_file(filename):
         list - list of lines from the file.
     """
     # ADD YOUR CODE HERE.
-    with open (filename, "r") as file:
-        lines = file.readlines()
+    with open(filename, "r") as new_file:
+        lines = new_file.readlines()
         return lines
 
 
@@ -100,10 +100,10 @@ def append_to_file(filename, data):
         data (list, tuple) - lines of text which should be added into file.
     """
     # ADD YOUR CODE HERE.
-    with open (filename, "a") as file:
+    with open(filename, "a") as new_file:
         for x in data:
-            file.write(x + '\n')
-        return file
+            new_file.write(x + '\n')
+        return new_file
 
 def write_user_info(filename, data):
     """
@@ -153,3 +153,20 @@ def get_user_info(filename):
     """
     # ADD YOUR CODE HERE.
 
+    write_user_info(filename, USER_INFO)
+    message = ' '
+    parse_user_info = {}
+    with open(filename, 'r') as new_file:
+        message = new_file.read()
+    message = message.split()
+    for i in range(len(message)):
+        message[i] = message[i].replase('.', ' ')
+        if message[i] == USER_INFO['name']:
+            parse_user_info['name'] = message[i]
+        elif message[i] == USER_INFO['surname']:
+            parse_user_info['surname'] = message[i]
+        elif message[i] == USER_INFO['age']:
+            parse_user_info['age'] = message[i]
+        elif message[i] == USER_INFO['city']:
+            parse_user_info['city'] = message[i]
+    return parse_user_info
