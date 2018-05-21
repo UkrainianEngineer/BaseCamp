@@ -29,7 +29,7 @@ t = "04/20/2011"
 # Your solution should be added here.
 # It should be applicable for all 3 examples.
 color = "green"
-active = False
+is_active = False
 python_years = 20
 python_first_used = "04/20/2011"
 
@@ -44,7 +44,8 @@ except:
 # Your solution should be added here.
 
 
-def do_something(): pass
+def do_something():
+    pass
 
 
 try:

@@ -137,9 +137,9 @@ def write_user_info(filename, data):
     # ADD YOUR CODE HERE.
     user_info = [
         'Hi there!',
-        'My name is {} {}'.format(data['name'], data['surname']),
+        'My name is {} {}.'.format(data['name'], data['surname']),
         'I am {} years old.'.format(data['age']),
-        'I live in {}'.format(data['city'])
+        'I live in {}.'.format(data['city'])
     ]
 
     write_to_file(filename, user_info)
@@ -174,7 +174,7 @@ def get_user_info(filename):
 
     with open(filename) as file:
         for line in file:
-            info_list.append(line.split())
+            info_list.append(line.replace('.', '').split())
 
     user_dict['name'] = info_list[1][3]
     user_dict['surname'] = info_list[1][4]
