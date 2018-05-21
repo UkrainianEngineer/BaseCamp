@@ -52,7 +52,7 @@ def find_sum(*args):
     for arg in args:
         if isinstance(arg, list) or isinstance(arg, tuple):
             args_sum += find_sum(*arg)
-        else:
+        elif isinstance(arg, int) or isinstance(arg, float):
             args_sum += arg
     return args_sum
 
