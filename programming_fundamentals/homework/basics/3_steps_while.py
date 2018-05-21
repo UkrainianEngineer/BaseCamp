@@ -15,7 +15,7 @@ step_count = 0
 # Increase `step_count` variable by 1 in each loop.
 # `step_count` should contains number of iterations.
 
-while step_count != 10:
+while step_count != NUMBER_OF_STEPS:
     step_count += 1
 
 # DON'T MODIFY THESE LINES.
