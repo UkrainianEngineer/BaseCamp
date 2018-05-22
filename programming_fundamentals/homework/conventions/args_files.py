@@ -54,7 +54,7 @@ def find_sum(*args):
     try:
         summ = 0
         for value in args:
-            if type(value) is list:
+            if isinstance(value, list):
                 for val in value:
                     summ += int(val)
             else:
@@ -131,18 +131,8 @@ def write_user_info(filename, **kwargs):
         data (dict) - personal user's information.
     """
     # ADD YOUR CODE HERE.
-    # Example 0:
-    # text = ["Hi there!",
-    #         "My name is {} {}",
-    #         "I am {} years old",
-    #         "I live in {}"]
-    # patern = '{}'
-    # for key in kwargs:
-    #     for t in text:
-    #         value = kwargs.get(key)
-    #         re.sub(patern, value, t)
     # =====================================================
-    # Example(this example doesn't work:
+    # Example 1(this example doesn't work):
     # write_to_file(filename, text)
     # list_of_lines = read_file(filename)
     # for line in list_of_lines:
@@ -155,6 +145,7 @@ def write_user_info(filename, **kwargs):
     #             line_with_value = line.format(value)
     #             append_to_file(FILENAME, line_with_value)
     # return
+
     # =======================================================
     # Example 2(work):
     kwargs = [
