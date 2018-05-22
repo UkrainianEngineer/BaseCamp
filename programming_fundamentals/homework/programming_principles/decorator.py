@@ -1,6 +1,7 @@
 """
 This module describes a homework related to decorator topic.
 """
+import time
 
 __author__ = "Pavlo Ivanchyshyn"
 __maintainer__ = "Pavlo Ivanchyshyn"
@@ -14,15 +15,22 @@ __email__ = "p.ivanchyshyn@gmail.com"
 # or any specific executions of this function.
 # JUST MODIFY `custon_decorator` decorator.
 
-def custom_decorator():
+def custom_decorator(func):
     # ADD YOUR CODE HERE.
+    def wrapper(*args, **kwargs):
+        start = time.time()
+        func(*args, **kwargs)
+        end = time.time()
+
+        return '{:.8}'.format(end - start)
     # You are also able to add some parameters if needed.
-    pass
+    return wrapper
 
 
 @custom_decorator
 def test_decorator():
     print("This function executes...")
+
 
 test_decorator()
 test_decorator()
