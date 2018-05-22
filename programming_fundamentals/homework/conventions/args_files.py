@@ -50,9 +50,9 @@ def find_sum(*args):
     # ADD YOUR CODE HERE.
     args_sum = 0
     for arg in args:
-        if isinstance(arg, list) or isinstance(arg, tuple):
+        if isinstance(arg, (list, tuple)):
             args_sum += find_sum(*arg)
-        elif isinstance(arg, int) or isinstance(arg, float):
+        elif isinstance(arg, (int, float)):
             args_sum += arg
     return args_sum
 
