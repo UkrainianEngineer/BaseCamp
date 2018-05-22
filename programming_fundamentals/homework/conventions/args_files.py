@@ -154,17 +154,20 @@ def get_user_info(filename):
 
     parse_user_info = {}
     text = ""
+
     with open(filename, 'r') as fp:
         text = fp.read()
+
     text = text.split()
+
     for i in range(len(text)):
         text[i] = text[i].strip(".!")
-        if text[i] == USER_INFO['name']:
-            parse_user_info['name'] = text[i]
-        elif text[i] == USER_INFO['surname']:
-            parse_user_info['surname'] = text[i]
-        elif text[i] == str(USER_INFO['age']):
-            parse_user_info['age'] = text[i]
-        elif text[i] == USER_INFO['city']:
-            parse_user_info['city'] = text[i]
-    return parse_user_info    
+
+    parse_user_info = {
+        "name": text[5],
+        "surname": text[6],
+        "age": text[9],
+        "city": text[16]
+    }
+    
+    return parse_user_info
