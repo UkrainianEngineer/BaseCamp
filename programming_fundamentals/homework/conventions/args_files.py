@@ -51,7 +51,7 @@ def find_sum(*args):
     sum_of_numbers = 0
 
     for num in args:
-        if type(num) == list:
+        if isinstance(num, list):
             for elem in num:
                 sum_of_numbers += elem
         else:
@@ -72,9 +72,12 @@ def write_to_file(filename, data):
         data (list, tuple) - lines of text which should be added into file.
     """
     # ADD YOUR CODE HERE.
-    with open(filename, 'w') as file:
-        for line in data:
-            file.write(line + '\n')
+    try:
+        with open(filename, 'w') as file:
+            for line in data:
+                file.write(line + '\n')
+    except (OSError, IOError) as err:
+        print('Could not write into file', err)
 
 
 # write_to_file(FILENAME, lines)
@@ -92,8 +95,11 @@ def read_file(filename):
         list - list of lines from the file.
     """
     # ADD YOUR CODE HERE.
-    with open(filename) as file:
-        return file.readlines()
+    try:
+        with open(filename) as file:
+            return file.readlines()
+    except (OSError, IOError) as err:
+        print('Could not read file', err)
 
 
 # print(read_file(FILENAME))
@@ -109,9 +115,12 @@ def append_to_file(filename, data):
         data (list, tuple) - lines of text which should be added into file.
     """
     # ADD YOUR CODE HERE.
-    with open(filename, 'a') as file:
-        for line in data:
-            file.write(line + '\n')
+    try:
+        with open(filename, 'a') as file:
+            for line in data:
+                file.write(line + '\n')
+    except (OSError, IOError) as err:
+        print('Could not append to file', err)
 
 
 # append_to_file(FILENAME, lines)
@@ -137,9 +146,9 @@ def write_user_info(filename, data):
     # ADD YOUR CODE HERE.
     user_info = [
         'Hi there!',
-        'My name is {} {}.'.format(data['name'], data['surname']),
-        'I am {} years old.'.format(data['age']),
-        'I live in {}.'.format(data['city'])
+        'My name is {} {}.'.format(data.get('name', 'Pavlo'), data.get('surname', 'Ivanchyshyn')),
+        'I am {} years old.'.format(data.get('age', 28)),
+        'I live in {}.'.format(data.get('city', 'Lviv'))
     ]
 
     write_to_file(filename, user_info)
@@ -169,17 +178,25 @@ def get_user_info(filename):
         get_user_info(FILENAME)  # Returns {"name": "Pavlo", "surname": "Ivanchyshyn", "age": 28, "city": "Lviv"}
     """
     # ADD YOUR CODE HERE.
-    info_list = []
     user_dict = {}
 
-    with open(filename) as file:
-        for line in file:
-            info_list.append(line.replace('.', '').split())
+    name_position = 3
+    surname_position = 4
+    age_position = 2
+    city_position = 3
 
-    user_dict['name'] = info_list[1][3]
-    user_dict['surname'] = info_list[1][4]
-    user_dict['age'] = int(info_list[2][2])
-    user_dict['city'] = info_list[3][3]
+    try:
+        with open(filename) as file:
+            for line in file:
+                if 'My name is' in line:
+                    user_dict['name'] = line.split()[name_position]
+                    user_dict['surname'] = line.replace('.', '').split()[surname_position]
+                elif 'I am' in line:
+                    user_dict['age'] = int(line.split()[age_position])
+                elif 'I live in' in line:
+                    user_dict['city'] = line.replace('.', '').split()[city_position]
+    except (OSError, IOError) as err:
+        print('Could not read file', err)
 
     return user_dict
 
