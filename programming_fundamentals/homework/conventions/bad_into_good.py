@@ -27,7 +27,10 @@ p = 20
 t = "04/20/2011"
 
 # Your solution should be added here.
-
+color = "green"
+is_active = False
+python_age =20
+first_usage_date = "04/20/2011"
 # It should be applicable for all 3 examples.
 
 
@@ -40,3 +43,23 @@ except:
     pass
 
 # Your solution should be added here.
+
+
+def handle_exceptions(test_number):
+    # This function uses `user_number` as a value entered by user.
+    # If their number is higher than `TEST_NUMBER`, return `Yey! My number is higher!`,
+    # return `Wow! My number is lower.` otherwise.
+    # It handles possible exceptions.
+
+    while True:
+        try:
+            user_number = int(input("Please enter your number: "))
+            if user_number > test_number:
+                print('Yey! My number is higher!')
+            elif user_number < test_number:
+                print('Wow! My number is lower!')
+            break
+        except ValueError:
+            print("You didn't entered the number.")
+
+
