@@ -28,6 +28,10 @@ t = "04/20/2011"
 
 # Your solution should be added here.
 # It should be applicable for all 3 examples.
+car_color = "green"
+is_active = False
+python_years = 20
+pythin_firs_used = "04/20/2011"
 
 
 # Example 4.
@@ -35,7 +39,16 @@ def do_something():pass
 
 try:
     do_something()
-except:
+except :
     pass
 
 # Your solution should be added here.
+def do_something():
+	k = 1 / 0
+
+try:
+    do_something()
+except ZeroDivisionError:
+    k = 0
+    
+print(k)
