@@ -3,6 +3,17 @@
 This module contains tasks related to object-oriented programming in Python.
 Please read docstrings and complete this task.
 """
+
+# to the .ini files
+import configparser
+# to the .xml files
+from xml.etree import cElementTree as ET
+# to the .json files
+import json
+# to the .yaml files
+import yaml
+
+
 __author__ = "Pavlo Ivanchyshyn"
 __maintainer__ = "Pavlo Ivanchyshyn"
 __email__ = "p.ivanchyshyn@gmail.com"
@@ -13,19 +24,57 @@ __email__ = "p.ivanchyshyn@gmail.com"
 
 
 class XmlParser:
-    pass
+
+    @staticmethod
+    def parse():
+        tree = ET.parse('config.xml')
+        root = tree.getroot()
+        conf_dict = {}
+        for item in root:
+            d = {}
+            for elem in item:
+                d[elem.tag] = elem.text
+                conf_dict.update(d)
+        return conf_dict
+
+
+# print(XmlParser.parse())
 
 
 class IniParser:
-    pass
+
+    @staticmethod
+    def parse():
+        config = configparser.ConfigParser()
+        config.read("config.ini")
+        conf_dict = {section: dict(config.items(section)) for section in config.sections()}
+        return conf_dict
+
+
+# print(IniParser.parse())
 
 
 class YamlParser:
-    pass
+
+    @staticmethod
+    def parse():
+        conf_dict = yaml.load(open('config.yaml'))
+        return conf_dict
+
+
+# print(YamlParser.parse())
 
 
 class JsonParser:
-    pass
+
+    @staticmethod
+    def parse():
+        with open('config.json') as f:
+            conf_dict = json.load(f)
+        return conf_dict
+
+
+# print(JsonParser.parse())
 
 
 class Parser:
@@ -37,6 +86,8 @@ class Parser:
 # The following code should works fine.
 # Each `parse` method should return a dict object
 # with configuration parsed from the configuration file.
+
+
 parser = Parser()
 xml_data = parser.parse("config.xml")
 ini_data = parser.parse("config.ini")
