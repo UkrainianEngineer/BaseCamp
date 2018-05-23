@@ -51,9 +51,10 @@ def increment_by_one(value):
     Args:    value - the value entered by user;
     return:  result - the result of increment user's value by one
     """
-    result = 0
+
     try:
-        result = value + 1
-    except (TypeError, NameError, SyntaxError):
+        value += 1
+        return value
+    except TypeError:
         raise Exception("Incorrect type or value")
-    return result
+
