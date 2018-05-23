@@ -16,15 +16,17 @@ import configparser
 import yaml
 import json
 
+
 class XmlParser:
-    def parse(self, filename):
+    def parse_xml(self, filename):
         with open(filename) as data:
-            config = xmltodict.parse(data.read())
+            config = xmltodict.parse(data.read(), process_namespaces=True)
             # http://docs.python-guide.org/en/latest/scenarios/xml/
         return config
 
+
 class IniParser:
-    def parse(self, filename):
+    def parse_ini(self, filename):
         # https://stackoverflow.com/questions/3220670/read-all-the-contents-in-ini-file-into-dictionary-with-python
         pars = configparser.ConfigParser()
         pars.read(filename)
@@ -33,14 +35,14 @@ class IniParser:
 
 
 class YamlParser:
-    def parse(self, filename):
+    def parse_yaml(self, filename):
         with open(filename, 'r') as data:
             config = (yaml.load(data))
         return config
 
 
 class JsonParser:
-    def parse(self, filename):
+    def parse_json(self, filename):
         with open(filename) as data:
             config = json.loads(data.read())
         return config
@@ -48,7 +50,16 @@ class JsonParser:
 
 class Parser(XmlParser, IniParser, YamlParser, JsonParser):
     def parse(self, filename):
-        super(Parser, self).parse(filename)
+        file_type = filename.split('.')[-1]
+        if file_type == "xml":
+            result_config = super(Parser, self).parse_xml(filename)
+        elif file_type == "ini":
+            result_config = super(Parser, self).parse_ini(filename)
+        elif file_type == "yaml":
+            result_config = super(Parser, self).parse_yaml(filename)
+        elif file_type == "json":
+            result_config = super(Parser, self).parse_json(filename)
+        return result_config
 
 
 # The following code should works fine.
@@ -56,10 +67,10 @@ class Parser(XmlParser, IniParser, YamlParser, JsonParser):
 # with configuration parsed from the configuration file.
 parser = Parser()
 xml_data = parser.parse("config.xml")
-print(xml_data)
+print('xml: ',xml_data)
 ini_data = parser.parse("config.ini")
-print(ini_data)
+print('ini: ',ini_data)
 yaml_data = parser.parse('config.yaml')
-print(yaml_data)
+print('yaml: ',yaml_data)
 json_data = parser.parse('config.json')
-print(json_data)
+print('json: ',json_data)

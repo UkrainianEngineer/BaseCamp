@@ -5,7 +5,13 @@
     "port": 9001,
     "OS": "MAC OS"
   },
-  "configuration_folder": "/tmp/",
-  "version": 1.1,
-  "supported_os": ["MAC OS", "Windows", "Linux"]
+  "default": {
+    "configuration_folder": "/tmp/",
+    "version": 1.1,
+    "supported_os": [
+      "MAC OS",
+      "Windows",
+      "Linux"
+    ]
+  }
 }
