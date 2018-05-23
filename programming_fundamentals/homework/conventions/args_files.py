@@ -8,7 +8,7 @@ __author__ = "Pavlo Ivanchyshyn"
 __maintainer__ = "Pavlo Ivanchyshyn"
 __email__ = "p.ivanchyshyn@gmail.com"
 import re
-FILENAME = 'awesome_data.txt'
+FILENAME = 'awesome_data.info'
 lines = [
     "Two assure edward whence the was.",
     "Who worthy yet ten boy denote wonder.",
@@ -48,14 +48,14 @@ def find_sum(*args):
         etc.
     """
     # ADD YOUR CODE HERE.
-    sum = 0
+    summary = 0
     for arg in args:
-        if type(arg) == list:
+        if isinstance(arg, (list, tuple)):
             for el in arg:
-                sum += el
+                summary += el
         else:
-            sum += arg
-    return sum
+            summary += arg
+    return summary
 
 
 def write_to_file(filename, data):
@@ -68,11 +68,12 @@ def write_to_file(filename, data):
         data (list, tuple) - lines of text which should be added into file.
     """
     # ADD YOUR CODE HERE.
-
-    with open(filename, 'w') as file:
-        for element in data:
-            file.write(element + '\n')
-    return
+    try:
+        with open(filename, 'w') as file:
+            for element in data:
+                file.write(element + '\n')
+    except (OSError, IOError):
+        print("An Error has occurred!")
 
 
 def read_file(filename):
@@ -88,9 +89,26 @@ def read_file(filename):
     """
     # ADD YOUR CODE HERE.
 
-    with open(filename, 'r') as file:
-        text = file.readlines()
-        return text
+    # my version 1
+    # try:
+    #     with open(filename, 'r') as file:
+    #         text = file.readlines()
+    #         return text
+    # except (OSError, IOError):
+    #     print("An Error has occurred!")
+
+    # my version 2
+    try:
+        with open(filename, 'r') as file:
+            text = file.read()
+            text = text.strip().split("\n")
+            return text
+    except (OSError, IOError):
+        print("An Error has occurred!")
+
+
+# write_to_file(FILENAME, lines)
+# read_file(FILENAME)
 
 
 def append_to_file(filename, data):
@@ -103,10 +121,12 @@ def append_to_file(filename, data):
         data (list, tuple) - lines of text which should be added into file.
     """
     # ADD YOUR CODE HERE.
-    with open(filename, 'a') as file:
-        for line in data:
-            file.write(line + "\n")
-    return
+    try:
+        with open(filename, 'a') as file:
+            for line in data:
+                file.write(line + "\n")
+    except (OSError, IOError):
+        print("An Error has occurred!")
 
 
 def write_user_info(filename, data):
@@ -127,13 +147,18 @@ def write_user_info(filename, data):
         data (dict) - personal user's information.
     """
     # ADD YOUR CODE HERE.
-    data = (
-        "Hi there!",
-        "My name is {} {}.".format(data['name'], data['surname']),
-        "I am {} years old.".format(data['age']),
-        "I live in {}.".format(USER_INFO['city']))
-    write_to_file(filename, data)
-    return
+    try:
+        user_info = (
+            "Hi there!",
+            "My name is {} {}.".format(data['name'], data['surname']),
+            "I am {} years old.".format(data['age']),
+            "I live in {}.".format(data['city']))
+    except KeyError:
+        print("An error occurred during reading this file")
+    write_to_file(filename, user_info)
+
+
+# write_user_info(FILENAME, USER_INFO)
 
 
 def get_user_info(filename):
@@ -156,31 +181,55 @@ def get_user_info(filename):
         Example:
             get_user_info(FILENAME)  # Returns {"name": "Pavlo", "surname": "Ivanchyshyn", "age": 28, "city": "Lviv"}
     """
+    # My I version
+    # data = read_file(filename)
+    #
+    # def search_value(patterns_start, pattern_end, data):
+    #     match = re.search(patterns_start, data)
+    #     if match:
+    #         pos_start_value = match.end()
+    #         match2 = re.search(pattern_end, data)
+    #         if match2:
+    #             pos_end_value = match2.start()
+    #             value = data[pos_start_value:pos_end_value]
+    #             return value
+    #
+    # name = search_value(r"(\s[a-z][a-z]\s)", r"(\s[A-Z]([a-z]+)\.)", data[1])
+    # surname = search_value(r"(\s[A-Z]([a-z]+)\s)", r"\.\n", data[1])
+    # age = search_value(r"(\s[a-z][a-z]\s)", r" years", data[2])
+    # city = search_value(r"(\s[a-z][a-z]\s)", r"\.", data[3])
+    # dictionary = {}
+    # dictionary['name'] = name
+    # dictionary['surname'] = surname
+    # dictionary['age'] = age
+    # dictionary['city'] = city
+    # print(dictionary)
+    # return dictionary
 
-    data = read_file(filename)
+    # My II version
+    data = read_file(FILENAME)
 
-    def search_value(patterns_start, pattern_end, data):
-        match = re.search(patterns_start, data)
-        if match:
-            pos_start_value = match.end()
-            match2 = re.search(pattern_end, data)
-            if match2:
-                pos_end_value = match2.start()
-                value = data[pos_start_value:pos_end_value]
-                return value
+    for sentence in data:
+        sentence = sentence[:-1].strip().split()
+        if 'is' in sentence:
+            index_el = sentence.index('is')
+            name = sentence[index_el + 1]
+            surname = sentence[index_el + 2]
+        elif 'am' in sentence:
+            index_el = sentence.index('am')
+            age = sentence[index_el + 1]
+        elif 'in' in sentence:
+            index_el = sentence.index('in')
+            city = sentence[index_el + 1]
 
-    name = search_value(r"(\s[a-z][a-z]\s)", r"(\s[A-Z]([a-z]+)\.)", data[1])
-    surname = search_value(r"(\s[A-Z]([a-z]+)\s)", r"\.\n", data[1])
-    age = search_value(r"(\s[a-z][a-z]\s)", r" years", data[2])
-    city = search_value(r"(\s[a-z][a-z]\s)", r"\.", data[3])
-    dict = {}
-    dict['name'] = name
-    dict['surname'] = surname
-    dict['age'] = age
-    dict['city'] = city
-    print(dict)
-    return dict
+    dictionary = {}
+    dictionary['name'] = name
+    dictionary['surname'] = surname
+    dictionary['age'] = age
+    dictionary['city'] = city
+    return dictionary
 
 
+# write_user_info(FILENAME, USER_INFO)
 # get_user_info(FILENAME)
 
