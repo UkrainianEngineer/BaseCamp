@@ -34,7 +34,6 @@ python_years = 20
 python_first_used = "04/20/2011"
 
 
-
 # Example 4.
 def do_something():pass
 
@@ -44,6 +43,8 @@ except Exception as exc:
     print(exc)
 
 # Your solution should be added here.
+
+
 def increment_by_one(value):
     """
     This function will increment user's value by one
