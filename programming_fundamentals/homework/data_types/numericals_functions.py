@@ -22,20 +22,19 @@ def decimal_to_binary(n):
     Returns:
         int - integer number of binary representation for enterd n.
     """
-    a = []
-    k = n
-    while k > 0:
-        if (k % 2) == 1:
-            a.append(1)
-            k = k // 2
+    binary_form = []
+    while n > 0:
+        if (n % 2) == 1:
+            binary_form.append(1)
+            n = n // 2
         else:
-            a.append(0)
-            k = k/2
-    a.reverse()
-    a = int("".join(str(x) for x in a))
-    print(str(n)+" in binary representation is "+str(a))
+            binary_form.append(0)
+            n = n/2
+    binary_form.reverse()
+    binary_form = int("".join(str(x) for x in binary_form))
+    return binary_form
 
-decimal_to_binary(TEST_NUMBER)
+print(decimal_to_binary(TEST_NUMBER))
 
 
 def binary_to_decimal(n):
@@ -49,16 +48,16 @@ def binary_to_decimal(n):
     Returns:
         int - decimal representation of a proper number.
     """
-    D = 0
-    k = str(n)
-    for index, x in enumerate(k):
-        D = D + int(x)* 2**(len(k)- index - 1)
-    print(str(n) + " in decimal is equal to " + str(D))
+    decimal_number = 0
+    binary_number = str(n)
+    for index, x in enumerate(binary_number):
+        decimal_number = decimal_number + int(x)* 2**(len(binary_number)- index - 1)
+    return decimal_number
      
-binary_to_decimal(101010)
+print(binary_to_decimal(101010))
 
 
-def storage(something_should_be_here):
+def storage(data=None):
     # Your function should return list with added `data` value
     # into passed list into function or just `data` value in empty list.
     # Example:
@@ -68,7 +67,9 @@ def storage(something_should_be_here):
 
     # Change parameters in function for needed.
     # Also you is able to add some additional code here if needed.
-    data_storage = something_should_be_here
+    data_storage = []
+    if data:
+        data_storage += data
 
     # DON'T MODIFY THESE LINES.
     data_storage.append("data")
@@ -88,13 +89,9 @@ def handle_exceptions(user_number):
         number = int(user_number)
     except ValueError:
         return "Function argument should be a number!"
-    else:
-        if number > TEST_NUMBER:
-            return 'Yey! My number is higher!'
-        elif number < TEST_NUMBER:
-            return 'Wow! My number is lower.'
-        else:
-            return 'It is a correct answer. '
+    if number > TEST_NUMBER:
+        return 'Yey! My number is higher!'
+    elif number < TEST_NUMBER:
+        return 'Wow! My number is lower.'
 
-m = handle_exceptions(42)
-print(m)
+print(handle_exceptions('gh'))

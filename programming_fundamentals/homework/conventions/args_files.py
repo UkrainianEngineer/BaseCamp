@@ -121,15 +121,11 @@ def write_user_info(filename, data):
     """
     # ADD YOUR CODE HERE.
     text = ['Hi there!',
-    'My name is <name> <surname>.',
-    'I am <age> years old.',
-    'I live in <city>.']
-
-    text[1] = text[1].replace('<name>', data['name'])
-    text[1] = text[1].replace('<surname>', data['surname'])
-    text[2] = text[2].replace('<age>', str(data['age']))
-    text[3] = text[3].replace('<city>', data['city'])
-
+            'My name is {} {}.'.format(data['name'], data['surname']),
+            'I am {} years old.'.format(data['age']),
+            'I live in {}.'.format(data['city'])
+            ]
+   
     write_to_file(filename, text)
 
 write_user_info('FILENAME', USER_INFO)

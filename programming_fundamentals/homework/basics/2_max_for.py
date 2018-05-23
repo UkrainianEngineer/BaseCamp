@@ -17,9 +17,9 @@ maximum = 0
 # Save maximum value from `data` list into `maximum` variable.
 
 # ADD YOUR CODE HERE.
-for i in range(len(data)):
-    if data[i] > maximum:
-        maximum = data[i]
+for element in data:
+    if element > maximum:
+        maximum = element
 print(maximum)
 
 # DON'T MODIFY THESE LINES.
