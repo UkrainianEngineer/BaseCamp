@@ -9,11 +9,9 @@ __email__ = "p.ivanchyshyn@gmail.com"
 
 # This task is just for manual training.
 # You should solve this task manually and verify the results using this script.
-birthdate = input("Please enter a decimal year of your birth: ")
+birthdate = int(input("Please enter a decimal year of your birth: "))
 binary_date = input("Please enter your binary representation of decimal year of birth:")
-assert "{0:b}".format(int(birthdate)) == str(binary_date), "Invalid answer. Please check your binary representation."
+assert "{0:b}".format(birthdate) == str(binary_date), "Invalid answer. Please check your binary representation."
 print("=" * 60)
 print("Congratulations! You've done it!")
 print("=" * 60)
-# my answer is : birthdate = 1989
-# my answer is : binary_date = 11111000101
