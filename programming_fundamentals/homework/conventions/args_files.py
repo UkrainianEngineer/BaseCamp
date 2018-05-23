@@ -47,14 +47,14 @@ def find_sum(*nums):
         etc.
     """
     # ADD YOUR CODE HERE.
-    sum = 0
+    summary = 0
     for i in nums:
         if isinstance(i, list):
             for n in i:
-                sum += n
+                summary += n
         elif isinstance(i, int):
-            sum += i
-        return sum
+            summary += i
+        return summary
 
 
 def write_to_file(filename, data):
@@ -69,7 +69,7 @@ def write_to_file(filename, data):
     # ADD YOUR CODE HERE.
     file = open(filename, "w")
     for item in data:
-        file.write(' '.join(str(s) for s in item) + '\n')
+        file.write(item + '\n')
 
     file.close()
 
@@ -87,9 +87,8 @@ def read_file(filename):
     # ADD YOUR CODE HERE.
 
     file = open(filename, 'r')
-    data = file.read()
     outputlist = []
-    for line in data.split('\n'):
+    for line in file:
         outputlist.append(line)
     file.close()
     return outputlist
@@ -104,10 +103,9 @@ def append_to_file(filename, data):
         data (list, tuple) - lines of text which should be added into file.
     """
     # ADD YOUR CODE HERE.
-
-    file = open(filename, 'a+')
-    for item in data:
-        file.write(' '.join(str(s) for s in item) + '\n')
+    with open(filename) as file:
+        for item in data:
+            file.write(item + '\n')
 
     file.close()
 
@@ -130,8 +128,15 @@ def write_user_info(filename, data):
         data (dict) - personal user's information.
     """
     # ADD YOUR CODE HERE.
-    processdata = 'Hi there!\nMy name is {} {}.\nI am {} years old.\nI live in {}'.format(data['name'], data['surname'], data['age'], data['city'])
-    write_to_file(filename, processdata)
+    # try:
+    #     process_data = 'Hi there!\nMy name is {} {}.\nI am {} years old.\nI live in {}'.format(data['name'], data['surname'], data['age'], data['city'])
+    #
+    # except:
+    #     print('incorrect data in dictionary')
+
+    process_data = 'Hi there!\nMy name is {} {}.\nI am {} years old.\nI live in {}'.format(data.get('name'), data.get('surname'), data.get('age'), data.get('city'))
+
+    write_to_file(filename, process_data)
 
 
 def get_user_info(filename):
@@ -162,12 +167,17 @@ def get_user_info(filename):
         return {}
 
     user_info = {}
+    name_position = 3
+    surname_position = 4
+    age_position = 2
+    city_position = 3
+
     for element in content:
         if 'My name is' in element:
-            user_info['name'], user_info['surname'] = element.replace('.', '').replace("My name is ", "").split()
+            user_info['name'], user_info['surname'] = element.split(" ")[name_position], element[:-1].split(" ")[surname_position]
         elif ('I am' in element) and ('years old' in element):
-            user_info['age'] = int(element.split()[2])
+            user_info['age'] = int(element.split(" ")[age_position])
         elif 'I live in' in element:
-            user_info['city'] = element.replace(".", "").split()[3]
+            user_info['city'] = element.replace(".", "").split(" ")[city_position]
 
     return user_info
