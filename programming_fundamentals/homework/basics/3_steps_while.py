@@ -11,13 +11,17 @@ NUMBER_OF_STEPS = 10
 message = "There were not enough of iteration. Please check your `while` loop."
 
 step_count = 0
+while step_count < NUMBER_OF_STEPS:
+    step_count += 1
+    print(step_count)
 # Iterate `NUMBER_OF_STEPS` times using `while` loop.
 # Increase `step_count` variable by 1 in each loop.
 # `step_count` should contains number of iterations.
 # ADD YOUR CODE HERE.
 
-
 # DON'T MODIFY THESE LINES.
 print("Iterated {} times.".format(step_count))
 assert step_count == NUMBER_OF_STEPS, message
+
+
 

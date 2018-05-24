@@ -15,6 +15,9 @@ M = 3
 
 print("Input data is: {}".format(data))
 summ = 0
+summ = sum(data[N:M])
+print (summ)
+
 # Calculate sum of elements from list from `N` element to `M` using slicing.
 # Use builtin `sum` function for finding sum.
 # Store sum of elements from `N` to `M` into `summ` variable.
