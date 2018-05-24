@@ -22,7 +22,7 @@ def decimal_to_binary(n):
     Returns:
         int - integer number of binary representation for enterd n.
     """
-    pass
+    return int(bin(n)[2:])
 
 
 def binary_to_decimal(n):
@@ -36,10 +36,11 @@ def binary_to_decimal(n):
     Returns:
         int - decimal representation of a proper number.
     """
-    pass
+    return int(str(n), 2)
 
 
-def storage(something_should_be_here):
+
+def storage(data=None):
     # Your function should return list with added `data` value
     # into passed list into function or just `data` value in empty list.
     # Example:
@@ -49,10 +50,15 @@ def storage(something_should_be_here):
 
     # Change parameters in function for needed.
     # Also you is able to add some additional code here if needed.
-
+    if data is None:
+        data_storage = []
+    else:
+        data_storage = data.copy()
     # DON'T MODIFY THESE LINES.
     data_storage.append("data")
     return data_storage
+
+
 
 
 def handle_exceptions(user_number):
@@ -62,4 +68,15 @@ def handle_exceptions(user_number):
     # Handle possible exceptions.
 
     # ADD YOUR CODE HERE.
-    pass
+    
+    try:
+        if user_number > TEST_NUMBER:
+            return 'Yey! My number is higher!'
+        else:
+            return 'Wow! My number is lower.'
+    except TypeError:
+        print ("The type of value is not correct")
+
+
+
+
