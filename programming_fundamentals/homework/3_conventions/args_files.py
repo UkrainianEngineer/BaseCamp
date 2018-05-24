@@ -167,7 +167,7 @@ def get_user_info(filename):
         "name": text[5],
         "surname": text[6],
         "age": text[9],
-        "city": text[16]
+        "city": text[15]
     }
     
     return parse_user_info
