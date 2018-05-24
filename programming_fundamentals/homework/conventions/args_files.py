@@ -52,10 +52,10 @@ def find_sum(*args):
         if type(a) == list:
             for b in a:
                 total += b
-            return total
         else:
             total += a
     return total
+
 
 
 def write_to_file(filename, data):
@@ -72,6 +72,7 @@ def write_to_file(filename, data):
         for x in data:
             new_file.write(x + '\n')
         return new_file
+print (write_to_file(32, [1, 2]))
 
 def read_file(filename):
     """
@@ -125,9 +126,9 @@ def write_user_info(filename, data):
     # ADD YOUR CODE HERE.
     data = {
         "Hi there!",
-        "My name is { } { }.".format(data['name'], data['surname']),
-        "I am { } years old.".format(data['age']),
-        "I live in { }.".format(data['city'])
+        "My name is {} {}.".format(data['name'], data['surname']),
+        "I am {} years old.".format(data['age']),
+        "I live in {}.".format(data['city'])
     }
     return write_to_file(filename, data)
 
@@ -154,7 +155,7 @@ def get_user_info(filename):
     # ADD YOUR CODE HERE.
 
     write_user_info(filename, USER_INFO)
-    message = ' '
+    message = ''
     parse_user_info = {}
     with open(filename, 'r') as new_file:
         message = new_file.read()

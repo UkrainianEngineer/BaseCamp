@@ -34,25 +34,19 @@ python_years = 20
 python_first_used = "04/20/2011"
 
 
-
-# Example 4.
-def do_something():pass
-
-try:
-    do_something()
-except:
-    pass
-
 # Your solution should be added here.
-
 def divisible_by_2(value):
-    try:
-        float_value = float(value)
-        if float_value % 2 == 0 and float_value != 0:
-            return float_value
-        else:
-            raise None
-    except ValueError:
-        print "Number is not divisible by 2..."
+    if value < 0:
+        raise ValueError
+    if value % 2 == 0:
+        print("Number is even")
+    else:
+        print("Number is odd")
+try:
+    num = int(input("Enter your number: "))
+    divisible_by_2(num)
+except ValueError:
+    print ("Only positive integers are allowed")
+
 
 
