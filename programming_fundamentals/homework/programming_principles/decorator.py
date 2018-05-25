@@ -21,9 +21,9 @@ def custom_decorator(some_function):
     # You are also able to add some parameters if needed.
     def wrapper():
         import time
-        start = time.time.now()
+        start = time.time()
         some_function()
-        end = time.time.now()
+        end = time.time()
         print("Execution time " + str(end - start))
     return wrapper
 
