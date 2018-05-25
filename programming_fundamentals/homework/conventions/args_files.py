@@ -9,7 +9,7 @@ __maintainer__ = "Pavlo Ivanchyshyn"
 __email__ = "p.ivanchyshyn@gmail.com"
 
 FILENAME = 'awesome_data.info'
-lines = [
+line = [
     "Two assure edward whence the was.",
     "Who worthy yet ten boy denote wonder.",
     "Weeks views her sight old tears sorry.",
@@ -72,7 +72,7 @@ def write_to_file(filename, data):
         for x in data:
             new_file.write(x + '\n')
         return new_file
-print (write_to_file(32, [1, 2]))
+
 
 def read_file(filename):
     """
@@ -154,20 +154,13 @@ def get_user_info(filename):
     """
     # ADD YOUR CODE HERE.
 
-    write_user_info(filename, USER_INFO)
-    message = ''
-    parse_user_info = {}
-    with open(filename, 'r') as new_file:
-        message = new_file.read()
-    message = message.split()
-    for i in range(len(message)):
-        message[i] = message[i].replase('.', ' ')
-        if message[i] == USER_INFO['name']:
-            parse_user_info['name'] = message[i]
-        elif message[i] == USER_INFO['surname']:
-            parse_user_info['surname'] = message[i]
-        elif message[i] == USER_INFO['age']:
-            parse_user_info['age'] = message[i]
-        elif message[i] == USER_INFO['city']:
-            parse_user_info['city'] = message[i]
-    return parse_user_info
+    lines = read_file(filename)
+    first_line_tokens = lines[1].split(' ')
+    name = first_line_tokens[3]
+    surname = first_line_tokens[4].replace('.\n', '')
+    age = first_line_tokens[2]
+    city = first_line_tokens[3]
+    return {'name': name, 'surname': surname, 'age': age, 'city': city}
+
+
+get_user_info(FILENAME)
