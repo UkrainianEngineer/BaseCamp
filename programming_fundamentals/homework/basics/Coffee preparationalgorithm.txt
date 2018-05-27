@@ -1,6 +1,0 @@
-1. Take a coffee pot
-2. Put coffee in it
-3. Put water in it
-4. Put it on fire
-5. If water temperature == 100 turn off the fire
-6. Enjoy your coffee
