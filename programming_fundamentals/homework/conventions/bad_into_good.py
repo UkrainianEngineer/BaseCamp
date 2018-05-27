@@ -28,7 +28,10 @@ t = "04/20/2011"
 
 # Your solution should be added here.
 # It should be applicable for all 3 examples.
-
+color_of_something = "green"
+is_active = False
+age = 20
+python_first_used = "04/20/2011"
 
 # Example 4.
 def do_something():pass
@@ -39,3 +42,13 @@ except:
     pass
 
 # Your solution should be added here.
+def do_something_new():
+    # Implement function behavior
+    pass
+
+try:
+    # Try to executefunction
+    do_something_new()
+except (Exception1, Exception2, Exception3):
+    # Handle exception
+    pass
