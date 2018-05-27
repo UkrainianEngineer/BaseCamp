@@ -1,19 +1,22 @@
-"""
-This module describes the home task related to numerical systems.
-It might be useful for both students and mentors.
-"""
+print("Decimal to binary converter")
+birth_d = int(input("Please enter your year of brith \n "))
+print("Thank! Your yaer of brith is %d \n " % birth_d)
+res = ""
 
-__author__ = "Pavlo Ivanchyshyn"
-__maintainer__ = "Pavlo Ivanchyshyn"
-__email__ = "p.ivanchyshyn@gmail.com"
+while birth_d > 0:
+    temp = str(birth_d % 2)
+    res = temp + res
+    birth_d = int(birth_d / 2)
+print("Your year of brith in binary is:")
+print(res)
+print("\n")
 
-# This task is just for manual training.
-# You should solve this task manually and verify the results using this script.
-birthdate = input("Please enter a decimal year of your birth: ")
-binary_date = input("Please enter your binary representation of decimal year of birth:")
-assert "{0:b}".format(int(birthdate)) == str(binary_date), "Invalid answer. Please check your binary representation."
-print("=" * 60)
-print("Congratulations! You've done it!")
-print("=" * 60)
-# my answer is : birthdate = 1989
-# my answer is : binary_date = 11111000101
+#How it work
+#36d = 100100b 
+#36/2 = 18  _0
+#18/2 = 9   _0
+#9/2 = 4    _1
+#4/2 = 2    _0
+#2/2 = 1    _0
+#1/2 = 0.5  _1
+

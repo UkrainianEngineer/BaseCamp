@@ -1,29 +1,30 @@
-"""
-This module describes the home task related to `for` loop.
-It might be useful for both students and mentors.
-"""
+import random
 
-__author__ = "Pavlo Ivanchyshyn"
-__maintainer__ = "Pavlo Ivanchyshyn"
-__email__ = "p.ivanchyshyn@gmail.com"
+print("HI, i'm going to create rand array and calc. its param")
 
-# This list contains your input data.
-data = [1, -3, 4, 6, 11, 2, 0, -13, 9]
-message = "Invalid maximum value has been found. Please check your `for` loop."
+data = []
 
-print("Your list is: {}".format(data))
-maximum = 0
-# Find the maximum value from `data` list using `for` loop.
-# Save maximum value from `data` list into `maximum` variable.
-# ADD YOUR CODE HERE.
-for el in data:
-    i = data.index(el)
-    if data[i] > data[i+1]:
-        data[i],data[i+1] = data[i+1],data[i]
-        maximum = data[-1]
-        print("maximum = ", str(maximum))
-        if maximum == max(data):
-            break
-# DON'T MODIFY THESE LINES.
-assert maximum == max(data), message
-print("Maximum value has been found! Congratulations!")
+for i in range(1,random.randint(10,20)) :
+    data.append(random.randint(1,99))
+
+print('Array are: ' + str(data))
+
+max_numb = data[0]
+min_numb = data[0]
+summ = 0
+#max
+for i in data :
+    if max_numb < i :
+        max_numb = i
+#min
+for i in data :
+    if min_numb > i :
+        min_numb = i
+#summ        
+for i in data :
+    summ += i
+#average
+average = summ / len(data)
+ 
+print('Min num is: ' + str(min_numb) +'\n'+ 'Max num is: ' + str(max_numb))
+print('Summ of nums is: ' + str(summ) +'\n'+ 'Average is: ' + str(round(average,2)))    

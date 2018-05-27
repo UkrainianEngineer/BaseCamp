@@ -1,37 +1,58 @@
-"""
-This module describes the hometask related to `slicing` loop.
-It might be useful for both students and mentors.
-"""
+import sys
+import random
 
-__author__ = "Pavlo Ivanchyshyn"
-__maintainer__ = "Pavlo Ivanchyshyn"
-__email__ = "p.ivanchyshyn@gmail.com"
+arr = []
 
-data = [3, 11, 2, -6, 8, 17, 3]
-message = "Invalid sum has been found. Check your sum again."
-N = 2
-M = 3
+def rand_arr() :
+    i = 0
+    while i < random.randint(10, 20) :
+        arr.append(random.randint(1, 100))
+        i+=1
 
+def err_and_out() :
+    if input() == '' :
+        sys.exit(1)
+    else :
+        sys.exit(1)
 
-print("Input data is: {}".format(data))
-summ = 0
+answ = input('Do you want me to create new random array? Enter "y" -> yes, "n" -> no. \n')
 
-# Calculate sum of elements from list from `N` element to `M` using slicing.
-# Use builtin `sum` function for finding sum.
-# Store sum of elements from `N` to `M` into `summ` variable.
-# Example:
-# data = [1,2,3,4,5]
-# N = 2
-# M = 5
-# summ = data[2] + data[3] + data[4]
-# summ = 3 + 4 + 5 = 12
+if answ == 'y' :
+    print('I\'m creating it. \n')
+    rand_arr()
+elif answ == 'n' :
+    print('I won\'t create it. Enter any key for exit.')
+    err_and_out()
+    
+else :
+    print('"y" - new array "x" or any key - close program')
+    if input() == 'y' :
+        rand_arr()
+    else :
+        sys.exit(1)
 
-# ADD YOUR CODE HERE.
-summ = sum(data[N:M])
+print('Our array is: ' + str(arr))
+print('Our array contain ' + str(len(arr)) + ' num')
+####################################################################
+try :
+    bs = int(input('Enter num for begin of slicing: '))
+except :
+    print('Wrong num! Enter any key for exit.')
+    err_and_out()
+print('First num of slicing is ' + str(bs))
+####################################################################    
+try :
+    es = int(input('Enter num for end of slicing: '))
+except :
+    print('Wrong num! Enter any key for exit.')
+    err_and_out()
+print('Second num of slicing is ' + str(es))
+#################################################################### 
+if bs < len(arr) or es < len(arr) or bs <= 0 or es <= 0 :
+    pass
+else :
+    print('Wrong num! Num is out of arr!')
 
-# DON'T MODIFY THESE LINES.
-expected = 0
-for i in range(N, M):
-    expected += i
-assert summ == expected, message
-print("Congratulations! You've done this task!")
+sume = sum(arr[bs:es])
+
+print('The sum is {}.'.format(sume))

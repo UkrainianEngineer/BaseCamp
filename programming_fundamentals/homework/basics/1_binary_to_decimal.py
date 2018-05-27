@@ -1,19 +1,31 @@
-"""
-This module describes the hometask related to numerical systems.
-It might be useful for both students and mentors.
-"""
+#check int
+try:
+    inp_num = int(input("Write binary num: \n"))
+except:
+    print("Wrong num!")
 
-__author__ = "Pavlo Ivanchyshyn"
-__maintainer__ = "Pavlo Ivanchyshyn"
-__email__ = "p.ivanchyshyn@gmail.com"
+st = str(inp_num) #input number
+le = len(st) #lenght of input number it need for culc.
 
-# This task is just for manual training.
-# You should solve this task manually and verify the results using this script.
-test_year = 11100111101
-decimal_year = input("Please enter a decimal representation for {}:".format(test_year))
-assert int(str(test_year), 2) == int(decimal_year), "Invalid answer. Please check your decimal representation."
-print("=" * 60)
-print("Congratulations! You've done it!")
-print("=" * 60)
-# my answer is : 1853
+i = 0 #count var whole num
+res = 0 #var of result
+
+while i <((len(st))) : #expression
+    k = 0 #count var diff num
+    temp = (int(st[i])) #take num
+    if temp == 0 or temp == 1 : #check num for bin
+        while k < ((len(st)) - i - 1) : #expression
+            temp = temp* 2 #mull
+            k = k+1 #count iter
+            #print(temp)
+        
+        res = res + temp #calc result
+        i = i + 1
+    else:
+        print("Only '1' and '0'!")
+        res = 0
+        break
+print(res) #output
+
+
 
