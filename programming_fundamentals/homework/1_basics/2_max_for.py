@@ -17,9 +17,11 @@ maximum = 0
 # Save maximum value from `data` list into `maximum` variable.
 # ADD YOUR CODE HERE.
 
+
 for i in data:
     if i > maximum:
         maximum = i
+
 
 # DON'T MODIFY THESE LINES.
 assert maximum == max(data), message
