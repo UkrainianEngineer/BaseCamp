@@ -20,9 +20,7 @@ def custom_decorator(some_func):
     def wrapper_func(*args, **kwargs):
         start = datetime.datetime.now()
         some_func()
-        stop = datetime.datetime.now()
-        diff = stop - start
-        print (diff)
+        print (datetime.datetime.now() - start)
     return wrapper_func
 
 
@@ -31,6 +29,5 @@ def custom_decorator(some_func):
 def test_decorator():
     print("This function executes...")
 
-test_decorator = custom_decorator(test_decorator)
 test_decorator()
 test_decorator()
