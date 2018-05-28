@@ -15,4 +15,3 @@ assert int(str(test_year), 2) == decimal_year, "Invalid answer. Please check you
 print("=" * 60)
 print("Congratulations! You've done it!")
 print("=" * 60)
-
