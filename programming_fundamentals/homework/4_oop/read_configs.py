@@ -19,7 +19,8 @@ __email__ = "p.ivanchyshyn@gmail.com"
 
 
 class XmlParser:
-    def parse(self, filename):
+    @staticmethod
+    def parse(filename):
         data = {}
         tree = ET.parse(filename).getroot()
 
@@ -39,7 +40,8 @@ class XmlParser:
 
 
 class IniParser:
-    def parse(self, filename):
+    @staticmethod
+    def parse(filename):
         data = {}
         config = ConfigParser()
         config.read(filename, encoding='utf-8')
@@ -59,50 +61,45 @@ class IniParser:
 
 
 class YamlParser:
-    def parse(self, filename):
+    @staticmethod
+    def parse(filename):
         try:
             with open(filename, 'r', encoding='utf-8') as yaml_data:
                 data = yaml.load(yaml_data)
+                return data
         except (OSError, IOError) as exc:
             print('Exception raised: ', exc)
-
-        return data
 
 
 class JsonParser:
-    def parse(self, filename):
+    @staticmethod
+    def parse(filename):
         try:
             with open(filename, 'r', encoding='utf-8') as json_data:
                 data = json.load(json_data)
+                return data
         except (OSError, IOError) as exc:
             print('Exception raised: ', exc)
-
-        return data
 
 
 class Parser:
     """
     You should implement this class.
     """
-    def parse(self, filename):
+    @staticmethod
+    def parse(filename):
         file_extention = filename.split('.')[-1]
 
         if file_extention == 'ini':
-            parser = IniParser()
-
-            return parser.parse(filename)
+            parse_conf = IniParser.parse
         elif file_extention == 'json':
-            parser = JsonParser()
-
-            return parser.parse(filename)
+            parse_conf = JsonParser.parse
         elif file_extention == 'xml':
-            parser = XmlParser()
-
-            return parser.parse(filename)
+            parse_conf = XmlParser.parse
         elif file_extention == 'yaml':
-            parser = YamlParser()
+            parse_conf = YamlParser.parse
 
-            return parser.parse(filename)
+        return parse_conf(filename)
 
 
 # The following code should works fine.
