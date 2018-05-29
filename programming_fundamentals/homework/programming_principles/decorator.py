@@ -14,10 +14,17 @@ __email__ = "p.ivanchyshyn@gmail.com"
 # or any specific executions of this function.
 # JUST MODIFY `custon_decorator` decorator.
 
-def custom_decorator():
+def custom_decorator(executed_func):
     # ADD YOUR CODE HERE.
     # You are also able to add some parameters if needed.
-    pass
+    def calculate_time(*args, **kwargs):
+	import datetime
+	start = datetime.datetime.now()
+	func_time = executed_func(*args, **kwargs)
+	end = datetime.datetime.now()
+	print("Execution time equals {}".format(end-start))
+        return func_time
+    return calculate_time
 
 
 @custom_decorator
