@@ -13,6 +13,9 @@ __email__ = "p.ivanchyshyn@gmail.com"
 
 # You should create a classes, functions, etc. by yourself.
 
+# As a result we should have an activity log with all the information.
+# Activity log - text file.
+
 class User:
     pass
 
