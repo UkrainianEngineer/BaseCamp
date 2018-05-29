@@ -26,8 +26,7 @@ __email__ = "p.ivanchyshyn@gmail.com"
 
 class XmlParser:
 
-    @staticmethod
-    def parse_xml(file):
+    def parse_xml(self, file):
         try:
             tree = ET.parse(file)
             root = tree.getroot()
@@ -43,13 +42,9 @@ class XmlParser:
             return {}
 
 
-# print(XmlParser.parse())
-
-
 class IniParser:
 
-    @staticmethod
-    def parse_ini(file):
+    def parse_ini(self, file):
         config = configparser.ConfigParser()
         try:
             config.read(file)
@@ -61,13 +56,9 @@ class IniParser:
             return {}
 
 
-# print(IniParser.parse())
-
-
 class YamlParser:
 
-    @staticmethod
-    def parse_yaml(file):
+    def parse_yaml(self, file):
         try:
             conf_dict = yaml.load(open(file))
             return conf_dict
@@ -76,13 +67,9 @@ class YamlParser:
             return {}
 
 
-# print(YamlParser.parse())
-
-
 class JsonParser:
 
-    @staticmethod
-    def parse_json(file):
+    def parse_json(self, file):
         try:
             with open(file) as f:
                 conf_dict = json.load(f)
@@ -92,22 +79,19 @@ class JsonParser:
             return {}
 
 
-# print(JsonParser.parse())
-
-
-class Parser(IniParser, YamlParser, JsonParser, XmlParser):
+class Parser:
 
     def parse(self, file):
         pattern = "\w+\.(\w+)"
         file_type = re.findall(pattern, file, flags=re.IGNORECASE)
         if file_type[0] == "xml":
-            value = super(Parser, self).parse_xml(file)
+            value = XmlParser().parse_xml(file)
         elif file_type[0] == "ini":
-            value = super(Parser, self).parse_ini(file)
+            value = IniParser().parse_ini(file)
         elif file_type[0] == "yaml":
-            value = super(Parser, self).parse_yaml(file)
+            value = YamlParser().parse_yaml(file)
         elif file_type[0] == "json":
-            value = super(Parser, self).parse_json(file)
+            value = JsonParser().parse_json(file)
         else:
             raise Exception("Not implemented from this file type")
         return value

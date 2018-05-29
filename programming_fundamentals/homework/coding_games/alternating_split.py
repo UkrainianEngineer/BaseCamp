@@ -9,14 +9,14 @@ def decrypt(encrypted_text, n):
     return encrypted_text
 
 
-def encrypt(encrypted_text, n):
-    if n <= 0:
-        return encrypted_text
-    count = 0
-    while count != n:
-        encrypted_text = encrypted_text[1::2] + encrypted_text[::2]
-        count += 1
-    return encrypted_text
+# def encrypt(encrypted_text, n):
+#     if n <= 0:
+#         return encrypted_text
+#     count = 0
+#     while count != n:
+#         encrypted_text = encrypted_text[1::2] + encrypted_text[::2]
+#         count += 1
+#     return encrypted_text
 
 
 def decrypt(encrypted_text, n):
@@ -31,12 +31,13 @@ def decrypt(encrypted_text, n):
     first = text_list[0:splitted_text]
     second = text_list[splitted_text:list_leght]
 
-    result_in_list = [ second[i//2] if i % 2 == 0 else first[(i-1)//2] for i in range(0,list_leght) ]
+    result_in_list = [ second[i//2] if i % 2 == 0 else first[(i-1)//2] for i in range(0, list_leght)]
     result = ''.join(result_in_list)
     return decrypt(result,n-1)
 
+
 def encrypt(text, n):
-    if n <= 0 :
+    if n <= 0:
         return text
     text_list = list(text)
     first = text_list[::2]
