@@ -96,6 +96,7 @@ class Parser:
             raise Exception("Not implemented from this file type")
         return value
 
+
 # The following code should works fine.
 # Each `parse` method should return a dict object
 # with configuration parsed from the configuration file.
