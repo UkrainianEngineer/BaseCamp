@@ -14,10 +14,16 @@ __email__ = "p.ivanchyshyn@gmail.com"
 # or any specific executions of this function.
 # JUST MODIFY `custon_decorator` decorator.
 
-def custom_decorator():
+import time
+
+def custom_decorator(fn):
     # ADD YOUR CODE HERE.
     # You are also able to add some parameters if needed.
-    pass
+    def custom_wrapper():
+        start_executing_time = time.time()
+        fn()
+        print(time.time() - start_executing_time)
+    return custom_wrapper
 
 
 @custom_decorator
