@@ -15,6 +15,8 @@ __email__ = "p.ivanchyshyn@gmail.com"
 
 class XmlParser:
     def parse (self, filename):
+        if filename.split('.')[1] != 'xml':
+            return None
         xml_dict = {}
         e = xml.etree.ElementTree.parse(filename).getroot()
         for child in e:
@@ -37,22 +39,23 @@ class JsonParser:
     pass
 
 
-class Parser:
+class Parser(XmlParser, IniParser, YamlParser, JsonParser):
     """
     You should implement this class.
     """
-    pass
+    def parse(self, filename):
+        parsed_dict = super().parse(filename)
+        return parsed_dict
 
-parser = XmlParser()
-parser.parse("config.xml")
+
 
 
 # The following code should works fine.
 # Each `parse` method should return a dict object
 # with configuration parsed from the configuration file.
-"""
+
 parser = Parser()
 xml_data = parser.parse("config.xml")
-ini_data = parser.parse("config.ini")
+"""ini_data = parser.parse("config.ini")
 yaml_data = parser.parse('config.yaml')
 json_data = parser.parse('config.json')"""
