@@ -42,8 +42,8 @@ except:
     pass
 
 # Your solution should be added here.
-def name_input():
+def age_input():
     try:
-        age = int(raw_input("Enter your age, please: "))
+        age = int(input("Enter your age, please: "))
     except ValueError:
-        print "It's not valid input. Please, enter your age again."
+        print("It's not valid input. Please, enter your age again.")

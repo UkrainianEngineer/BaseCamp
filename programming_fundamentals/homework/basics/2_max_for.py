@@ -18,8 +18,8 @@ maximum = 0
 # ADD YOUR CODE HERE.
 
 for num in data:
-	if num > maximum:
-		maximum = num
+    if num > maximum:
+        maximum = num
 
 print("Maximum value in the list: {}".format(maximum))
 
