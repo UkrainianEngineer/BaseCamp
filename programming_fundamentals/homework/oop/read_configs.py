@@ -17,14 +17,13 @@ import configparser
 
 
 class XmlParser:
-    """This XmlParser class helps you to read file 'xml' type and return file context as a dictionary.
+    """This XmlParser class reads file 'xml' type and return file context as a dictionary.
 
     Arg: filename(str) - file name for reading
 
     Return: data(dict) - file context
     """
-    @staticmethod
-    def read_xml_file(filename):
+    def read_xml_file(self, filename):
         try:
             file_text = xml.etree.ElementTree.parse(filename).getroot()
             data = {}
@@ -39,14 +38,13 @@ class XmlParser:
 
 
 class IniParser:
-    """This IniParser class helps you to read file 'ini' type and return file context as a dictionary.
+    """This IniParser class reads file 'ini' type and return file context as a dictionary.
 
     Arg: filename(str) - file name for reading
 
     Return: data(dict) - file context
     """
-    @staticmethod
-    def read_ini_file(filename):
+    def read_ini_file(self, filename):
         try:
             config = configparser.ConfigParser()
             config.read(filename)
@@ -62,14 +60,13 @@ class IniParser:
 
 
 class YamlParser:
-    """This YamlParser class helps you to read file 'yaml' type and return file context as a dictionary.
+    """This YamlParser class reads file 'yaml' type and return file context as a dictionary.
 
     Arg: filename(str) - file name for reading
 
     Return: data(dict) - file context
     """
-    @staticmethod
-    def read_yaml_file(filename):
+    def read_yaml_file(self, filename):
         try:
             with open(filename) as file:
                 data = yaml.load(file)
@@ -80,14 +77,13 @@ class YamlParser:
 
 
 class JsonParser:
-    """This JsonParser class helps you to read file 'json' type and return file context as a dictionary.
+    """This JsonParser class reads file 'json' type and return file context as a dictionary.
 
         Arg: filename(str) - file name for reading
 
         Return: data(dict) - file context
         """
-    @staticmethod
-    def read_json_file(filename):
+    def read_json_file(self, filename):
         try:
             with open(filename, "r") as file:
                 data = json.load(file)
@@ -97,13 +93,12 @@ class JsonParser:
     # "https://stackoverflow.com/questions/2835559/parsing-values-from-a-json-file"
 
 
-class Parser(XmlParser, IniParser, YamlParser,  JsonParser):
+class Parser:
     """
     You should implement this class.
     """
-    @staticmethod
-    def parse(filename):
-        """    This 'parse' function helps you to read files of different formats (like 'yaml', 'json', 'ini' or 'xml')
+    def parse(self, filename):
+        """    This 'parse' function reads files of different formats (like 'yaml', 'json', 'ini' or 'xml')
         and return file context as a dictionary.
 
         Arg: filename(str) - file name for reading
@@ -111,13 +106,13 @@ class Parser(XmlParser, IniParser, YamlParser,  JsonParser):
         Return: (dict) - file context
         """
         if "xml" in filename:
-            return Parser().read_xml_file(filename)
+            return XmlParser().read_xml_file(filename)
         elif "ini" in filename:
-            return Parser().read_ini_file(filename)
+            return IniParser().read_ini_file(filename)
         elif "yaml" in filename:
-            return Parser().read_yaml_file(filename)
+            return YamlParser().read_yaml_file(filename)
         elif "json" in filename:
-            return Parser().read_json_file(filename)
+            return JsonParser().read_json_file(filename)
         else:
             return "This file type is not readable"
 
