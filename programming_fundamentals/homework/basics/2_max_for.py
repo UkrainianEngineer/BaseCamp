@@ -16,6 +16,9 @@ summ = 0
 for i in data :
     if max_numb < i :
         max_numb = i
+
+print('MAX = '+ str(max(data)))
+
 #min
 for i in data :
     if min_numb > i :
