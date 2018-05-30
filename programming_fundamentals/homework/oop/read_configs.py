@@ -136,7 +136,7 @@ class Parser:
     def parse(self, filename):
         extension_position = -1
         file_extension = filename.split('.')[extension_position]
-        parser = Parser.parsers.get(file_extension)
+        parser = self.parsers.get(file_extension)
         if parser is not None:
             return parser.parse(filename)
         else:
