@@ -47,17 +47,17 @@ def find_sum(*args):
         etc.
     """
     # ADD YOUR CODE HERE.
-    # Initialize sum as 0
-    sum = 0
+    # Initialize args_sum as 0
+    args_sum = 0
 
     for arg in args:
         # If element is list, then iterate over it's elements. But this will not work if a list is an element of another list
         if (type(arg) == type([])):
             for element in arg:
-               sum = sum + element
+               args_sum = args_sum + element
         else:
-            sum = sum + arg
-    return (sum)
+            args_sum = args_sum + arg
+    return args_sum
 
 def write_to_file(filename, data):
     """
