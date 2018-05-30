@@ -3,7 +3,6 @@ try :
     import xml.etree.cElementTreex as ET
 except :
     import xml.etree.ElementTree as ET
-import os
 
 """
 This module contains tasks related to object-oriented programming in Python.
