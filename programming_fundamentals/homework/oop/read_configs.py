@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import json
 import xml.etree.ElementTree
 
 """
@@ -14,8 +15,12 @@ __email__ = "p.ivanchyshyn@gmail.com"
 # You should implement an appropriate classes for each configuration format.
 
 class XmlParser:
+    """ Parsing xml file.
+        Saving child elements of root as keys
+        and their child elements as values
+    """
     def parse (self, filename):
-        if filename.split('.')[1] != 'xml':
+        if filename.split('.')[-1] != 'xml':
             return None
         xml_dict = {}
         e = xml.etree.ElementTree.parse(filename).getroot()
@@ -24,7 +29,7 @@ class XmlParser:
             for grand_child in child:
                 inner_dict[grand_child.tag] = grand_child.text
             xml_dict[child.tag] = inner_dict
-        return (xml_dict)
+        return xml_dict
 
 
 class IniParser:
@@ -36,16 +41,30 @@ class YamlParser:
 
 
 class JsonParser:
-    pass
+    def parse(self, filename):
+        try:
+            with open(filename) as data:
+                config = json.loads(data.read())
+        except (OSError, IOError) as e:
+            print (e.message())
+        return config
 
 
-class Parser(XmlParser, IniParser, YamlParser, JsonParser):
+class Parser:
     """
     You should implement this class.
     """
+    mapping = {'xml': XmlParser,
+               'ini': IniParser,
+               'yaml': YamlParser,
+               'json': JsonParser
+              }
+
     def parse(self, filename):
-        parsed_dict = super().parse(filename)
-        return parsed_dict
+        # Store filename extension
+        filename_extension = filename.split('.')[-1]
+        parser = self.mapping.get(filename_extension)
+        return parser.parse(self, filename)
 
 
 
@@ -56,6 +75,8 @@ class Parser(XmlParser, IniParser, YamlParser, JsonParser):
 
 parser = Parser()
 xml_data = parser.parse("config.xml")
+print (xml_data)
 """ini_data = parser.parse("config.ini")
-yaml_data = parser.parse('config.yaml')
-json_data = parser.parse('config.json')"""
+yaml_data = parser.parse('config.yaml')"""
+json_data = parser.parse('config.json')
+print (json_data)
