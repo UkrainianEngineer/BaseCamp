@@ -14,33 +14,58 @@
 RETRIES = 4
 
 
-def decorator(add_parameters_if_needed):
+def decorator(func):
     # Use `RETRIES` variable here somehow.
     # You should add some behaviour here for easier testing.
-    pass
+    def retry_if_fails(*args, **kwargs):
+        for attempt in range(RETRIES):
+            try:
+                func(*args, **kwargs)
+                print('Function executed successfully.')
+                return None  # If function executed successfully, no need to continue func execution
+            except ValueError:
+                print('Got exception in function trying to retry... Attempt {}'.format(attempt+1))
+        print('Function execution failed on all attempts.')
+    return retry_if_fails
 
 
 @decorator
-def my_func(dd_parameters_if_needed):
+def my_func(number):
     # You should add some behaviour here for easier testing.
-    pass
+    if number == 5:
+        return 5
+    else:
+        raise ValueError()
 
 # 2) Improve previous task to make it possible to pass a parameter
 #    into your decorator.
 #
 # Example:
 
-
-def decorator(dd_parameters_if_needed):
-    # You should add some behaviour here for easier testing.
-    pass
+# I use keyword-only arg retries.
+def decorator(*args, retries, **kwargs):
+    def real_decorator(func):
+        def retry_if_fails(*args, **kwargs):
+            for attempt in range(retries):
+                try:
+                    func(*args, **kwargs)
+                    print('Function executed successfully.')
+                    return None  # If function executed successfully, no need to continue func execution
+                except ValueError:
+                    print('Got exception in function trying to retry... Attempt {}'.format(attempt+1))
+            print('Function execution failed on all attempts.')
+        return retry_if_fails
+    return real_decorator
 
 
 @decorator(retries=4)
-def my_func(dd_parameters_if_needed):
+def my_func(number):
     # You should add some behaviour here for easier testing.
-    pass
-#
+    if number == 5:
+        return 5
+    else:
+        raise ValueError()
+
 #  3) Implement decorator which caches data.
 #     It means that for first run of function it should print something like:
 #         `Calculated value. => <calculated_value>`
@@ -49,6 +74,19 @@ def my_func(dd_parameters_if_needed):
 #
 #  Example:
 #
+
+def cached(func):
+    cache = {}
+    def cache_wrapper(*args, **kwargs):
+        arguments = (*args, tuple(kwargs.items()))
+        if arguments in cache:
+            print('Using data from cache. => {}'.format(cache[arguments]))
+        else:
+            function_return = func(*args, **kwargs)
+            cache[arguments] = function_return
+            print('Calculated value. => {}'.format(function_return))
+    return cache_wrapper
+
 @cached
 def my_func():
     # Doing something.
