@@ -2,6 +2,7 @@
 import configparser
 import json
 import xml.etree.ElementTree
+import yaml
 
 """
 This module contains tasks related to object-oriented programming in Python.
@@ -48,7 +49,15 @@ class IniParser:
 
 
 class YamlParser:
-    pass
+    # Need to install yaml separately: pip install pyyaml
+    # Parse yaml file and catch exception if parsing failed
+    def parse(self, filename):
+        try:
+            with open(filename) as data:
+                yaml_config = yaml.load(data)
+        except yaml.YAMLError as e:
+            return e
+        return yaml_config
 
 
 class JsonParser:
@@ -89,9 +98,6 @@ class Parser:
 
 parser = Parser()
 xml_data = parser.parse("config.xml")
-print (xml_data)
 ini_data = parser.parse("config.ini")
-print (ini_data)
-"""yaml_data = parser.parse('config.yaml')"""
+yaml_data = parser.parse('config.yaml')
 json_data = parser.parse('config.json')
-print (json_data)
