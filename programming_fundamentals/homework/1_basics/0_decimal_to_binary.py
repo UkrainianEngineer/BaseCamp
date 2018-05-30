@@ -1,5 +1,5 @@
 """
-This module describes the hometask related to numerical systems.
+This module describes the home task related to numerical systems.
 It might be useful for both students and mentors.
 """
 
@@ -9,11 +9,9 @@ __email__ = "p.ivanchyshyn@gmail.com"
 
 # This task is just for manual training.
 # You should solve this task manually and verify the results using this script.
-test_year = 11100111101
-decimal_year = input("Please enter a decimal representation for {}:".format(test_year))
-assert int(str(test_year), 2) == int(decimal_year), "Invalid answer. Please check your decimal representation."
+birthdate = int(input("Please enter a decimal year of your birth: "))
+binary_date = input("Please enter your binary representation of decimal year of birth:")
+assert "{0:b}".format(birthdate) == str(binary_date), "Invalid answer. Please check your binary representation."
 print("=" * 60)
 print("Congratulations! You've done it!")
 print("=" * 60)
-# my answer is : 1853
-
