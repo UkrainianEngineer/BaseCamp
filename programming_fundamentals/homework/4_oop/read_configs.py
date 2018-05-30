@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import configparser
 import json
 import xml.etree.ElementTree
 
@@ -33,7 +34,17 @@ class XmlParser:
 
 
 class IniParser:
-    pass
+    """ Parsing ini file.
+        Catch exceptions if problem with file parsing ocurred
+    """
+    def parse(self, filename):
+        config = configparser.ConfigParser()
+        try:
+            config.read(filename)
+            config_dict = {s:dict(config.items(s)) for s in config.sections()}
+        except (ParsingError) as e:
+            return e
+        return config_dict
 
 
 class YamlParser:
@@ -41,12 +52,15 @@ class YamlParser:
 
 
 class JsonParser:
+    """ Parsing json file.
+        Catch exceptions if problem with file opening ocurred
+    """
     def parse(self, filename):
         try:
             with open(filename) as data:
                 config = json.loads(data.read())
         except (OSError, IOError) as e:
-            print (e.message())
+            return e
         return config
 
 
@@ -76,7 +90,8 @@ class Parser:
 parser = Parser()
 xml_data = parser.parse("config.xml")
 print (xml_data)
-"""ini_data = parser.parse("config.ini")
-yaml_data = parser.parse('config.yaml')"""
+ini_data = parser.parse("config.ini")
+print (ini_data)
+"""yaml_data = parser.parse('config.yaml')"""
 json_data = parser.parse('config.json')
 print (json_data)
