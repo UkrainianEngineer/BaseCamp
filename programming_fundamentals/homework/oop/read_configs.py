@@ -1,3 +1,8 @@
+import xml.etree.ElementTree
+import json
+import yaml
+import configparser
+
 #!/usr/bin/env python
 """
 This module contains tasks related to object-oriented programming in Python.
@@ -10,10 +15,6 @@ __email__ = "p.ivanchyshyn@gmail.com"
 # You should create a custom configuration parser.
 # It should be able to parse *.ini, *.json, *.yaml and *.xml files.
 # You should implement an appropriate classes for each configuration format.
-import xml.etree.ElementTree
-import json
-import yaml
-import configparser
 
 
 class XmlParser:
@@ -23,7 +24,7 @@ class XmlParser:
 
     Return: data(dict) - file context
     """
-    def read_xml_file(self, filename):
+    def parse(self, filename):
         try:
             file_text = xml.etree.ElementTree.parse(filename).getroot()
             data = {}
@@ -44,7 +45,7 @@ class IniParser:
 
     Return: data(dict) - file context
     """
-    def read_ini_file(self, filename):
+    def parse(self, filename):
         try:
             config = configparser.ConfigParser()
             config.read(filename)
@@ -66,7 +67,7 @@ class YamlParser:
 
     Return: data(dict) - file context
     """
-    def read_yaml_file(self, filename):
+    def parse(self, filename):
         try:
             with open(filename) as file:
                 data = yaml.load(file)
@@ -83,7 +84,7 @@ class JsonParser:
 
         Return: data(dict) - file context
         """
-    def read_json_file(self, filename):
+    def parse(self, filename):
         try:
             with open(filename, "r") as file:
                 data = json.load(file)
@@ -94,9 +95,7 @@ class JsonParser:
 
 
 class Parser:
-    """
-    You should implement this class.
-    """
+
     def parse(self, filename):
         """    This 'parse' function reads files of different formats (like 'yaml', 'json', 'ini' or 'xml')
         and return file context as a dictionary.
@@ -105,16 +104,14 @@ class Parser:
 
         Return: (dict) - file context
         """
-        if "xml" in filename:
-            return XmlParser().read_xml_file(filename)
-        elif "ini" in filename:
-            return IniParser().read_ini_file(filename)
-        elif "yaml" in filename:
-            return YamlParser().read_yaml_file(filename)
-        elif "json" in filename:
-            return JsonParser().read_json_file(filename)
-        else:
-            return "This file type is not readable"
+        extension = filename.split(".")[-1]
+        mapping = {
+            "xml": XmlParser(),
+            "ini": IniParser(),
+            "yaml": YamlParser(),
+            "json": JsonParser()
+            }
+        return mapping[extension].parse(filename)
 
 # The following code should works fine.
 # Each `parse` method should return a dict object
