@@ -6,6 +6,9 @@ except :
     
 import json
 from pprint import pprint
+
+from configparser import ConfigParser
+
 """
 This module contains tasks related to object-oriented programming in Python.
 Please read docstrings and complete this task.
@@ -17,7 +20,6 @@ __email__ = "p.ivanchyshyn@gmail.com"
 # You should create a custom configuration parser.
 # It should be able to parse *.ini, *.json, *.yaml and *.xml files.
 # You should implement an appropriate classes for each configuration format.
-
 
 class XmlParser:
     def parse (self, filename):
@@ -31,14 +33,17 @@ class XmlParser:
             xdict[chld.tag] = ch_dict
         return xdict
     
-
 class IniParser:
-    pass
-
-
+    def parse (self, filename):
+        prs = ConfigParser()
+        prs.read(filename)
+        d = {}
+        for sect in prs.sections() :
+            d[sect] = dict(prs.items(sect))
+        return d
+        
 class YamlParser:
     pass
-
 
 class JsonParser:
     def parse(self, filename) :
@@ -47,7 +52,6 @@ class JsonParser:
             data = json.load(f)
         return data
         #pprint(data)
-
 
 class Parser(XmlParser, IniParser, YamlParser, JsonParser) :
     def parse(self, file_name) :
@@ -83,6 +87,6 @@ class Parser(XmlParser, IniParser, YamlParser, JsonParser) :
 parser = Parser()
 xml_data = parser.parse("config.xml")
 
-#ini_data = parser.parse("config.ini")
+ini_data = parser.parse("config.ini")
 #yaml_data = parser.parse('config.yaml')
 json_data = parser.parse('config.json')
