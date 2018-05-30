@@ -3,7 +3,9 @@ try :
     import xml.etree.cElementTreex as ET
 except :
     import xml.etree.ElementTree as ET
-
+    
+import json
+from pprint import pprint
 """
 This module contains tasks related to object-oriented programming in Python.
 Please read docstrings and complete this task.
@@ -39,7 +41,12 @@ class YamlParser:
 
 
 class JsonParser:
-    pass
+    def parse(self, filename) :
+        data = {}
+        with open(filename) as f:
+            data = json.load(f)
+        return data
+        #pprint(data)
 
 
 class Parser(XmlParser, IniParser, YamlParser, JsonParser) :
@@ -78,4 +85,4 @@ xml_data = parser.parse("config.xml")
 
 #ini_data = parser.parse("config.ini")
 #yaml_data = parser.parse('config.yaml')
-#json_data = parser.parse('config.json')
+json_data = parser.parse('config.json')
