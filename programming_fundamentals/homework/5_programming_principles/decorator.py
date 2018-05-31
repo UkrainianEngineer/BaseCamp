@@ -3,8 +3,6 @@ This module describes a homework related to decorator topic.
 """
 import time
 
-START_TIME = time.time()
-
 __author__ = "Pavlo Ivanchyshyn"
 __maintainer__ = "Pavlo Ivanchyshyn"
 __email__ = "p.ivanchyshyn@gmail.com"
@@ -21,10 +19,9 @@ def custom_decorator(my_function):
     # ADD YOUR CODE HERE.
     # You are also able to add some parameters if needed.
     def wrapper():
+        start_time = time.time()
         my_function()
-        # Set a delay
-        time.sleep(2)
-        print(time.time() - START_TIME)
+        print(time.time() - start_time)
 
     return wrapper
 
