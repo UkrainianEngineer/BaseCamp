@@ -2,6 +2,8 @@
    Author: pivanchy.
 """
 
+import random
+
 # Implement `retry` decorator.
 # If some part of code in decorated function fails, try to re-run it again.
 # If decorated function executes successfully, you don't need to re-run it.
@@ -14,16 +16,31 @@
 RETRIES = 4
 
 
-def decorator(add_parameters_if_needed):
-    # Use `RETRIES` variable here somehow.
-    # You should add some behaviour here for easier testing.
-    pass
+def decorator(target_function):
+    def wrapper(*args):
+        for i in range(RETRIES):
+            try:
+                value = target_function(*args)
+                print("Success\n")
+                return value
+            except:
+                print("Failure " + str(i+1))
+        print("Failure\n")
+    return wrapper
 
 
 @decorator
-def my_func(dd_parameters_if_needed):
+def my_func(s=""):
     # You should add some behaviour here for easier testing.
-    pass
+    if random.random() < 0.75:
+        raise RuntimeError("Message failed")
+    print("Message: " + s)
+
+
+my_func("hello")
+my_func("hello")
+my_func("hello")
+my_func("hello")
 
 # 2) Improve previous task to make it possible to pass a parameter
 #    into your decorator.
@@ -31,15 +48,34 @@ def my_func(dd_parameters_if_needed):
 # Example:
 
 
-def decorator(dd_parameters_if_needed):
-    # You should add some behaviour here for easier testing.
-    pass
+def decorator(retries):
+    def inner_decorator(target_function):
+        def wrapper(*args):
+            for i in range(retries):
+                try:
+                    value = target_function(*args)
+                    print("Success\n")
+                    return value
+                except:
+                    print("Failure " + str(i+1))
+            print("Failure\n")
+        return wrapper
+    return inner_decorator
 
 
 @decorator(retries=4)
-def my_func(dd_parameters_if_needed):
+def my_func(s=""):
     # You should add some behaviour here for easier testing.
-    pass
+    if random.random() < 0.75:
+        raise RuntimeError("Message failed")
+    print("Message: " + s)
+
+
+my_func("hello")
+my_func("hello")
+my_func("hello")
+my_func("hello")
+
 #
 #  3) Implement decorator which caches data.
 #     It means that for first run of function it should print something like:
@@ -49,13 +85,31 @@ def my_func(dd_parameters_if_needed):
 #
 #  Example:
 #
+
+
+def cached(target_function):
+    cache_value = None
+
+    def wrapper():
+        nonlocal cache_value
+        if cache_value is None:
+            cache_value = target_function()
+            print("Calculated value. => " + str(cache_value))
+        else:
+            print("Using data from cache. => " + str(cache_value))
+        return cache_value
+
+    return wrapper
+
+
 @cached
 def my_func():
     # Doing something.
     # E.g.:
     return "Hello, world!"
 
-my_func() # prints `Calculated value. => Hello, world!`
-my_func() # prints `Using data from cache. => Hello, world!`
-my_func() # prints `Using data from cache. => Hello, world!`
-my_func() # prints `Using data from cache. => Hello, world!`
+
+my_func()  # prints `Calculated value. => Hello, world!`
+my_func()  # prints `Using data from cache. => Hello, world!`
+my_func()  # prints `Using data from cache. => Hello, world!`
+my_func()  # prints `Using data from cache. => Hello, world!`
