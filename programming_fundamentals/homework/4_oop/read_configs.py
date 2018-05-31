@@ -37,7 +37,7 @@ class IniParser:
 class YamlParser:
     def parse_yaml(self, filename):
         with open(filename, 'r') as data:
-            config = (yaml.load(data))
+            config = yaml.load(data)
         return config
 
 
@@ -67,10 +67,10 @@ class Parser(XmlParser, IniParser, YamlParser, JsonParser):
 # with configuration parsed from the configuration file.
 parser = Parser()
 xml_data = parser.parse("config.xml")
-print('xml: ',xml_data)
+print('xml: ', xml_data)
 ini_data = parser.parse("config.ini")
-print('ini: ',ini_data)
+print('ini: ', ini_data)
 yaml_data = parser.parse('config.yaml')
-print('yaml: ',yaml_data)
+print('yaml: ', yaml_data)
 json_data = parser.parse('config.json')
-print('json: ',json_data)
+print('json: ', json_data)
