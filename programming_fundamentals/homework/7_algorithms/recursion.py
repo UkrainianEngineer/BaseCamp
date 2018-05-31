@@ -1,3 +1,15 @@
+"""
+
+This module describes a homework related to recursive functions.
+
+"""
+
+__author__ = "Pavlo Ivanchyshyn"
+
+__maintainer__ = "Pavlo Ivanchyshyn"
+
+__email__ = "p.ivanchyshyn@gmail.com"
+
 # Create a recursive power function.
 
 # This function should calculate x ** y using recursion.
