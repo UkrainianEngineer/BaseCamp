@@ -17,28 +17,55 @@ __email__ = "p.ivanchyshyn@gmail.com"
 # Activity log - text file.
 
 class User:
-    pass
+    last_page = None
+
+    def __init__(self, n, g):
+        self.name = n
+        self.group = g
+
+    def set_group(self, g):
+        self.group = g
+
+    def check_permissions(self, p):
+        allowed = 0
+        for group_name_allowed in p.groups:
+            if group_name_allowed == self.group:
+                allowed = 1
+        self.last_page = p
+        return allowed
+
+    def login(self):
+        print ("User '{}' logged into page '{}'".format(self.name, self.last_page.name))
+
+    def logout(self):
+        print ("User '{}' did not have permissions to log into page '{}'".format(self.name, self.last_page.name))
 
 
 class Page:
-    pass
+    groups = ["none"]
+    name = ""
+
+    def __init__(self, n):
+        self.name = n
+
+    def allow_for(self, group_array):
+        self.groups = group_array
+
 
 admin_user = User("Pavlo", "admin")
 moderation_user = User("Yura", "moderator")
 regular_user = User("Max", "regular")
-regular_user.set_group("moderator")
+# regular_user.set_group("moderator")
 
 page = Page("Settings")
 page.allow_for(["admin", "moderator"])
 
-is_allowed_admin = admin_user.check_permissions(page)
+# is_allowed_admin = admin_user.check_permissions(page)
+is_allowed_admin = regular_user.check_permissions(page)
+
 if is_allowed_admin:
-    # Login should write a success message into activity log.
-    # It might be something similar to:
-    # User `Pavlo` has been successfully logged in `Settings` page.
-    admin_user.login()
+    # admin_user.login()
+    regular_user.login()
 else:
-    # Logout should write an error message into activity log.
-    # It might be something similar to:
-    # User `Pavlo` has not enough permissions for `Settings` page.
-    admin_user.logot()
+    # admin_user.logout()
+    regular_user.logout()
