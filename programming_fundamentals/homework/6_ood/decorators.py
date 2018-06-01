@@ -14,16 +14,37 @@
 RETRIES = 4
 
 
-def decorator(add_parameters_if_needed):
+def decorator(func):
     # Use `RETRIES` variable here somehow.
     # You should add some behaviour here for easier testing.
-    pass
+    def wrapper(*args, **kwargs):
+        global RETRIES
+
+        while RETRIES:
+            try:
+                result = func(*args, **kwargs)
+                return result
+            except TypeError as exp:
+                print(exp)
+                RETRIES -= 1
+                continue
+
+    return wrapper
 
 
 @decorator
-def my_func(dd_parameters_if_needed):
+def my_func(sequence):
     # You should add some behaviour here for easier testing.
-    pass
+    """
+        Args:
+            sequence (list) - list of words.
+        Returns:
+            max_len (int) - length of the longest word.
+        """
+    list_ = sequence.copy()
+    words_length = list(map(len, list_))
+
+    return max(words_length)
 
 # 2) Improve previous task to make it possible to pass a parameter
 #    into your decorator.
@@ -31,16 +52,39 @@ def my_func(dd_parameters_if_needed):
 # Example:
 
 
-def decorator(dd_parameters_if_needed):
+def outer_decorator(retries=1):
     # You should add some behaviour here for easier testing.
-    pass
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            count_retries = retries
+            while count_retries:
+                try:
+                    my_func = func(*args, **kwargs)
+                    return my_func
+                except Exception as exp:
+                    print(exp)
+                    count_retries -= 1
+                    continue
+
+        return wrapper
+
+    return decorator
 
 
-@decorator(retries=4)
-def my_func(dd_parameters_if_needed):
+@outer_decorator(retries=3)
+def my_func(sequence):
     # You should add some behaviour here for easier testing.
-    pass
-#
+    """
+        Args:
+            sequence (list) - list of words.
+        Returns:
+            max_len (int) - length of the longest word.
+        """
+    list_ = sequence.copy()
+    words_length = list(map(len, list_))
+
+    return max(words_length)
+
 #  3) Implement decorator which caches data.
 #     It means that for first run of function it should print something like:
 #         `Calculated value. => <calculated_value>`
@@ -48,14 +92,29 @@ def my_func(dd_parameters_if_needed):
 #         `Using data from cache. => <value_from_cache>`
 #
 #  Example:
-#
+
+
+def cached(func):
+    cache = []
+
+    def decorator(*args, **kwargs):
+        nonlocal cache
+        result = func(*args, **kwargs)
+
+        if id(func) not in cache:
+            cache.append(id(func))
+            return '{} => {}'.format('Calculated value.', result)
+        else:
+            return '{} => {}'.format('Using data from cache.', result)
+    return decorator
+
+
 @cached
 def my_func():
-    # Doing something.
-    # E.g.:
     return "Hello, world!"
 
-my_func() # prints `Calculated value. => Hello, world!`
-my_func() # prints `Using data from cache. => Hello, world!`
-my_func() # prints `Using data from cache. => Hello, world!`
-my_func() # prints `Using data from cache. => Hello, world!`
+
+print(my_func()) # prints `Calculated value. => Hello, world!`
+print(my_func()) # prints `Using data from cache. => Hello, world!`
+print(my_func()) # prints `Using data from cache. => Hello, world!`
+print(my_func()) # prints `Using data from cache. => Hello, world!`
