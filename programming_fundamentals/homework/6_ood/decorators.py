@@ -52,7 +52,7 @@ def my_func(sequence):
 # Example:
 
 
-def outer_decorator(retries=1):
+def retry_decorator(retries=1):
     # You should add some behaviour here for easier testing.
     def decorator(func):
         def wrapper(*args, **kwargs):
@@ -71,7 +71,7 @@ def outer_decorator(retries=1):
     return decorator
 
 
-@outer_decorator(retries=3)
+@retry_decorator(retries=3)
 def my_func(sequence):
     # You should add some behaviour here for easier testing.
     """
