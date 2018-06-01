@@ -16,6 +16,12 @@ __email__ = "p.ivanchyshyn@gmail.com"
 # Note:
 # x ** 0 == 1.
 #
+def pow(n,y):
+    if y == 1:
+        return n
+    else: return n * pow(n, y-1)
+
+print (pow(4,6))
 # Example of function usage:
 # pow(2, 3)  # Returns 8.
 # pow(4, 6)  # Returns 4096.
