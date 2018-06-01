@@ -31,10 +31,12 @@ class User:
         else:
             return False
 
+    # Write successfull log in attempt to log file
     def login(self, page):
         with open(self.logfile, 'a') as f:
             f.write("User {} has been successfully logged in {} page.\n".format(self.name, page.name))
-        
+
+    # Write failed log in attempt
     def logout(self, page):
         with open(self.logfile, 'a') as f:
             f.write("User {} has not enough permissions for {} page.\n".format(self.name, page.name))
@@ -43,12 +45,15 @@ class Page:
     def __init__(self, name):
         self.name = name
         self.allowed_for = []
-        
+
+    # Adding new users to a list of allowed users to log in the page
+    # If user is already allowed to log in the page he will not be added once more
     def allow_for(self, groups):
         if not isinstance(groups, list):
             return "allow_for function accepts only lists"
         for user in groups:
-            self.allowed_for.append(user)
+            if user not in self.allowed_for:
+                self.allowed_for.append(user)
 
 admin_user = User("Pavlo", "admin")
 moderation_user = User("Yura", "moderator")
@@ -57,7 +62,6 @@ regular_user.set_group("moderator")
 
 page = Page("Settings")
 page.allow_for(["admin", "moderator"])
-
 is_allowed_admin = admin_user.check_permissions(page)
 
 if is_allowed_admin:
