@@ -111,7 +111,6 @@ def append_to_file(filename, data):
             file.write('\n')
             file.write(line)
             file.write('\n')
-        file.close()
 
 
 def write_user_info(filename, data):
