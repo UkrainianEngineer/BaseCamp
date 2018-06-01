@@ -24,22 +24,20 @@ __email__ = "p.ivanchyshyn@gmail.com"
 # This task should be wrapped into `is_valid_url` function.
 #
 # Example of usage:
-#
-# is_valid_url("https://facebook.com/pivanchy/allactivity")  # Returns `True`.
-# is_valid_url("https://facebook.com/pivanchy")  # Return `False`.
-# is_valid_url("https://facebook.com/pivanchy/allactivity/info")  # Returns `False`.
-# is_valid_url("https://facebook.com/allactivity")  # Returns `False`.'
 
-def is_valid_url():
-    string = "https://facebook.com/yura.kekc/friends"
-    #  regex = re.compile(r"[^:/][/]([a-z]+.[a-z]+)[/]", re.IGNORECASE)
-    regex = re.compile(r"([a-z]+.[a-z]+/)")
+def is_valid_url(string):
+    regex = re.compile(r"(?<=\.com/)([a-z]+\.?[a-z]+)(?=\/{1}[a-z]+$)")
     url = re.search(regex, string)
-    return url
+    if url:
+        return True
+    else:
+        return False
 
 
-b = is_valid_url()
-print(b)
+print(is_valid_url("https://facebook.com/yura.kekc/allactivity"))  # Returns `True`.
+print(is_valid_url("https://facebook.com/yura.kekc"))  # Return `False`.
+print(is_valid_url("https://facebook.com/yura.kekc/allactivity/info"))  # Returns `False`.
+print(is_valid_url("https://facebook.com/allactivity"))  # Returns `False`.'
 
 
 # 2. Second task.o
@@ -48,6 +46,13 @@ print(b)
 # This task should be wrapper into `get_user_id` function.
 #
 # Example of usage:
-#
-# get_user_id("http://facebook.com/pivanchy/allactivity")  # Expected output is `pivanchy`.
-# get_user_id("https://facebook.com/pivanchy/allactivity")  # Expected output: `pivanchy`.
+
+def get_user_id(string):
+    regex = re.compile(r"(?<=\.com/)([a-z]+\.?[a-z]+)(?=\/{1}[a-z]+$)")
+    url = re.findall(regex, string)
+    user_id = url[0]
+    return user_id
+
+
+print(get_user_id("http://facebook.com/yura.kekc/allactivity"))  # Expected output is `pivanchy`.
+print(get_user_id("https://facebook.com/yura.kekc/allactivity"))  # Expected output: `pivanchy`.
