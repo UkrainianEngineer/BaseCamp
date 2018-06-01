@@ -20,3 +20,18 @@ __email__ = "p.ivanchyshyn@gmail.com"
 # pow(2, 3)  # Returns 8.
 # pow(4, 6)  # Returns 4096.
 # And so on.
+
+def power(x, y):
+    """
+    Args:
+        x (int) - the base
+        y (int) - the exponent
+    Returns:
+        int - x to the power of y
+    """
+    if y == 0:
+        return 1
+    elif y < 0:
+        return 1 / (x * power(x, abs(y)-1))
+    else:
+        return x * power(x, y-1)

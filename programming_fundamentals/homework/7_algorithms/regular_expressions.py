@@ -6,6 +6,10 @@ __author__ = "Pavlo Ivanchyshyn"
 __maintainer__ = "Pavlo Ivanchyshyn"
 __email__ = "p.ivanchyshyn@gmail.com"
 
+import re
+
+re_match_url = re.compile('http(s)?://facebook.com/\w+/\w+$', re.IGNORECASE)
+re_search_id = re.compile('http(s)?://facebook.com/(\w+)/\w+$', re.IGNORECASE)
 
 # 1. First task.
 # Create a regular expression which MATCHES the following URL:
@@ -37,3 +41,19 @@ __email__ = "p.ivanchyshyn@gmail.com"
 #
 # get_user_id("http://facebook.com/pivanchy/allactivity")  # Expected output is `pivanchy`.
 # get_user_id("https://facebook.com/pivanchy/allactivity")  # Expected output: `pivanchy`.
+
+
+def is_valid_url(url):
+    if re_match_url.match(url):
+        return True
+
+    return False
+
+
+def get_user_id(url):
+    if is_valid_url(url):
+        get_id = re.search(re_search_id, url)
+
+        return get_id.group(2)
+    else:
+        return 'Invalid URL format'
