@@ -49,9 +49,8 @@ print(is_valid_url("https://facebook.com/allactivity"))  # Returns `False`.'
 
 def get_user_id(string):
     regex = re.compile(r"(?<=\.com/)([a-z]+\.?[a-z]+)(?=\/{1}[a-z]+$)")
-    url = re.findall(regex, string)
-    user_id = url[0]
-    return user_id
+    user_id = re.findall(regex, string)
+    return user_id[0]
 
 
 print(get_user_id("http://facebook.com/yura.kekc/allactivity"))  # Expected output is `pivanchy`.
