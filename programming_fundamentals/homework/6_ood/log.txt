@@ -1,0 +1,12 @@
+[02 Jun 2018 20:42:22] User 'Pavlo' has been successfully logged in 'Settings' page.
+[02 Jun 2018 20:42:28] User 'Pavlo' has been successfully logged in 'Settings' page.
+[02 Jun 2018 20:42:52] User 'Yura' has been successfully logged in 'Settings' page.
+[02 Jun 2018 20:43:15] User 'Max' has not enough permissions for 'Settings' page.
+[02 Jun 2018 20:43:38] User 'Max' has been successfully logged in 'About' page.
+[02 Jun 2018 20:43:54] User 'Max' has been successfully logged in 'About' page.
+[02 Jun 2018 20:44:13] User 'Pavlo' has been successfully logged in 'About' page.
+[02 Jun 2018 20:44:38] User 'Pavlo' has not enough permissions for 'Home' page.
+[02 Jun 2018 20:44:51] User 'Max' has been successfully logged in 'Home' page.
+[02 Jun 2018 20:44:58] User 'Max' has not enough permissions for 'Home' page.
+[02 Jun 2018 20:45:19] User 'Pavlo' has not enough permissions for 'Settings' page.
+[02 Jun 2018 20:45:41] User 'Pavlo' has been successfully logged in 'Settings' page.
