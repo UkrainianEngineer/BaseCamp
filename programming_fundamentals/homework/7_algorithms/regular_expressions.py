@@ -2,6 +2,8 @@
 This module describes a homework related to URL validation via regular expressions.
 """
 
+import re
+
 __author__ = "Pavlo Ivanchyshyn"
 __maintainer__ = "Pavlo Ivanchyshyn"
 __email__ = "p.ivanchyshyn@gmail.com"
@@ -36,4 +38,21 @@ __email__ = "p.ivanchyshyn@gmail.com"
 # Example of usage:
 #
 # get_user_id("http://facebook.com/pivanchy/allactivity")  # Expected output is `pivanchy`.
-# get_user_id("https://facebook.com/pivanchy/allactivity")  # Expected output: `pivanchy`.
+# get_user_id("https://facebook.com/pivanchy/allactivity")  # Expected output is : `pivanchy`.
+
+match_url = re.compile("https?://facebook.com/\w+/\w+$")
+search_id = re.compile("https?://facebook.com/(\w+)/\w+$")
+
+
+def is_valid_url(url):
+    if match_url.match(url):
+        return True
+    else:
+        return False
+
+
+def get_user_id(url):
+    if is_valid_url(url):
+        return re.search(search_id, url).group(1)
+    else:
+        return False
