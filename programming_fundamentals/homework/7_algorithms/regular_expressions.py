@@ -1,6 +1,7 @@
 """
 This module describes a homework related to URL validation via regular expressions.
 """
+import re
 
 __author__ = "Pavlo Ivanchyshyn"
 __maintainer__ = "Pavlo Ivanchyshyn"
@@ -37,3 +38,15 @@ __email__ = "p.ivanchyshyn@gmail.com"
 #
 # get_user_id("http://facebook.com/pivanchy/allactivity")  # Expected output is `pivanchy`.
 # get_user_id("https://facebook.com/pivanchy/allactivity")  # Expected output: `pivanchy`.
+def is_valid_url(url):
+    url_pattern = re.compile(r'https?://facebook\.com/(\w+)/\w+$', re.IGNORECASE)
+    match = url_pattern.match(url)
+    return True if match else False
+
+
+def get_user_id(url):
+    url_pattern = re.compile(r'https?://facebook\.com/(\w+)/\w+$', re.IGNORECASE)
+    if is_valid_url(url):
+        return url_pattern.match(url).group(1)
+    else:
+        raise Exception('UserID not found in url.')
