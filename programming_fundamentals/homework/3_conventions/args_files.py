@@ -46,7 +46,7 @@ def find_sum(*args):
     summ = 0
 
     for arg in args:
-        if type(arg) == list:
+        if isinstance(arg, list):
             for i in arg:
                 summ += i
         else:
