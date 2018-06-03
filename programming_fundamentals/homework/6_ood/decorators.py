@@ -14,16 +14,28 @@
 RETRIES = 4
 
 
-def decorator(add_parameters_if_needed):
+def decorator(func):
+    def wrapper(*args, **kwargs):
+	try:
+	    print(func(*args, **kwargs))
+	except IndexError as e:
+	    print(e)
+	    print("Function will be rerun {} times.".format(RETRIES))
+	    for i in range(RETRIES):
+		try:
+		    print("Calculation result is {}".format(func(*args, **kwargs)))
+		except IndexError as e:
+		    print("IndexError raised at rerun #{}".format(i+1))
+		    continue
+    return wrapper
     # Use `RETRIES` variable here somehow.
     # You should add some behaviour here for easier testing.
-    pass
 
 
 @decorator
-def my_func(dd_parameters_if_needed):
+def my_func(index):
+    return ['spring', 'summer', 'autumn', 'winter'][index]
     # You should add some behaviour here for easier testing.
-    pass
 
 # 2) Improve previous task to make it possible to pass a parameter
 #    into your decorator.
@@ -31,15 +43,28 @@ def my_func(dd_parameters_if_needed):
 # Example:
 
 
-def decorator(dd_parameters_if_needed):
+def decorator(retries, **retry_number):
+    def real_decorator(func):
+	def wrapper(*args, **kwargs):
+	    try:
+		print(func(*args, **kwargs))
+	    except IndexError as e:
+		print(e)
+		print("Function will be rerun {} times.".format(retries))
+		for i in range(retries):
+		    try:
+			print("Calculation result is {}".format(func(*args, **kwargs)))
+		    except IndexError as e:
+			print("IndexError raised at rerun #{}".format(i+1))
+			continue
+	return wrapper
+    return real_decorator
     # You should add some behaviour here for easier testing.
-    pass
 
 
 @decorator(retries=4)
-def my_func(dd_parameters_if_needed):
-    # You should add some behaviour here for easier testing.
-    pass
+def my_func(index):
+    return ['spring', 'summer', 'autumn', 'winter'][index]
 #
 #  3) Implement decorator which caches data.
 #     It means that for first run of function it should print something like:
@@ -49,6 +74,17 @@ def my_func(dd_parameters_if_needed):
 #
 #  Example:
 #
+def cached(function):
+    cached_data = {}
+    def wrapper(*args):
+        if args in cached_data:
+            print("Using data from cache. => {}".format(cached_data[args]))
+        else:
+            new_value = function(*args)
+            cached_data[args] = new_value
+            print("Calculated value. => {}".format(new_value))
+    return wrapper
+
 @cached
 def my_func():
     # Doing something.
