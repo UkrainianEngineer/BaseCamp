@@ -5,7 +5,7 @@ This module describes a homework related to URL validation via regular expressio
 __author__ = "Pavlo Ivanchyshyn"
 __maintainer__ = "Pavlo Ivanchyshyn"
 __email__ = "p.ivanchyshyn@gmail.com"
-
+import re
 
 # 1. First task.
 # Create a regular expression which MATCHES the following URL:
@@ -24,7 +24,7 @@ __email__ = "p.ivanchyshyn@gmail.com"
 # Example of usage:
 #
 # is_valid_url("https://facebook.com/pivanchy/allactivity")  # Returns `True`.
-# is_valid_url("https://facebook.com/pivanchy")  # Return `False`.
+# is_valid_url("https://facebook.com/pivanchy")  # Return `False`
 # is_valid_url("https://facebook.com/pivanchy/allactivity/info")  # Returns `False`.
 # is_valid_url("https://facebook.com/allactivity")  # Returns `False`.'
 #
@@ -37,3 +37,33 @@ __email__ = "p.ivanchyshyn@gmail.com"
 #
 # get_user_id("http://facebook.com/pivanchy/allactivity")  # Expected output is `pivanchy`.
 # get_user_id("https://facebook.com/pivanchy/allactivity")  # Expected output: `pivanchy`.
+
+# Regexp initialization at the beginning of execution
+URL_VALIDATION_REGEXP = re.compile(r'^http[s]*://facebook.com/[a-z]+/allactivity$')
+USER_ID_REGEXP = re.compile(r'^http[s]*://facebook.com/([a-z\d]+)/allactivity$')
+
+# Return True if urlis valid and False if not. No uppercase should be present in URL
+def is_valid_url(url):
+    if URL_VALIDATION_REGEXP.match(url):
+        return True
+    else:
+        return False
+
+# Return user_id if found. group(1) is for user_id, group(0) will return url if it is valid
+def get_user_id(url):
+    if is_valid_url(url):
+        user_id = USER_ID_REGEXP.match(url)
+        if user_id:
+            return user_id.group(1)
+        else:
+            return "User ID not found"
+    else:
+        return "URL is not valid"
+
+print (is_valid_url("https://facebook.com/pivanchy/allactivity"))
+print (is_valid_url("https://facebook.com/pivanchy"))
+print (is_valid_url("https://facebook.com/pivanchy/allactivity/info"))
+print (is_valid_url("https://facebook.com/allactivity"))
+
+print (get_user_id("http://facebook.com/pivanchy/allactivity"))
+print (get_user_id("https://facebook.com/pivanchy/allactivity"))
