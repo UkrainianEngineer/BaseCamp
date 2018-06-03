@@ -6,6 +6,7 @@ __author__ = "Pavlo Ivanchyshyn"
 __maintainer__ = "Pavlo Ivanchyshyn"
 __email__ = "p.ivanchyshyn@gmail.com"
 
+import re
 
 # 1. First task.
 # Create a regular expression which MATCHES the following URL:
@@ -27,7 +28,13 @@ __email__ = "p.ivanchyshyn@gmail.com"
 # is_valid_url("https://facebook.com/pivanchy")  # Return `False`.
 # is_valid_url("https://facebook.com/pivanchy/allactivity/info")  # Returns `False`.
 # is_valid_url("https://facebook.com/allactivity")  # Returns `False`.'
-#
+
+
+def is_valid_url(url):
+    if re.match('^https://facebook\.com/[A-Za-z0-9]+/[A-Za-z0-9]+$', url):
+        return True
+    return False
+
 # 2. Second task.
 # Using a URLs from the first task, create another regular expression,
 # which helps to SEARCH User's ID from provided URL.
@@ -37,3 +44,10 @@ __email__ = "p.ivanchyshyn@gmail.com"
 #
 # get_user_id("http://facebook.com/pivanchy/allactivity")  # Expected output is `pivanchy`.
 # get_user_id("https://facebook.com/pivanchy/allactivity")  # Expected output: `pivanchy`.
+
+
+def get_user_id(url):
+    pattern = re.search(r'^http\w*://facebook\.com/([A-Za-z0-9]+)/[A-Za-z0-9]+$', url)
+    if pattern:
+        return pattern.group(1)
+    return 'Url is incorrect'
