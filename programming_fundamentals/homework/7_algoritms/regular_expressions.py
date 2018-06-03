@@ -37,3 +37,19 @@ __email__ = "p.ivanchyshyn@gmail.com"
 #
 # get_user_id("http://facebook.com/pivanchy/allactivity")  # Expected output is `pivanchy`.
 # get_user_id("https://facebook.com/pivanchy/allactivity")  # Expected output: `pivanchy`.
+
+import re
+
+def is_valid_url(adress):
+    if re.match('^https://facebook\.com/(\w+)/(\w+)$', adress):
+        return True
+    else:
+        return False
+
+
+
+
+def get_user_id(adress):
+
+
+print(get_user_id("https://facebook.com/gallactivity/gallactivity"))
