@@ -30,8 +30,8 @@ class XmlParser:
                 data_from_xml = xmltodict.parse(xml_file.read())
                 xml_to_dict = json.loads(json.dumps(data_from_xml))['config']
                 return xml_to_dict
-            except:
-                pass
+            except Exception as errors:
+                print('Unable to parse {} file: {}'.format(file_name, errors))
 
 
 class IniParser:
@@ -47,8 +47,8 @@ class IniParser:
             ini_config.read(file_name)
             ini_to_dict = json.loads(json.dumps(ini_config.__dict__['_sections']))
             return ini_to_dict
-        except:
-            pass
+        except Exception as errors:
+            print('Unable to parse {} file: {}'.format(file_name, errors))
 
 
 class YamlParser:
@@ -61,10 +61,9 @@ class YamlParser:
     def parse(self, file_name):
         try:
             with open(file_name, 'r') as yaml_file:
-                yaml_to_dict = yaml.load(yaml_file)
-            return yaml_to_dict
-        except:
-            pass
+                return yaml.load(yaml_file)
+        except Exception as errors:
+            print('Unable to parse {} file: {}'.format(file_name, errors))
 
 
 class JsonParser:
@@ -79,21 +78,23 @@ class JsonParser:
             with open(file_name, 'r') as json_file:
                 json_to_dict = json.loads(json_file.read())
                 return json_to_dict
-        except:
-            pass
+        except Exception as errors:
+            print('Unable to parse {} file: {}'.format(file_name, errors))
 
 
 class Parser:
 
-    def __init__(self):
-        self.parsers = [XmlParser(), IniParser(), YamlParser(), JsonParser()]
-
     def parse(self, file_name):
-        final_data = None
-        for parser in self.parsers:
-            if isinstance(parser.parse(file_name), dict):
-                final_data = parser.parse(file_name)
-        return final_data
+        file_extension = file_name.split('.')[-1]
+        if file_extension == 'xml':
+            return XmlParser().parse(file_name)
+        elif file_extension == 'ini':
+            return IniParser().parse(file_name)
+        elif file_extension == 'yaml':
+            return YamlParser().parse(file_name)
+        elif file_extension == 'json':
+            return JsonParser().parse(file_name)
+
 
 # The following code should works fine.
 # Each `parse` method should return a dict object
