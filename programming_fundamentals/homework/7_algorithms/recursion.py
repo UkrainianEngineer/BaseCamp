@@ -22,6 +22,11 @@ __email__ = "p.ivanchyshyn@gmail.com"
 # And so on.
 
 def power(x, n):
+    """
+    Equivalent to x**y (with two arguments)
+
+    Function using recurtion for power two variable
+    """
     if n == 0:
         return 1
     elif n >= 1:
