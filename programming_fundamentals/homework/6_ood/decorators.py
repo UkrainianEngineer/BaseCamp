@@ -14,16 +14,30 @@
 RETRIES = 4
 
 
-def decorator(add_parameters_if_needed):
+def decorator(fn):
     # Use `RETRIES` variable here somehow.
     # You should add some behaviour here for easier testing.
-    pass
+    def wrapper_fn(arg):
+        for i in range(RETRIES):
+            try:
+                fn(arg)
+                print("Function succeed")
+                break
+            except ZeroDivisionError:
+                print("Function is failed. Attempt " + str(i + 1))
+                continue
+
+    return wrapper_fn
 
 
 @decorator
-def my_func(dd_parameters_if_needed):
+def my_func(number):
     # You should add some behaviour here for easier testing.
-    pass
+    if number > 0:
+        return 5 / number
+    else:
+        raise ZeroDivisionError
+
 
 # 2) Improve previous task to make it possible to pass a parameter
 #    into your decorator.
@@ -31,15 +45,33 @@ def my_func(dd_parameters_if_needed):
 # Example:
 
 
-def decorator(dd_parameters_if_needed):
+def decorator(retries):
     # You should add some behaviour here for easier testing.
-    pass
+    def real_decorator(fn):
+        def wrapper_fn(arg):
+            for i in range(retries):
+                try:
+                    fn(arg)
+                    print("Function succeed")
+                    break
+                except ZeroDivisionError:
+                    print("Function is failed. Attempt " + str(i + 1))
+                    continue
+
+        return wrapper_fn
+
+    return real_decorator
 
 
 @decorator(retries=4)
-def my_func(dd_parameters_if_needed):
+def my_func(number):
     # You should add some behaviour here for easier testing.
-    pass
+    if number > 0:
+        return 5 / number
+    else:
+        raise ZeroDivisionError
+
+
 #
 #  3) Implement decorator which caches data.
 #     It means that for first run of function it should print something like:
@@ -49,13 +81,29 @@ def my_func(dd_parameters_if_needed):
 #
 #  Example:
 #
+
+def cached(fn):
+    data = None
+
+    def wrapper():
+        nonlocal data
+        if fn() is data:
+            print("Using data from cache. => " + data)
+        else:
+            print("Calculated value. => " + fn())
+            data = fn()
+        return data
+    return wrapper
+
+
 @cached
 def my_func():
     # Doing something.
     # E.g.:
     return "Hello, world!"
 
-my_func() # prints `Calculated value. => Hello, world!`
-my_func() # prints `Using data from cache. => Hello, world!`
-my_func() # prints `Using data from cache. => Hello, world!`
-my_func() # prints `Using data from cache. => Hello, world!`
+
+my_func()  # prints `Calculated value. => Hello, world!`
+my_func()  # prints `Using data from cache. => Hello, world!`
+my_func()  # prints `Using data from cache. => Hello, world!`
+my_func()  # prints `Using data from cache. => Hello, world!`

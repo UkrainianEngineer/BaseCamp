@@ -17,11 +17,39 @@ __email__ = "p.ivanchyshyn@gmail.com"
 # Activity log - text file.
 
 class User:
-    pass
+    def __init__(self, name, group):
+        self.name = name
+        self.group = group
+        self.page_name = None
+
+    def write_to_log(self, text):
+        with open("log.txt", 'a') as fp:
+            fp.write(text)
+
+    def set_group(self, new_group_name):
+        self.group = new_group_name
+
+    def check_permissions(self, page_obj):
+        self.page_name = page_obj.page_name
+        if self.group in page_obj.allowed_group:
+            return True
+        else:
+            return False
+
+    def login(self):
+        User.write_to_log(self, "User {} has been successfully logged in {} page.".format(self.name, self.page_name) + "\n")
+
+    def logout(self):
+        User.write_to_log(self, "User {} has not enough permissions for {} page.".format(self.name, self.page_name) + "\n")
 
 
 class Page:
-    pass
+    def __init__(self, page_group):
+        self.allowed_group = self.page_name = page_group
+
+    def allow_for(self, group_list):
+        self.allowed_group = group_list.copy()
+
 
 admin_user = User("Pavlo", "admin")
 moderation_user = User("Yura", "moderator")
@@ -41,4 +69,4 @@ else:
     # Logout should write an error message into activity log.
     # It might be something similar to:
     # User `Pavlo` has not enough permissions for `Settings` page.
-    admin_user.logot()
+    admin_user.logout()
