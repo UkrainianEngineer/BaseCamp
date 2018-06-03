@@ -1,8 +1,10 @@
-import datetime
-
 """This module describes homework related to decorators.
    Author: pivanchy.
 """
+import datetime
+
+RETRIES = 4
+count = 0
 
 # Implement `retry` decorator.
 # If some part of code in decorated function fails, try to re-run it again.
@@ -13,8 +15,6 @@ import datetime
 #    Failed function should retries up to 4 times.
 #
 # Example:
-RETRIES = 4
-count = 0
 
 
 def decorator(function):
@@ -86,10 +86,11 @@ def cached(function):
 
     def wrapper(*args, **kwargs):
         wrapper.calls += 1
+        value = function(*args, **kwargs)
         if wrapper.calls > 1:
-            print("Using data from cache. => Hello, world!")
+            print("Using data from cache. => {}".format(str(value)))
         else:
-            print("Calculated value. => Hello, world!")
+            print("Calculated value. => {}".format(str(value)))
         return function(*args, **kwargs)
     wrapper.calls = 0
     return wrapper
@@ -98,10 +99,11 @@ def cached(function):
 # version 2
 def cached(function):
     cache = {}
+
     def wrapper(*args, **kwargs):
         nonlocal cache
         value = (*args, tuple(kwargs.items()))
-        if value not in cache :
+        if value not in cache:
             return_value = function(*args, **kwargs)
             cache[value] = return_value
             print('Calculated value. => {}'.format(return_value))

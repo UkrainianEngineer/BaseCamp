@@ -1,12 +1,19 @@
-2018-06-03 01:00:55.746201 User Max has not enough permissions for Settings page.  
-2018-06-03 01:01:08.940201 User Max has been successfully logged in Settings page.
-2018-06-03 01:02:47.179201 User Yura has been successfully logged in History page.
-2018-06-03 01:03:10.698201 User Yura has not enough permissions for History page.
-2018-06-03 01:03:22.972201 User Yura has been successfully logged in History page.
-2018-06-03 01:04:29.528201 User Pavlo has been successfully logged in History page.
-2018-06-03 01:37:05.767201 User Pavlo has been successfully logged in Settings page.
+2018-06-03 01:00:55 User Max has not enough permissions for Settings page.
+2018-06-03 01:01:08 User Max has been successfully logged in Settings page.
+2018-06-03 01:02:47 User Yura has been successfully logged in History page.
+2018-06-03 01:03:10 User Yura has not enough permissions for History page.
+2018-06-03 01:03:22 User Yura has been successfully logged in History page.
+2018-06-03 01:04:29 User Pavlo has been successfully logged in History page.
+2018-06-03 01:37:05 User Pavlo has been successfully logged in Settings page.
 
 Number of users signed into website is 3
 
-2018-06-03 01:59:44.402201 User Pavlo has been successfully logged in Settings page.
-2018-06-03 02:14:02.566201 User Pavlo has been successfully logged in Settings page.
+2018-06-03 15:47:00 User Pavlo has been successfully logged in Settings page.
+2018-06-03 20:37:00 User Yura has been successfully logged in Settings page.
+2018-06-03 20:53:00 User Max has been successfully logged in Settings page.
+2018-06-03 20:53:00 User Oksana has not enough permissions for Settings page.
+
+ Number of users tried to sign into website is 4. 
+
+
+

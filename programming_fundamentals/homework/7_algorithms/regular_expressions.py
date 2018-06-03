@@ -1,5 +1,3 @@
-import re
-
 """
 This module describes a homework related to URL validation via regular expressions.
 """
@@ -8,6 +6,7 @@ __author__ = "Pavlo Ivanchyshyn"
 __maintainer__ = "Pavlo Ivanchyshyn"
 __email__ = "p.ivanchyshyn@gmail.com"
 
+import re
 
 # 1. First task.
 # Create a regular expression which MATCHES the following URL:
@@ -40,8 +39,9 @@ __email__ = "p.ivanchyshyn@gmail.com"
 # get_user_id("http://facebook.com/pivanchy/allactivity")  # Expected output is `pivanchy`.
 # get_user_id("https://facebook.com/pivanchy/allactivity")  # Expected output: `pivanchy`.
 
+
 def is_valid_url(string):
-    pattern = re.compile(r"http(s)?://(www.)*facebook\.com/\w+(\.\w+(\.\d+)*)*\/\w+$")
+    pattern = re.compile(r"http(s)?://(.)*facebook\.com/\w+(\.\w+(\.\d+)*)*\/\w+$")
     match = re.match(pattern, string)
     if match:
         print("True")
