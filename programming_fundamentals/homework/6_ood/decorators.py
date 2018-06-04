@@ -14,16 +14,30 @@
 RETRIES = 4
 
 
-def decorator(add_parameters_if_needed):
+def decorator(my_func):
     # Use `RETRIES` variable here somehow.
     # You should add some behaviour here for easier testing.
-    pass
+    def wrap():
+        for a in range(RETRIES):
+            try:
+                my_func()
+                print ('execute')
+                break
+                
+            except:
+                print ('error')
+    return wrap
 
 
 @decorator
-def my_func(dd_parameters_if_needed):
+def my_func():
+    a = 1 + 0
     # You should add some behaviour here for easier testing.
     pass
+
+
+
+
 
 # 2) Improve previous task to make it possible to pass a parameter
 #    into your decorator.
