@@ -64,7 +64,7 @@ class User:
     @allow_for(cache)
     def check_permissions(self, page):
         """
-        This function wrapped by *@allow_for* decorator function
+        This function wrapped by '@allow_for' decorator function
         checks if user has permission to open page
 
         Args:
@@ -77,7 +77,6 @@ class User:
         """
         This function return information about successful login of user.
 
-        :param filename(str) - name of file for logs
         :param data(str) - message about successful login of user
         :param time(datetime) - time of user activity
 
@@ -93,7 +92,6 @@ class User:
         """
         This function return information about failure login of user.
 
-        :param filename(str) - name of file for logs
         :param data(str) - message about successful login of user
         :param time(datetime) - time of user activity
 
