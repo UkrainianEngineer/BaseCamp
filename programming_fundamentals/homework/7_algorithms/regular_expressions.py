@@ -29,15 +29,12 @@ import re
 # is_valid_url("https://facebook.com/pivanchy/allactivity/info")  # Returns `False`.
 # is_valid_url("https://facebook.com/allactivity")  # Returns `False`.'
 
-#https?://(www.)?facebook.com/(\w_#!/)?(pages/)?(([\w-]_/)*)?(?P<page_id>[\w.-]+)
-
 def is_valid_url(url):
     pattern = re.compile(r'https?://(www.)?facebook.com/w+/\w+', re.IGNORECASE)
     if pattern.match(url):
         return True
     else:
         return False
-
 
     
 #
@@ -51,9 +48,7 @@ def is_valid_url(url):
 # get_user_id("http://facebook.com/pivanchy/allactivity")  # Expected output is `pivanchy`.
 # get_user_id("https://facebook.com/pivanchy/allactivity")  # Expected output: `pivanchy`.
 
-def get_user_id(url):
+def get_user_id(ur):
     pattern = re.compile(r'https?://(www.)?facebook.com/(\w+)/\w+', re.IGNORECASE)
-    user_id = pattern.match(url)
+    user_id = pattern.match(ur).group(2)
     return user_id
-
-print(get_user_id("http://facebook.com/pivanchy/allactivity"))
