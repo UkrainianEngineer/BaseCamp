@@ -17,7 +17,7 @@ import datetime
 def custom_decorator(some_func):
     # ADD YOUR CODE HERE.
     # You are also able to add some parameters if needed.
-    def wrapper_func(*args, **kwargs):
+    def wrapper_func():
         start = datetime.datetime.now()
         some_func()
         print (datetime.datetime.now() - start)
