@@ -20,6 +20,7 @@ def custom_decorator(test_decorator):
     def timestamp_func():
         start_time = time.time()
         test_decorator()
+        time.sleep(5)
         print("Program has executed: %s " % (time.time() - start_time))
 
     return timestamp_func
@@ -27,7 +28,6 @@ def custom_decorator(test_decorator):
 
 @custom_decorator
 def test_decorator():
-    time.sleep(5)
     print("This function executes...")
 
 

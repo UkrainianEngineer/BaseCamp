@@ -48,5 +48,5 @@ print(is_valid_url("https://facebook.com/yura.kekc/allactivity", regex))  # Retu
 print(is_valid_url("https://facebook.com/yura.kekc", regex))  # Return `False`.
 print(is_valid_url("https://facebook.com/yura.kekc/allactivity/info", regex))  # Returns `False`.
 print(is_valid_url("https://facebook.com/allactivity", regex))  # Returns `False`.'
-print(get_user_id("http://facebook.com/yura.kekc/allactivity", regex))  # Expected output is `pivanchy`.
-print(get_user_id("https://facebook.com/yura.kekc/allactivity", regex))  # Expected output: `pivanchy`.
+print(get_user_id("http://facebook.com/yura.kekc/allactivity", regex))  # Expected output is `yura.kekc`.
+print(get_user_id("https://facebook.com/yura.kekc/allactivity", regex))  # Expected output: `yura.kekc`.

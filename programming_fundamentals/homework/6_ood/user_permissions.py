@@ -24,33 +24,70 @@ class User:
         self.check_page = None
 
     def set_group(self, new_group):
+        """
+        This function set a new group into self.group variable
+
+        Args:
+            new_group (str): Write new group into group list.
+        """
         self.group = new_group
 
     def check_permissions(self, check_page):
-        self.check_page = check_page.page_tittle
+        """
+        This function checks if user has permission to open this page
+
+        Args:
+            check_page(obj) - instance of class Page
+
+        Returns:
+            bool: - if we have permission or False if we haven't
+        """
+        self.check_page = check_page.page_title
         if self.group in check_page.allowed_groups:
             return True
         else:
             return False
 
     def login(self):
-        with open('activity_log.txt', 'a+') as file:
-                file.write('User' + self.name + 'has been successfully logged in' + self.check_page + 'page.')
+        """
+        This function write information
+        into file about successfully logging in.
+
+        Returns:
+            None
+        """
+        with open('activity_log.txt', 'a+') as f:
+            f.write('User {} has not enough permissions for {} page.'
+                    .format(self.name, self.check_page))
 
     def logout(self):
-        with open('activity_log.txt', 'a+') as file:
-                file.write('User' + self.name + 'has not enough permissions for' + self.check_page + 'page.')
+        """
+        This function write information
+        into file about unsuccessfully logging in.
+
+        Returns:
+            None
+        """
+        with open('activity_log.txt', 'a+') as f:
+            f.write('User {} has not enough permissions for {} page.'
+                    .format(self.name, self.check_page))
 
 
 class Page:
 
-    def __init__(self, page_tittle):
-        self.page_tittle = page_tittle
+    def __init__(self, page_title):
+        self.page_title = page_title
         self.allowed_groups = []
 
     def allow_for(self, group_list):
-        for i in group_list:
-            self.allowed_groups.append(i)
+        """
+        Method gives permission for a page to particular user groups.
+
+        Returns:
+            None
+        """
+        for group in group_list:
+            self.allowed_groups.append(group)
 
 
 admin_user = User("Pavlo", "admin")
