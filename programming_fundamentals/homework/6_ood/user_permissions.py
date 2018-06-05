@@ -7,11 +7,10 @@ __maintainer__ = "Pavlo Ivanchyshyn"
 __email__ = "p.ivanchyshyn@gmail.com"
 
 import copy
-import datetime
+import time
 
 FILENAME = "user_activity.txt"
-now = datetime.datetime.now()
-time = datetime.datetime(now.year, now.month, now.day, now.hour, now.minute)
+now_time = time.strftime("%d %b %Y %H:%M:%S", time.gmtime())
 cache = []
 
 # This is a task for creating a proper program design to resolve the task.
@@ -85,7 +84,7 @@ class User:
         """
 
         data = ("{} User {} has been successfully logged in {} page."
-                .format(time, self.name, self.page))
+                .format(now_time, self.name, self.page))
         return User.write_log(self, data)
 
     def logout(self):
@@ -99,7 +98,7 @@ class User:
             call of write_log() function
         """
         data = ("{} User {} has not enough permissions for {} page."
-                .format(time, self.name, self.page))
+                .format(now_time, self.name, self.page))
         return User.write_log(self, data)
 
     def write_log(self, data, filename=FILENAME):
@@ -165,4 +164,4 @@ check_user(admin_user)
 check_user(moderation_user)
 check_user(regular_user)
 check_user(new_regular_user)
-# admin_user.get_users_number()
+admin_user.get_users_number()
