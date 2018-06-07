@@ -10,30 +10,29 @@
 #    Use this variable for your retry decorator.
 #    Failed function should retries up to 4 times.
 #
+
 # Example:
 RETRIES = 4
-
 
 def decorator(my_func):
     # Use `RETRIES` variable here somehow.
     # You should add some behaviour here for easier testing.
-    def wrap():
+    def wrap(argnum):
+        print('I try to execute it!')
         for a in range(RETRIES):
             try:
-                my_func()
-                print ('execute')
+                my_func(argnum)
+                print ('Execute!')
                 break
                 
             except:
-                print ('error')
+                print ('Error! Try number... ' + str(a+1))
     return wrap
 
-
 @decorator
-def my_func():
-    a = 1 + 0
-    # You should add some behaviour here for easier testing.
-    pass
+def my_func(a):
+# You should add some behaviour here for easier testing.
+    a = 1 / a
 
 
 
