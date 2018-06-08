@@ -44,15 +44,32 @@ def my_func(a):
 # Example:
 
 
-def decorator(dd_parameters_if_needed):
+# Example:
+RETRIES = 4
+def decorator_param(ret):
+    def decorator(my_func):
+    # Use `RETRIES` variable here somehow.
     # You should add some behaviour here for easier testing.
-    pass
+        def wrap(divex):
+            print('I try to execute it!')
+            for a in range(ret):
+                try:
+                    #my_func(divex)
+                    print ('Execute! Res = ' + str(my_func(divex)))
+                    break
+                
+                except:
+                    print ('Error! Try number... ' + str(a+1))
+            print('End!')
+        return wrap
+    return decorator
 
-
-@decorator(retries=4)
-def my_func(dd_parameters_if_needed):
-    # You should add some behaviour here for easier testing.
-    pass
+@decorator_param(ret = 5)
+def my_func(div):
+# You should add some behaviour here for easier testing.
+    a = 1 / div
+    return a
+    
 #
 #  3) Implement decorator which caches data.
 #     It means that for first run of function it should print something like:
@@ -62,13 +79,15 @@ def my_func(dd_parameters_if_needed):
 #
 #  Example:
 #
+
+
 @cached
-def my_func():
+def my_func2():
     # Doing something.
     # E.g.:
     return "Hello, world!"
 
-my_func() # prints `Calculated value. => Hello, world!`
-my_func() # prints `Using data from cache. => Hello, world!`
-my_func() # prints `Using data from cache. => Hello, world!`
-my_func() # prints `Using data from cache. => Hello, world!`
+my_func2() # prints `Calculated value. => Hello, world!`
+my_func2() # prints `Using data from cache. => Hello, world!`
+my_func2() # prints `Using data from cache. => Hello, world!`
+my_func2() # prints `Using data from cache. => Hello, world!`
