@@ -42,4 +42,4 @@ def power_function(x, y):
 
 x = int(input("Enter base x: "))
 y = int(input("Enter exponential value y: "))
-print("Result:", pow(x, y))
+print("Result:", power_function(x, y))
