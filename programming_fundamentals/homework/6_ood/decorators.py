@@ -20,11 +20,11 @@ def decorator(func):
     def retry_if_fails(*args, **kwargs):
         for attempt in range(RETRIES):
             try:
-                func(*args, **kwargs)
+                original_func = func(*args, **kwargs)
                 print('Function executed successfully.')
-                return None  # If function executed successfully, no need to continue func execution
+                return original_func
             except ValueError:
-                print('Got exception in function trying to retry... Attempt {}'.format(attempt+1))
+                print('Got excesption in function trying to retry... Attempt {}'.format(attempt+1))
         print('Function execution failed on all attempts.')
     return retry_if_fails
 
@@ -48,9 +48,9 @@ def decorator(*args, retries, **kwargs):
         def retry_if_fails(*args, **kwargs):
             for attempt in range(retries):
                 try:
-                    func(*args, **kwargs)
+                    original_func = func(*args, **kwargs)
                     print('Function executed successfully.')
-                    return None  # If function executed successfully, no need to continue func execution
+                    return original_func
                 except ValueError:
                     print('Got exception in function trying to retry... Attempt {}'.format(attempt+1))
             print('Function execution failed on all attempts.')
@@ -58,13 +58,14 @@ def decorator(*args, retries, **kwargs):
     return real_decorator
 
 
-@decorator(retries=4)
+@decorator(retries=5)
 def my_func(number):
     # You should add some behaviour here for easier testing.
     if number == 5:
         return 5
     else:
         raise ValueError()
+
 
 #  3) Implement decorator which caches data.
 #     It means that for first run of function it should print something like:
@@ -81,10 +82,12 @@ def cached(func):
         arguments = (*args, tuple(kwargs.items()))
         if arguments in cache:
             print('Using data from cache. => {}'.format(cache[arguments]))
+            return cache[arguments]
         else:
             function_return = func(*args, **kwargs)
             cache[arguments] = function_return
             print('Calculated value. => {}'.format(function_return))
+            return function_return
     return cache_wrapper
 
 @cached
