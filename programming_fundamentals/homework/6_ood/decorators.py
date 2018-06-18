@@ -2,6 +2,8 @@
    Author: pivanchy.
 """
 
+from functools import lru_cache
+
 # Implement `retry` decorator.
 # If some part of code in decorated function fails, try to re-run it again.
 # If decorated function executes successfully, you don't need to re-run it.
@@ -81,11 +83,9 @@ def my_func(div):
 #
 
 
-@cached
+@lru_cache()
 def my_func2():
-    # Doing something.
-    # E.g.:
-    return "Hello, world!"
+    print('Hello world!')
 
 my_func2() # prints `Calculated value. => Hello, world!`
 my_func2() # prints `Using data from cache. => Hello, world!`

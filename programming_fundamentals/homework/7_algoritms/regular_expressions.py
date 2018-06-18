@@ -50,6 +50,9 @@ def is_valid_url(adress):
 
 
 def get_user_id(adress):
-
+    if is_valid_url(url):
+        return re.search(r'https://facebook\.com/(.*?)/(\w+)$', url).group(1)
+    else:
+        print("Wrong adress!")
 
 print(get_user_id("https://facebook.com/gallactivity/gallactivity"))
