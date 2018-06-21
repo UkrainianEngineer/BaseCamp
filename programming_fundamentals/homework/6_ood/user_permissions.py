@@ -25,7 +25,7 @@ class User:
         self.role = role
         self.page = None
 
-    def set_group(self, new_role):
+    def set_role(self, new_role):
         """
         Function sets new role for user.
         """
@@ -95,7 +95,7 @@ class Logger:
 admin_user = User("Pavlo", "admin")
 moderation_user = User("Yura", "moderator")
 regular_user = User("Max", "regular")
-regular_user.set_group("moderator")
+regular_user.set_role("moderator")
 
 page = Page("Settings")
 page.allow_for(['admin', 'moderator'])
