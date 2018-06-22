@@ -23,12 +23,20 @@ __email__ = "p.ivanchyshyn@gmail.com"
 
 def power(x, y):
     if y == 1:
-        return x
+        result = x
     elif y == 0:
-        return 1
+        result = 1
+    elif y < 0:
+        result = 1/(x ** -y)
+    elif 1 > y > 0:
+        result = x ** y
     else:
-        return x*(power(x, y - 1))
+        result = x*(power(x, y - 1))
+    return result
+
 
 print(power(2, 5))
 print(power(2, 0))
 print(power(2, 1))
+print(power(2, -2))
+print(power(2, 0.25))
