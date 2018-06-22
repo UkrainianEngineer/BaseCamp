@@ -6,7 +6,8 @@ __author__ = "Pavlo Ivanchyshyn"
 __maintainer__ = "Pavlo Ivanchyshyn"
 __email__ = "p.ivanchyshyn@gmail.com"
 
-
+from math import log
+from math import exp
 # Create a recursive power function.
 # This function should calculate x ** y using recursion.
 # It might be calculated using formula:
@@ -21,6 +22,7 @@ __email__ = "p.ivanchyshyn@gmail.com"
 # pow(4, 6)  # Returns 4096.
 # And so on.
 
+
 def power(x, y):
     """
     Args:
@@ -33,5 +35,18 @@ def power(x, y):
         return 1
     elif y < 0:
         return 1 / (x * power(x, abs(y)-1))
+    elif isinstance(y, float):
+        return exp(y * log(x))
     else:
         return x * power(x, y-1)
+
+
+def main():
+    print(power(3, -5.3))
+    print(power(4, 2))
+    print(power(2, -5))
+    print(power(10, 10))
+
+
+if __name__ == '__main__':
+    main()
